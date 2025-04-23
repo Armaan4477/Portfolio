@@ -5,99 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armaan N - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <header>
+        <div class="logo">AN</div>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
     </header>
 
     <section id="about" class="hero">
-        <div class="profile-container">
+        <div class="profile-container" data-aos="fade-up">
             <img src="assets/arm.jpeg" alt="Armaan N" class="profile-img">
             <h1>Armaan N</h1>
-            <p class="tagline">Software Developer</p>
+            <p class="tagline">Software Developer & Problem Solver</p>
+            <div class="cta-buttons">
+                <a href="projects.html" class="btn primary-btn">View Projects</a>
+                <a href="contact.html" class="btn secondary-btn">Contact Me</a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#about-me"><i class="fas fa-chevron-down"></i></a>
         </div>
     </section>
 
-    <section id="skills" class="skills-section">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <img src="assets/java.png" alt="Java">
-                <h3>Java</h3>
-            </div>
-            <div class="skill-card">
-                <img src="assets/python.png" alt="Python">
-                <h3>Python</h3>
-            </div>
-            <div class="skill-card">
-                <img src="assets/firebase.png" alt="Firebase">
-                <h3>Firebase</h3>
-            </div>
-            <div class="skill-card">
-                <img src="assets/mysql.png" alt="MySQL">
-                <h3>MySQL</h3>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects-section">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="assets/datadash.png" alt="DataDash">
-                <h3>DataDash</h3>
-                <p>Cross platform data sharing app</p>
-                <a href="https://github.com/Armaan4477/Cross-Platform-Media-Sharing" class="project-link">View Project</a>
-            </div>
-            <div class="project-card">
-                <img src="assets/tictactoe.png" alt="TicTacToe">
-                <h3>TicTacToe</h3>
-                <p>Classic game implementation</p>
-                <a href="https://github.com/Armaan4477/TicTacToe" class="project-link">View Project</a>
-            </div>
-            <div class="project-card">
-                <img src="assets/hangman.png" alt="Hangman">
-                <h3>Hangman</h3>
-                <p>Word guessing game</p>
-                <a href="https://github.com/Armaan4477/Hangman" class="project-link">View Project</a>
-            </div>
-            <div class="project-card">
-                <img src="assets/quiz.jpg" alt="Quiz Game">
-                <h3>Quiz Game</h3>
-                <p>Interactive quiz application</p>
-                <a href="https://github.com/Armaan4477/Quiz-Game-in-Java" class="project-link">View Project</a>
-            </div>
-            <div class="project-card">
-                <img src="assets/esp.jpg" alt="Automated ESP">
-                <h3>Automated ESP</h3>
-                <p>ESP automation project</p>
-                <a href="https://github.com/Armaan4477/Automated-ESP" class="project-link">View Project</a>
+    <section id="about-me" class="about-section">
+        <div class="container">
+            <h2 data-aos="fade-up">About Me</h2>
+            <div class="about-content" data-aos="fade-up" data-aos-delay="200">
+                <div class="about-text">
+                    <p>Hi there! I'm Armaan, a software developer passionate about creating meaningful applications that solve real-world problems.</p>
+                    <p>With expertise in Java, Python, and various web technologies, I focus on building efficient, user-friendly solutions.</p>
+                    <p>I'm constantly learning and expanding my skillset to stay at the forefront of technology.</p>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-text">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-text">Skills</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact-section">
-        <h2>Connect With Me</h2>
-        <div class="social-links">
-            <a href="https://github.com/Armaan4477" class="social-link">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" class="social-link">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="mailto:nakhudaarmaan66@gmail.com" class="social-link">
-                <i class="fas fa-envelope"></i> Email
-            </a>
+    <section class="featured-projects">
+        <div class="container">
+            <h2 data-aos="fade-up">Featured Projects</h2>
+            <div class="featured-grid">
+                <div class="featured-card" data-aos="fade-up">
+                    <img src="assets/datadash.png" alt="DataDash">
+                    <div class="featured-content">
+                        <h3>DataDash</h3>
+                        <p>Cross platform data sharing app with real-time synchronization</p>
+                        <a href="projects.html#datadash" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="featured-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/esp.jpg" alt="Automated ESP">
+                    <div class="featured-content">
+                        <h3>Automated ESP</h3>
+                        <p>IoT solution for ESP automation with smart controls</p>
+                        <a href="projects.html#esp" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center-button" data-aos="fade-up">
+                <a href="projects.html" class="btn primary-btn">View All Projects</a>
+            </div>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Armaan N</div>
+            <div class="footer-links">
+                <a href="https://github.com/Armaan4477"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nakhudaarmaan66@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2023 Armaan N. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

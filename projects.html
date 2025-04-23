@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Armaan N Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header>
+        <div class="logo">AN</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>My Projects</h1>
+            <p>Explore my latest work and technical projects</p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="app">App</button>
+                <button class="filter-btn" data-filter="game">Game</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up" data-category="app" id="datadash">
+                    <div class="project-image">
+                        <img src="assets/datadash.png" alt="DataDash">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Armaan4477/Cross-Platform-Media-Sharing" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>DataDash</h3>
+                        <div class="project-tags">
+                            <span>Firebase</span>
+                            <span>Cross-Platform</span>
+                        </div>
+                        <p>A cross-platform application for sharing media and data between devices with real-time synchronization capabilities.</p>
+                        <a href="project-details.html?project=datadash" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100" data-category="game">
+                    <div class="project-image">
+                        <img src="assets/tictactoe.png" alt="TicTacToe">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Armaan4477/TicTacToe" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>TicTacToe</h3>
+                        <div class="project-tags">
+                            <span>Game</span>
+                            <span>Java</span>
+                        </div>
+                        <p>Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.</p>
+                        <a href="project-details.html?project=tictactoe" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200" data-category="game">
+                    <div class="project-image">
+                        <img src="assets/hangman.png" alt="Hangman">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Armaan4477/Hangman" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Hangman</h3>
+                        <div class="project-tags">
+                            <span>Game</span>
+                            <span>Python</span>
+                        </div>
+                        <p>Word guessing game with multiple categories and dictionary integration.</p>
+                        <a href="project-details.html?project=hangman" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300" data-category="game">
+                    <div class="project-image">
+                        <img src="assets/quiz.jpg" alt="Quiz Game">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Armaan4477/Quiz-Game-in-Java" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Quiz Game</h3>
+                        <div class="project-tags">
+                            <span>Game</span>
+                            <span>Java</span>
+                        </div>
+                        <p>Interactive quiz application with score tracking and multiple question categories.</p>
+                        <a href="project-details.html?project=quiz" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400" data-category="app" id="esp">
+                    <div class="project-image">
+                        <img src="assets/esp.jpg" alt="Automated ESP">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Armaan4477/Automated-ESP" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Automated ESP</h3>
+                        <div class="project-tags">
+                            <span>IoT</span>
+                            <span>Automation</span>
+                        </div>
+                        <p>ESP-based automation project with sensor integration and remote control capabilities.</p>
+                        <a href="project-details.html?project=esp" class="read-more">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Armaan N</div>
+            <div class="footer-links">
+                <a href="https://github.com/Armaan4477"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nakhudaarmaan66@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2023 Armaan N. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
