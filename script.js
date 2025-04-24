@@ -31,10 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Project filtering with manual filter buttons
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-
-    if (filterButtons.length > 0) {
+    
+    if (filterButtons.length > 0 && projectCards.length > 0) {
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -43,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const filter = button.getAttribute('data-filter');
                 
                 projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    const cardTags = card.dataset.tags ? card.dataset.tags.split(',').map(tag => tag.trim().toLowerCase()) : [];
+                    
+                    if (filter === 'all' || cardTags.includes(filter)) {
                         card.style.display = 'block';
                         setTimeout(() => {
                             card.style.opacity = '1';
