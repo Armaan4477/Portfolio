@@ -418,26 +418,6 @@ nav a.active::after {
     opacity: 1;
 }
 
-.project-link {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    margin: 0 5px;
-    transition: var(--transition);
-}
-
-.project-link:hover {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
 .project-details {
     padding: 1.5rem;
 }
@@ -460,6 +440,24 @@ nav a.active::after {
     padding: 0.2rem 0.8rem;
     font-size: 0.8rem;
     border-radius: 20px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.read-more i {
+    margin-left: 5px;
+    transition: var(--transition);
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
 }
 
 /* Skills Section */
