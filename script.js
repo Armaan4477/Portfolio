@@ -1,5 +1,5 @@
 AOS.init({
-    duration: 800,
+    duration: 300,  // Reduced from 800 to 300 for faster animations
     easing: 'ease-in-out',
     once: true,
     mirror: false
