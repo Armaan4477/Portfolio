@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Armaan N Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header>
+        <div class="logo">AN</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>My Projects</h1>
+            <p>Explore my latest work and technical projects</p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="game">Game</button>
+                <button class="filter-btn" data-filter="website">Web</button>
+                <button class="filter-btn" data-filter="java">Java</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="iot">IoT</button>
+                <button class="filter-btn" data-filter="firebase">Database</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Projects sorted alphabetically by title -->
+                <div class="project-card" data-aos="fade-up" data-tags="app,iot,automation" id="esp">
+                    <div class="project-image">
+                        <img src="assets/esp.png" alt="Automated ESP">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Automated ESP</h3>
+                        <div class="project-tags">
+                            <span>IoT</span>
+                            <span>Automation</span>
+                        </div>
+                        <p>ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.</p>
+                        <a href="https://github.com/Armaan4477/Automated-ESP" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="website,firebase,management" id="communityconnect">
+                    <div class="project-image">
+                        <img src="assets/communityconnect.png" alt="CommunityConnect">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>CommunityConnect</h3>
+                        <div class="project-tags">
+                            <span>Firebase</span>
+                            <span>Management</span>
+                            <span>Website</span>
+                        </div>
+                        <p>CommunityConnect is a comprehensive society management application designed to streamline communication and management tasks for residential societies.</p>
+                        <a href="https://github.com/ura-dev04/CommunityConnect" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="website,firebase" id="deliciousdiscoveries">
+                    <div class="project-image">
+                        <img src="assets/delicious-discoveries.jpeg" alt="Delicious Discoveries">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Delicious Discoveries</h3>
+                        <div class="project-tags">
+                            <span>Website</span>
+                            <span>Firebase</span>
+                        </div>
+                        <p>A web application that helps users discover new recipes from around the world with various search methods including AI-powered features, ingredient-based search, and country-based filtering.</p>
+                        <a href="https://github.com/Armaan4477/Delicious-Discoveries" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="app,cross-platform,java,python" id="datadash">
+                    <div class="project-image">
+                        <img src="assets/datadash.png" alt="DataDash">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>DataDash</h3>
+                        <div class="project-tags">
+                            <span>Cross-Platform</span>
+                            <span>Java</span>
+                            <span>Python</span>
+                        </div>
+                        <p>A cross-platform application for sharing media and data between devices with real-time synchronization capabilities.</p>
+                        <a href="https://github.com/Armaan4477/Cross-Platform-Media-Sharing" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-aos="fade-up" data-tags="app,firebase,python" id="ehr">
+                    <div class="project-image">
+                        <img src="assets/ehr-system.png" alt="Enhanced E-HR Management System">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Enhanced E-HR Management System</h3>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Firebase</span>
+                            <span>Management</span>
+                        </div>
+                        <p>Comprehensive HR management system with multi-level access control for admins, HR personnel, managers, and employees with real-time database integration.</p>
+                        <a href="https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="game,firebase,python">
+                    <div class="project-image">
+                        <img src="assets/hangman.png" alt="Hangman">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Hangman</h3>
+                        <div class="project-tags">
+                            <span>Firebase</span>
+                            <span>Game</span>
+                            <span>Python</span>
+                        </div>
+                        <p>Word guessing game with multiple categories and dictionary integration.</p>
+                        <a href="https://github.com/Armaan4477/Hangman" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="game,java">
+                    <div class="project-image">
+                        <img src="assets/quiz.png" alt="Quiz Game">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Quiz Game</h3>
+                        <div class="project-tags">
+                            <span>Game</span>
+                            <span>Java</span>
+                        </div>
+                        <p>Interactive quiz application with score tracking and multiple question categories.</p>
+                        <a href="https://github.com/Armaan4477/Quiz-Game-in-Java" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-tags="game,java">
+                    <div class="project-image">
+                        <img src="assets/tictactoe.png" alt="TicTacToe">
+                        <div class="project-overlay">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>TicTacToe</h3>
+                        <div class="project-tags">
+                            <span>Game</span>
+                            <span>Java</span>
+                        </div>
+                        <p>Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.</p>
+                        <a href="https://github.com/Armaan4477/TicTacToe" class="read-more">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Armaan N</div>
+            <div class="footer-links">
+                <a href="https://github.com/Armaan4477"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nakhudaarmaan66@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
