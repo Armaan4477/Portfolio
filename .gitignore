@@ -7,9 +7,6 @@
 # testing
 /coverage
 
-# production
-/build
-
 # misc
 .env
 .env.local
