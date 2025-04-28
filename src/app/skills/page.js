@@ -1,5 +1,6 @@
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaFigma, FaJava, FaPython, FaGit } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaFigma, FaJava, FaPython, FaGit, FaWindows, FaApple, FaLinux, FaTools, FaDesktop } from 'react-icons/fa';
 import { SiCplusplus, SiMysql, SiFirebase } from 'react-icons/si';
+import { GiSolderingIron } from 'react-icons/gi';
 import SkillCard from '../../components/SkillCard';
 
 export const metadata = {
@@ -31,6 +32,21 @@ export default function Skills() {
         { name: "Git", icon: <FaGit className="text-orange-600" size={40} />, level: 80 },
         { name: "HTML5", icon: <FaHtml5 className="text-orange-500" size={40} />, level: 55 },
         { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" size={40} />, level: 45 },
+      ]
+    },
+    {
+      category: "Operating Systems",
+      items: [
+        { name: "Windows", icon: <FaWindows className="text-blue-500" size={40} />, level: 100 },
+        { name: "macOS", icon: <FaApple className="text-gray-700" size={40} />, level: 100 },
+        { name: "Linux", icon: <FaLinux className="text-yellow-600" size={40} />, level: 20 },
+      ]
+    },
+    {
+      category: "Hardware Skills",
+      items: [
+        { name: "Computer Building", icon: <FaDesktop className="text-gray-800" size={40} />, level: 100 },
+        { name: "Soldering", icon: <GiSolderingIron className="text-gray-600" size={40} />, level: 60 },
       ]
     }
   ];
