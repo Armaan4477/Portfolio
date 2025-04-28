@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Static HTML export
+  output: 'export',
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '', // Update this with your repo name
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '', // Update with your repo name
-  trailingSlash: true, // GitHub Pages requires trailing slashes
+  // Configure basePath for GitHub Pages deployment
+  // Replace 'Portfolio' with your actual repository name if different
+  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
 }
 
 module.exports = nextConfig

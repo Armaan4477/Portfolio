@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import ProjectCard from '../components/ProjectCard';
+import getImagePath from '../utils/imageLoader';
 
 export default function Home() {
   // Featured projects data
@@ -50,7 +51,7 @@ export default function Home() {
         <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary">
             <Image 
-              src="/projects/arm.jpeg" 
+              src={getImagePath("/projects/arm.jpeg")}
               alt="Armaan N"
               fill
               sizes="(max-width: 768px) 100vw, 256px"

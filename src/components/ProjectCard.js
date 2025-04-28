@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import getImagePath from '../utils/imageLoader';
 
 export default function ProjectCard({ project, featured = false }) {
   return (
@@ -8,7 +9,7 @@ export default function ProjectCard({ project, featured = false }) {
       <div className="project-image relative h-48 overflow-hidden">
         {project.image && (
           <Image 
-            src={project.image} 
+            src={getImagePath(project.image)}
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
