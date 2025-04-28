@@ -76,7 +76,7 @@ export default function Contact() {
   return (
     <div>
       <h1 className="page-title">Contact Me</h1>
-      <p className="text-lg text-gray-700 mb-8">
+      <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
         Have a question? Feel free to reach out to me using the form below or through my contact information.
       </p>
 
@@ -84,7 +84,7 @@ export default function Contact() {
         <div className="lg:w-1/2">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Your Name
               </label>
               <input
@@ -94,12 +94,12 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Email Address
               </label>
               <input
@@ -109,12 +109,12 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
               />
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Subject
               </label>
               <input
@@ -124,12 +124,12 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Message
               </label>
               <textarea
@@ -139,20 +139,20 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition w-full flex justify-center"
+              className="px-6 py-3 bg-primary dark:bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-700 transition w-full flex justify-center"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
 
             {submitMessage && (
-              <div className={`mt-4 p-4 rounded-md ${submitMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              <div className={`mt-4 p-4 rounded-md ${submitMessage.type === 'success' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'}`}>
                 {submitMessage.text}
               </div>
             )}
@@ -160,40 +160,40 @@ export default function Contact() {
         </div>
 
         <div className="lg:w-1/2 space-y-8">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-secondary">Contact Information</h2>
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Contact Information</h2>
             
             <div className="space-y-4">
               <div className="flex items-start">
-                <FaEnvelope className="text-primary mt-1 mr-4" size={20} />
+                <FaEnvelope className="text-primary dark:text-blue-400 mt-1 mr-4" size={20} />
                 <div>
-                  <h3 className="font-medium">Email</h3>
-                  <p className="text-gray-600">nakhudaarmaan66@gmail.com</p>
+                  <h3 className="font-medium dark:text-white">Email</h3>
+                  <p className="text-gray-600 dark:text-gray-400">nakhudaarmaan66@gmail.com</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <FaMapMarkerAlt className="text-primary mt-1 mr-4" size={20} />
+                <FaMapMarkerAlt className="text-primary dark:text-blue-400 mt-1 mr-4" size={20} />
                 <div>
-                  <h3 className="font-medium">Location</h3>
-                  <p className="text-gray-600">Mumbai, India</p>
+                  <h3 className="font-medium dark:text-white">Location</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Mumbai, India</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-secondary">Connect With Me</h2>
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
             <div className="flex space-x-4">
-            <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaGithub className="text-gray-800" size={24} />
-          </a>
-          <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaLinkedin className="text-blue-600" size={24} />
-          </a>
-          <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaEnvelope className="text-red-500" size={24} />
-          </a>
+              <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                <FaGithub className="text-gray-800 dark:text-white" size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                <FaLinkedin className="text-blue-600" size={24} />
+              </a>
+              <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                <FaEnvelope className="text-red-500" size={24} />
+              </a>
             </div>
           </div>
         </div>

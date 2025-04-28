@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -19,35 +20,37 @@ export default function Navbar() {
   const isActive = (path) => pathname === path;
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-10">
+    <nav className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 transition-colors">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-xl font-bold text-primary">
+          <Link href="/" className="text-xl font-bold text-primary dark:text-blue-400">
             Armaan N
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link 
                 key={link.path} 
                 href={link.path}
                 className={`${
                   isActive(link.path) 
-                    ? 'text-primary font-medium' 
-                    : 'text-gray-600 hover:text-primary'
+                    ? 'text-primary dark:text-blue-400 font-medium' 
+                    : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
                 } transition-colors`}
               >
                 {link.name}
               </Link>
             ))}
+            <ThemeToggle />
           </div>
           
           {/* Mobile Navigation Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <ThemeToggle />
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-500 hover:text-primary focus:outline-none"
+              className="text-gray-500 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 ml-4 focus:outline-none"
             >
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
@@ -56,7 +59,7 @@ export default function Navbar() {
         
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t dark:border-gray-700">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link 
@@ -64,8 +67,8 @@ export default function Navbar() {
                   href={link.path}
                   className={`${
                     isActive(link.path) 
-                      ? 'text-primary font-medium' 
-                      : 'text-gray-600 hover:text-primary'
+                      ? 'text-primary dark:text-blue-400 font-medium' 
+                      : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
                   } transition-colors block px-2 py-1`}
                   onClick={() => setIsMenuOpen(false)}
                 >

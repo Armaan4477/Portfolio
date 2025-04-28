@@ -8,6 +8,12 @@
   --background-end-rgb: 240, 240, 240;
 }
 
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 23, 42;
+  --background-end-rgb: 30, 41, 59;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -16,10 +22,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .page-title {
-  @apply text-3xl font-bold mb-6 text-primary;
+  @apply text-3xl font-bold mb-6 text-primary dark:text-blue-400;
 }
 
 .section {
@@ -27,5 +34,5 @@ body {
 }
 
 .card {
-  @apply bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all;
+  @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all dark:shadow-gray-900;
 }
