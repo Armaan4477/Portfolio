@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
+  reactStrictMode: true,
+  // Make sure there are no output directory customizations causing issues
+  // If you have custom output settings, they should match what Vercel expects
 }
 
 module.exports = nextConfig
