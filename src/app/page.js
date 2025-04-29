@@ -32,10 +32,10 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold">
             Hi, I&apos;m <span className="text-primary">Armaan N</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl text-gray-600">
+          <h2 className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300">
             Software Developer
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Passionate about technology, F1 and cars.
           </p>
           <div className="pt-4 flex gap-4">
