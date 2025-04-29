@@ -8,13 +8,11 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { theme, toggleTheme } = useTheme();
   
-  // Only show the theme toggle after component is mounted
   useEffect(() => {
     setMounted(true);
   }, []);
   
   if (!mounted || !theme) {
-    // Return a placeholder with same dimensions to avoid layout shift
     return <div className="p-2 h-10 w-10"></div>;
   }
   
