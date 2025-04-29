@@ -20,7 +20,7 @@ export default function Navbar() {
   const isActive = (path) => pathname === path;
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 transition-colors">
+    <nav className="bg-white dark:bg-gray-800 shadow-xs sticky top-0 z-10 transition-colors">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="text-xl font-bold text-primary dark:text-blue-400">
@@ -50,7 +50,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-500 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 ml-4 focus:outline-none"
+              className="text-gray-500 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 ml-4 focus:outline-hidden"
             >
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
