@@ -1,5 +1,5 @@
 const getImagePath = (src) => {
-  const basePath = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
+  // Vercel deploys to production domain directly, so no base path needed
   
   if (src.startsWith('http')) {
     return src;
@@ -7,7 +7,7 @@ const getImagePath = (src) => {
   
   const normalizedSrc = src.startsWith('/') ? src : `/${src}`;
   
-  return `${basePath}${normalizedSrc}`;
+  return normalizedSrc;
 };
 
 export default getImagePath;

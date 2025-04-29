@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Make sure there are no output directory customizations causing issues
-  // If you have custom output settings, they should match what Vercel expects
+  images: {
+    domains: [], // Add any image domains you're loading from here
+    unoptimized: true, // Set to false if you want Next.js to optimize your images
+  },
+  // No basePath needed for Vercel deployment
 }
 
 module.exports = nextConfig
