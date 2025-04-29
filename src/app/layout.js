@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <div className="flex flex-col min-h-screen transition-colors duration-200 dark:bg-gray-900 dark:text-white">
             <Navbar />
-            <main className="flex-grow container mx-auto px-4 py-8">
+            <main className="grow container mx-auto px-4 py-8">
               {children}
             </main>
             <Footer />

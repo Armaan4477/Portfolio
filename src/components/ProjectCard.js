@@ -32,7 +32,7 @@ const ProjectCard = ({ project, featured = false }) => {
           {isLongDescription && (
             <button 
               onClick={() => setExpanded(!expanded)} 
-              className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium ml-2 hover:underline focus:outline-none transition-colors"
+              className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium ml-2 hover:underline focus:outline-hidden transition-colors"
             >
               {expanded ? 'Read Less' : 'Read More'}
             </button>
