@@ -130,7 +130,7 @@ export default function Projects() {
 
       {featuredProjects.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-secondary">Featured Projects</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredProjects.map(project => (
               <ProjectCard key={project.id} project={project} featured={true} />
@@ -141,7 +141,7 @@ export default function Projects() {
 
       {otherProjects.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-secondary">Other Projects</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherProjects.map(project => (
               <ProjectCard key={project.id} project={project} />
@@ -152,7 +152,7 @@ export default function Projects() {
 
       {filteredProjects.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-xl text-gray-500">No projects found matching the selected filter.</p>
+          <p className="text-xl text-gray-700 dark:text-gray-300">No projects found matching the selected filter.</p>
         </div>
       )}
     </div>
