@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import getImagePath from '../utils/imageLoader';
 
 const ProjectCard = ({ project, featured = false }) => {
   const [expanded, setExpanded] = useState(false);
@@ -17,7 +18,7 @@ const ProjectCard = ({ project, featured = false }) => {
     <div className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}>
       <div className="relative h-48">
         <Image 
-          src={project.image} 
+          src={getImagePath(project.image)} 
           alt={project.title}
           fill
           style={{ objectFit: 'cover' }}
