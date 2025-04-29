@@ -30,21 +30,19 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Prepare template parameters for EmailJS
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        to_name: 'Armaan' // Add recipient name (you)
+        to_name: 'Armaan'
       };
       
-      // Send email using EmailJS with proper error handling
       const response = await emailjs.send(
-        'service_75yfjkm', // Your service ID
-        'template_k3vy5h7', // Your template ID
+        'service_75yfjkm',
+        'template_k3vy5h7',
         templateParams,
-        'r2NLf5cdcemGae_wi' // Use your actual public key here instead of the placeholder
+        'r2NLf5cdcemGae_wi'
       );
       
       console.log('SUCCESS!', response.status, response.text);
@@ -54,7 +52,6 @@ export default function Contact() {
         text: 'Thank you! Your message has been sent successfully.'
       });
       
-      // Reset form
       setFormData({
         name: '',
         email: '',

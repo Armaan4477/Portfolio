@@ -108,7 +108,7 @@ export default function Projects() {
   return (
     <div>
       <h1 className="page-title">My Projects</h1>
-      <p className="text-lg text-gray-700 mb-8">
+      <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
         Explore my latest work and technical projects
       </p>
 
@@ -116,7 +116,11 @@ export default function Projects() {
         {filters.map(filter => (
           <button 
             key={filter.id}
-            className={`filter-btn px-4 py-2 rounded-md ${activeFilter === filter.id ? 'bg-secondary text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
+            className={`filter-btn px-4 py-2 rounded-md ${
+              activeFilter === filter.id 
+                ? 'bg-secondary text-white' 
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+            }`}
             onClick={() => setActiveFilter(filter.id)}
           >
             {filter.label}

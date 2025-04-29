@@ -1,53 +1,67 @@
+"use client";
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import getImagePath from '../utils/imageLoader';
 
-export default function ProjectCard({ project, featured = false }) {
+const ProjectCard = ({ project, featured = false }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const MAX_CHARS = 120;
+  const isLongDescription = project.description.length > MAX_CHARS;
+
+  const displayDescription = isLongDescription && !expanded 
+    ? `${project.description.substring(0, MAX_CHARS)}...` 
+    : project.description;
+
   return (
-    <div className={`project-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:-translate-y-2 ${featured ? 'featured' : ''}`}>
-      <div className="project-image relative h-48 overflow-hidden">
-        {project.image && (
-          <Image 
-            src={getImagePath(project.image)}
-            alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="transition-transform duration-500 hover:scale-105 object-cover"
-          />
-        )}
+    <div className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}>
+      <div className="relative h-48">
+        <Image 
+          src={project.image} 
+          alt={project.title}
+          fill
+          style={{ objectFit: 'cover' }}
+          className="transition-transform hover:scale-105"
+        />
       </div>
-      
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
-        
-        <div className="project-tags mb-3 flex flex-wrap gap-2">
-          {project.technologies.map((tech, index) => (
-            <span 
-              key={index} 
-              className="inline-block bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-300"
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
+          {displayDescription}
+          {isLongDescription && (
+            <button 
+              onClick={() => setExpanded(!expanded)} 
+              className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium ml-2 hover:underline focus:outline-none transition-colors"
             >
+              {expanded ? 'Read Less' : 'Read More'}
+            </button>
+          )}
+        </p>
+        
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.map((tech, index) => (
+            <span key={index} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full dark:text-gray-300">
               {tech}
             </span>
           ))}
         </div>
         
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">{project.description}</p>
-        
-        <div className="flex justify-between mt-auto">
+        <div className="flex justify-between items-center mt-4">
           {project.codeUrl && (
-            <Link href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
-              <FaGithub className="mr-2" /> GitHub
+            <Link href={project.codeUrl} target="_blank" rel="noopener noreferrer" 
+              className="text-secondary hover:underline hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors">
+              View Code
             </Link>
           )}
-          
-          {project.demoUrl && (
-            <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300">
-              <FaExternalLinkAlt className="mr-2" /> Live Demo
-            </Link>
+          {featured && (
+            <span className="bg-secondary text-white text-xs px-3 py-1 rounded-full">
+              Featured
+            </span>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default ProjectCard;

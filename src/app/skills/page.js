@@ -45,8 +45,8 @@ export default function Skills() {
     {
       category: "Hardware Skills",
       items: [
-        { name: "Computer Building", icon: <FaDesktop className="text-gray-800" size={40} />, level: 100 },
-        { name: "Soldering", icon: <GiSolderingIron className="text-gray-600" size={40} />, level: 60 },
+        { name: "Computer Building", icon: <FaDesktop className="text-gray-800 dark:text-gray-200" size={40} />, level: 100 },
+        { name: "Soldering", icon: <GiSolderingIron className="text-gray-600 dark:text-gray-300" size={40} />, level: 60 },
       ]
     }
   ];
@@ -74,12 +74,12 @@ export default function Skills() {
         </section>
       ))}
 
-      <section className="mt-12 p-6 bg-gray-50 rounded-lg">
+      <section className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
         <h2 className="text-2xl font-bold mb-4 text-secondary">Always Learning</h2>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-gray-300">
           Technology is always evolving, and so am I. I'm currently improving my knowledge in:
         </p>
-        <ul className="list-disc list-inside mt-4 space-y-2 text-gray-700">
+        <ul className="list-disc list-inside mt-4 space-y-2 text-gray-700 dark:text-gray-300">
           <li>NextJS</li>
           <li>Tailwind</li>
           <li>AWS Services</li>

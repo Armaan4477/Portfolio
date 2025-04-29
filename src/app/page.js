@@ -5,7 +5,6 @@ import ProjectCard from '../components/ProjectCard';
 import getImagePath from '../utils/imageLoader';
 
 export default function Home() {
-  // Featured projects data
   const featuredProjects = [
     {
       id: 1,
@@ -63,26 +62,26 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-      <section className="section bg-gray-50 p-8 rounded-lg">
+      <section className="section bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
         <h2 className="page-title">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
-            <p className="text-gray-700">Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.</p>
-            <p className="text-gray-700">Currently I'm building myself with knowledge in softwares and coding, with expertise in Java, Python and Firebase and basic knowledge of C/C++, HTML, CSS and JS, I focus on building efficient, user-friendly solutions.</p>
-            <p className="text-gray-700">I'm constantly learning and expanding my skillset to stay at the forefront of technology.</p>
-            <p className="text-gray-700">I'm fluent in both Windows and macOS operating systems, with basic knowledge of Linux systems for development and deployment.</p>
-            <p className="text-gray-700">Beyond software, I have hands-on experience with electrical work including soldering, IoT device development, and hardware integration projects.</p>
-            <p className="text-gray-700">In my free time, I enjoy working on personal projects and contributing to open-source initiatives.</p>
+            <p className="text-gray-700 dark:text-gray-300">Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.</p>
+            <p className="text-gray-700 dark:text-gray-300">Currently I'm building myself with knowledge in softwares and coding, with expertise in Java, Python and Firebase and basic knowledge of C/C++, HTML, CSS and JS, I focus on building efficient, user-friendly solutions.</p>
+            <p className="text-gray-700 dark:text-gray-300">I'm constantly learning and expanding my skillset to stay at the forefront of technology.</p>
+            <p className="text-gray-700 dark:text-gray-300">I'm fluent in both Windows and macOS operating systems, with basic knowledge of Linux systems for development and deployment.</p>
+            <p className="text-gray-700 dark:text-gray-300">Beyond software, I have hands-on experience with electrical work including soldering, IoT device development, and hardware integration projects.</p>
+            <p className="text-gray-700 dark:text-gray-300">In my free time, I enjoy working on personal projects and contributing to open-source initiatives.</p>
           </div>
           <div className="md:col-span-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="card text-center py-8">
                 <div className="text-3xl font-bold text-primary mb-2">5+</div>
-                <div className="text-gray-600 font-medium">Projects</div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">Projects</div>
               </div>
               <div className="card text-center py-8">
                 <div className="text-3xl font-bold text-primary mb-2">4+</div>
-                <div className="text-gray-600 font-medium">Skills</div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">Skills</div>
               </div>
             </div>
           </div>
