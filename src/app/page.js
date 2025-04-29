@@ -94,15 +94,15 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="card">
             <h3 className="text-xl font-semibold mb-2">Programming</h3>
-            <p className="text-gray-600">Java, Python, C/C++, HTML, CSS, JavaScript</p>
+            <p className="text-gray-600 dark:text-gray-300">Java, Python, C/C++, HTML, CSS, JavaScript</p>
           </div>
           <div className="card">
             <h3 className="text-xl font-semibold mb-2">Technologies</h3>
-            <p className="text-gray-600">Firebase, IoT Development, Windows, macOS, Linux</p>
+            <p className="text-gray-600 dark:text-gray-300">Firebase, IoT Development, Windows, macOS, Linux</p>
           </div>
           <div className="card">
             <h3 className="text-xl font-semibold mb-2">Hardware</h3>
-            <p className="text-gray-600">Computer Building, Soldering, Hardware Integration</p>
+            <p className="text-gray-600 dark:text-gray-300">Computer Building, Soldering, Hardware Integration</p>
           </div>
         </div>
         <div className="mt-6 text-center">

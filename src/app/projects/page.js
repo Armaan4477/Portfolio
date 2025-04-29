@@ -32,7 +32,7 @@ export default function Projects() {
       description: "A web application that helps users discover new recipes from around the world with various search methods including AI-powered features, ingredient-based search, and country-based filtering.",
       image: "/projects/delicious-discoveries.jpeg",
       technologies: ["Website", "Firebase"],
-      codeUrl: "https://github.com/Armaan4477/Delicious-Discoveries",
+      codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
       featured: false,
       tags: ["website", "firebase"]
     },
