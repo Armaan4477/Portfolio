@@ -9,9 +9,9 @@ export default function Home() {
     {
       id: 1,
       title: "Automated ESP",
-      description: "IoT solution for ESP automation with smart controls. Features include software toggles, hardware override switches, and temperature sensor integration with email status updates.",
+      description: "ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.",
       image: "/projects/esp.png",
-      technologies: ["IoT", "Automation", "ESP8266"],
+      technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP"
     },
     {

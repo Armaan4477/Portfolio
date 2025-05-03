@@ -11,7 +11,7 @@ export default function Projects() {
       title: "Automated ESP",
       description: "ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.",
       image: "/projects/esp.png",
-      technologies: ["IoT", "Automation"],
+      technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
       featured: true,
       tags: ["iot", "automation"]
