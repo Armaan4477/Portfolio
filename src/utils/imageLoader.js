@@ -1,6 +1,4 @@
 const getImagePath = (src) => {
-  // Vercel deploys to production domain directly, so no base path needed
-  
   if (src.startsWith('http')) {
     return src;
   }

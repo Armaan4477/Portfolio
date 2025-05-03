@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import ProjectCard from '../components/ProjectCard';
 import getImagePath from '../utils/imageLoader';
+import AnimatedSection from '../components/animations/AnimatedSection';
+import AnimatedCard from '../components/animations/AnimatedCard';
+import SequentialTypewriter from '../components/SequentialTypewriter';
 
 export default function Home() {
   const featuredProjects = [
@@ -24,10 +27,19 @@ export default function Home() {
     }
   ];
 
+  const aboutMeText = [
+    "Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.",
+    "Currently I'm building myself with knowledge in softwares and coding, with expertise in Java, Python and Firebase and basic knowledge of C/C++, HTML, CSS and JS, I focus on building efficient, user-friendly solutions.",
+    "I'm constantly learning and expanding my skillset to stay at the forefront of technology.",
+    "I'm fluent in both Windows and macOS operating systems, with basic knowledge of Linux systems for development and deployment.",
+    "Beyond software, I have hands-on experience with electrical work including soldering, IoT device development, and hardware integration projects.",
+    "In my free time, I enjoy working on personal projects and contributing to open-source initiatives."
+  ];
+
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-between">
+      <AnimatedSection animation="fadeIn" className="flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold">
             Hi, I&apos;m <span className="text-primary">Armaan N</span>
@@ -47,7 +59,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+        <AnimatedSection animation="scaleUp" delay={0.3} className="md:w-1/2 mt-12 md:mt-0 flex justify-center">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary">
             <Image 
               src={getImagePath("/projects/arm.jpeg")}
@@ -58,22 +70,21 @@ export default function Home() {
               priority
             />
           </div>
-        </div>
-      </section>
+        </AnimatedSection>
+      </AnimatedSection>
 
       {/* About Me Section */}
-      <section className="section bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
+      <AnimatedSection animation="slideInRight" delay={0.5} className="section bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
         <h2 className="page-title">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
-            <p className="text-gray-700 dark:text-gray-300">Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.</p>
-            <p className="text-gray-700 dark:text-gray-300">Currently I'm building myself with knowledge in softwares and coding, with expertise in Java, Python and Firebase and basic knowledge of C/C++, HTML, CSS and JS, I focus on building efficient, user-friendly solutions.</p>
-            <p className="text-gray-700 dark:text-gray-300">I'm constantly learning and expanding my skillset to stay at the forefront of technology.</p>
-            <p className="text-gray-700 dark:text-gray-300">I'm fluent in both Windows and macOS operating systems, with basic knowledge of Linux systems for development and deployment.</p>
-            <p className="text-gray-700 dark:text-gray-300">Beyond software, I have hands-on experience with electrical work including soldering, IoT device development, and hardware integration projects.</p>
-            <p className="text-gray-700 dark:text-gray-300">In my free time, I enjoy working on personal projects and contributing to open-source initiatives.</p>
+            <SequentialTypewriter 
+              paragraphs={aboutMeText}
+              delay={20}
+              className="text-gray-700 dark:text-gray-300"
+            />
           </div>
-          <div className="md:col-span-1">
+          <AnimatedSection animation="slideInRight" delay={0.2} className="md:col-span-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="card text-center py-8">
                 <div className="text-3xl font-bold text-primary mb-2">5+</div>
@@ -84,64 +95,72 @@ export default function Home() {
                 <div className="text-gray-600 dark:text-gray-400 font-medium">Skills</div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Featured Skills */}
-      <section className="section">
+      <AnimatedSection animation="slideUp" className="section">
         <h2 className="page-title">Featured Skills</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card">
+          <AnimatedCard index={0} className="card">
             <h3 className="text-xl font-semibold mb-2">Programming</h3>
             <p className="text-gray-600 dark:text-gray-300">Java, Python, C/C++, HTML, CSS, JavaScript</p>
-          </div>
-          <div className="card">
+          </AnimatedCard>
+          <AnimatedCard index={1} className="card">
             <h3 className="text-xl font-semibold mb-2">Technologies</h3>
             <p className="text-gray-600 dark:text-gray-300">Firebase, IoT Development, Windows, macOS, Linux</p>
-          </div>
-          <div className="card">
+          </AnimatedCard>
+          <AnimatedCard index={2} className="card">
             <h3 className="text-xl font-semibold mb-2">Hardware</h3>
             <p className="text-gray-600 dark:text-gray-300">Computer Building, Soldering, Hardware Integration</p>
-          </div>
+          </AnimatedCard>
         </div>
         <div className="mt-6 text-center">
           <Link href="/skills" className="inline-flex items-center text-primary font-medium hover:underline">
             See all skills <FaArrowRight className="ml-2" />
           </Link>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Featured Projects */}
-      <section className="section">
+      <AnimatedSection animation="slideUp" className="section">
         <h2 className="page-title">Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {featuredProjects.map(project => (
-            <ProjectCard key={project.id} project={project} />
+          {featuredProjects.map((project, index) => (
+            <AnimatedCard key={project.id} index={index} className="h-full">
+              <ProjectCard project={project} />
+            </AnimatedCard>
           ))}
         </div>
-        <div className="mt-8 text-center">
+        <AnimatedSection animation="fadeIn" delay={0.5} className="mt-8 text-center">
           <Link href="/projects" className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition">
             View All Projects <FaArrowRight className="ml-2" />
           </Link>
-        </div>
-      </section>
+        </AnimatedSection>
+      </AnimatedSection>
 
       {/* Social Links */}
-      <section className="section text-center">
+      <AnimatedSection animation="slideUp" className="section text-center">
         <h2 className="page-title">Connect With Me</h2>
         <div className="flex justify-center space-x-6">
-          <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaGithub className="text-gray-800" size={30} />
-          </a>
-          <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaLinkedin className="text-blue-600" size={30} />
-          </a>
-          <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition">
-            <FaEnvelope className="text-red-500" size={30} />
-          </a>
+          <AnimatedCard index={0}>
+            <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
+              <FaGithub className="text-gray-800 dark:text-white" size={30} />
+            </a>
+          </AnimatedCard>
+          <AnimatedCard index={1}>
+            <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
+              <FaLinkedin className="text-blue-600" size={30} />
+            </a>
+          </AnimatedCard>
+          <AnimatedCard index={2}>
+            <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
+              <FaEnvelope className="text-red-500" size={30} />
+            </a>
+          </AnimatedCard>
         </div>
-      </section>
+      </AnimatedSection>
     </div>
   )
 }

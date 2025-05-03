@@ -1,6 +1,8 @@
 "use client";
 import { useState } from 'react';
 import ProjectCard from '../../components/ProjectCard';
+import AnimatedSection from '../../components/animations/AnimatedSection';
+import AnimatedCard from '../../components/animations/AnimatedCard';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -107,53 +109,60 @@ export default function Projects() {
 
   return (
     <div>
-      <h1 className="page-title">My Projects</h1>
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-        Explore my latest work and technical projects
-      </p>
+      <AnimatedSection animation="fadeIn">
+        <h1 className="page-title">My Projects</h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+          Explore my latest work and technical projects
+        </p>
+      </AnimatedSection>
 
-      <div className="filter-buttons mb-8 flex flex-wrap gap-2">
-        {filters.map(filter => (
-          <button 
-            key={filter.id}
-            className={`filter-btn px-4 py-2 rounded-md ${
-              activeFilter === filter.id 
-                ? 'bg-secondary text-white' 
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
-            }`}
-            onClick={() => setActiveFilter(filter.id)}
-          >
-            {filter.label}
-          </button>
+      <AnimatedSection animation="slideUp" className="filter-buttons mb-8 flex flex-wrap gap-2">
+        {filters.map((filter, index) => (
+          <AnimatedCard key={filter.id} index={index} staggerDelay={0.05}>
+            <button 
+              className={`filter-btn px-4 py-2 rounded-md ${
+                activeFilter === filter.id 
+                  ? 'bg-secondary text-white' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
+              onClick={() => setActiveFilter(filter.id)}
+            >
+              {filter.label}
+            </button>
+          </AnimatedCard>
         ))}
-      </div>
+      </AnimatedSection>
 
       {featuredProjects.length > 0 && (
-        <section className="mb-12">
+        <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProjects.map(project => (
-              <ProjectCard key={project.id} project={project} featured={true} />
+            {featuredProjects.map((project, index) => (
+              <AnimatedCard key={project.id} index={index} className="h-full">
+                <ProjectCard project={project} featured={true} />
+              </AnimatedCard>
             ))}
           </div>
-        </section>
+        </AnimatedSection>
       )}
 
       {otherProjects.length > 0 && (
-        <section>
+        <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+            {otherProjects.map((project, index) => (
+              <AnimatedCard key={project.id} index={index} className="h-full">
+                <ProjectCard project={project} />
+              </AnimatedCard>
             ))}
           </div>
-        </section>
+        </AnimatedSection>
       )}
 
       {filteredProjects.length === 0 && (
-        <div className="text-center py-16">
+        <AnimatedSection animation="fadeIn" delay={0.2} className="text-center py-16">
           <p className="text-xl text-gray-700 dark:text-gray-300">No projects found matching the selected filter.</p>
-        </div>
+        </AnimatedSection>
       )}
     </div>
   )

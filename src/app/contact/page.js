@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import AnimatedSection from '../../components/animations/AnimatedSection';
+import AnimatedCard from '../../components/animations/AnimatedCard';
 
 emailjs.init("r2NLf5cdcemGae_wi");
 
@@ -72,13 +74,15 @@ export default function Contact() {
 
   return (
     <div>
-      <h1 className="page-title">Contact Me</h1>
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-        Have a question? Feel free to reach out to me using the form below or through my contact information.
-      </p>
+      <AnimatedSection animation="fadeIn">
+        <h1 className="page-title">Contact Me</h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+          Have a question? Feel free to reach out to me using the form below or through my contact information.
+        </p>
+      </AnimatedSection>
 
       <div className="flex flex-col lg:flex-row gap-12">
-        <div className="lg:w-1/2">
+        <AnimatedSection animation="slideInLeft" className="lg:w-1/2">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -154,10 +158,10 @@ export default function Contact() {
               </div>
             )}
           </form>
-        </div>
+        </AnimatedSection>
 
-        <div className="lg:w-1/2 space-y-8">
-          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+        <AnimatedSection animation="slideInRight" className="lg:w-1/2 space-y-8">
+          <AnimatedCard index={0} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Contact Information</h2>
             
             <div className="space-y-4">
@@ -177,9 +181,9 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedCard>
 
-          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+          <AnimatedCard index={1} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
             <div className="flex space-x-4">
               <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
@@ -192,8 +196,8 @@ export default function Contact() {
                 <FaEnvelope className="text-red-500" size={24} />
               </a>
             </div>
-          </div>
-        </div>
+          </AnimatedCard>
+        </AnimatedSection>
       </div>
     </div>
   )

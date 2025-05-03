@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import getImagePath from '../utils/imageLoader';
+import { motion } from 'framer-motion';
 
 const ProjectCard = ({ project, featured = false }) => {
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +16,11 @@ const ProjectCard = ({ project, featured = false }) => {
     : project.description;
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}>
+    <motion.div 
+      className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
       <div className="relative h-48">
         <Image 
           src={getImagePath(project.image)} 
@@ -41,9 +46,15 @@ const ProjectCard = ({ project, featured = false }) => {
         
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech, index) => (
-            <span key={index} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full dark:text-gray-300">
+            <motion.span 
+              key={index} 
+              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full dark:text-gray-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
               {tech}
-            </span>
+            </motion.span>
           ))}
         </div>
         
@@ -55,13 +66,18 @@ const ProjectCard = ({ project, featured = false }) => {
             </Link>
           )}
           {featured && (
-            <span className="bg-secondary text-white text-xs px-3 py-1 rounded-full">
+            <motion.span 
+              className="bg-secondary text-white text-xs px-3 py-1 rounded-full"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+            >
               Featured
-            </span>
+            </motion.span>
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
