@@ -17,28 +17,22 @@ export default function Navbar() {
   const [spinSpeed, setSpinSpeed] = useState(0);
   const hoverTimerRef = useRef(null);
   
-  // Add effect to trigger animation after component mounts
   useEffect(() => {
     setIsLoaded(true);
   }, []);
   
-  // Handle hover duration and spin animation
   useEffect(() => {
     if (isHovering) {
       hoverTimerRef.current = setInterval(() => {
         setHoverDuration(prev => {
           const newDuration = prev + 0.1;
           
-          // Start spinning after 5 seconds
           if (newDuration >= 5 && !isSpinning) {
             setIsSpinning(true);
           }
-          
-          // Increase spin speed the longer the hover
+
           if (newDuration >= 5) {
-            // Calculate speed based on how long past 5 seconds 
-            // (capped at a reasonable maximum speed)
-            const newSpeed = Math.min(20, (newDuration - 5) / 2);
+            const newSpeed = (newDuration - 5) * 0.5;
             setSpinSpeed(newSpeed);
           }
           
@@ -56,13 +50,13 @@ export default function Navbar() {
       clearInterval(hoverTimerRef.current);
     };
   }, [isHovering]);
-  
-  // Generate dynamic spin animation style
+
   const getSpinStyle = () => {
     if (!isSpinning) return {};
+    const spinDuration = Math.max(0.2, 5 / (1 + spinSpeed));
     
     return {
-      animation: `spin ${Math.max(5 - spinSpeed * 0.2, 0.5)}s linear infinite`,
+      animation: `spin ${spinDuration}s linear infinite`,
     };
   };
   
