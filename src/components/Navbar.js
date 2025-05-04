@@ -30,17 +30,22 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                href={link.path}
-                className={`${
-                  isActive(link.path) 
-                    ? 'text-primary dark:text-blue-400 font-medium' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
-                } transition-colors`}
-              >
-                {link.name}
-              </Link>
+              <div key={link.path} className="relative group">
+                <Link 
+                  href={link.path}
+                  className={`${
+                    isActive(link.path) 
+                      ? 'text-primary dark:text-blue-400 font-medium' 
+                      : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
+                  } transition-colors py-2`}
+                >
+                  {link.name}
+                </Link>
+                <div 
+                  className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 origin-left transition-transform duration-300 ease-out
+                    ${isActive(link.path) ? 'bg-primary dark:bg-blue-400 scale-x-100' : 'bg-primary dark:bg-blue-400 group-hover:scale-x-100'}`}
+                ></div>
+              </div>
             ))}
             <ThemeToggle />
           </div>
@@ -62,18 +67,23 @@ export default function Navbar() {
           <div className="md:hidden py-4 border-t dark:border-gray-700">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <Link 
-                  key={link.path} 
-                  href={link.path}
-                  className={`${
-                    isActive(link.path) 
-                      ? 'text-primary dark:text-blue-400 font-medium' 
-                      : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
-                  } transition-colors block px-2 py-1`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
+                <div key={link.path} className="relative group">
+                  <Link 
+                    href={link.path}
+                    className={`${
+                      isActive(link.path) 
+                        ? 'text-primary dark:text-blue-400 font-medium' 
+                        : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400'
+                    } transition-colors block px-2 py-1`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                  <div 
+                    className={`absolute bottom-0 left-0 w-full h-0.5 transform origin-left transition-transform duration-300 ease-out
+                      ${isActive(link.path) ? 'bg-primary dark:bg-blue-400 scale-x-100' : 'bg-primary dark:bg-blue-400 scale-x-0 group-hover:scale-x-100'}`}
+                  ></div>
+                </div>
               ))}
             </div>
           </div>
