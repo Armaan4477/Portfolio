@@ -8,8 +8,8 @@ import ScrollToTop from '../components/ScrollToTop';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Armaan N | Portfolio',
-  description: 'Personal portfolio website showcasing my projects and skills',
+  title: "Armaan's Portfolio",
+  description: 'My portfolio website showcasing my projects and skills',
 };
 
 export default function RootLayout({ children }) {
