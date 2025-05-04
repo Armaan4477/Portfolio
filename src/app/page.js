@@ -23,7 +23,8 @@ export default function Home() {
       description: "Cross platform data sharing app with real-time synchronization capabilities between devices.",
       image: "/projects/datadash.png",
       technologies: ["Cross-Platform", "Java", "Python"],
-      codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing"
+      codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing",
+      demoUrl: "https://datadashshare.vercel.app"
     }
   ];
 

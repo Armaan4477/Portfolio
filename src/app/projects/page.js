@@ -25,6 +25,7 @@ export default function Projects() {
       image: "/projects/communityconnect.png",
       technologies: ["Firebase", "Management", "Website"],
       codeUrl: "https://github.com/ura-dev04/CommunityConnect",
+      demoUrl: "https://sharecommunityconnect.vercel.app",
       featured: false,
       tags: ["website", "firebase", "management"]
     },
@@ -35,6 +36,7 @@ export default function Projects() {
       image: "/projects/delicious-discoveries.jpeg",
       technologies: ["Website", "Firebase"],
       codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
+      demoUrl: "https://deliciousdiscoveries.vercel.app",
       featured: false,
       tags: ["website", "firebase"]
     },
@@ -45,6 +47,7 @@ export default function Projects() {
       image: "/projects/datadash.png",
       technologies: ["Cross-Platform", "Java", "Python"],
       codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing",
+      demoUrl: "https://datadashshare.vercel.app",
       featured: true,
       tags: ["java", "python"]
     },
