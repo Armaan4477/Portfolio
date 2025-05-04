@@ -141,26 +141,20 @@ export default function Home() {
       </AnimatedSection>
 
       {/* Social Links */}
-      <AnimatedSection animation="slideUp" className="section text-center">
-        <h2 className="page-title">Connect With Me</h2>
-        <div className="flex justify-center space-x-6">
-          <AnimatedCard index={0}>
-            <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
-              <FaGithub className="text-gray-800 dark:text-white" size={30} />
-            </a>
-          </AnimatedCard>
-          <AnimatedCard index={1}>
-            <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
-              <FaLinkedin className="text-blue-600" size={30} />
-            </a>
-          </AnimatedCard>
-          <AnimatedCard index={2}>
-            <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
-              <FaEnvelope className="text-red-500" size={30} />
-            </a>
-          </AnimatedCard>
-        </div>
-      </AnimatedSection>
+      <AnimatedCard index={3} className="section text-center">
+                  <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
+                  <div className="flex justify-center space-x-4">
+                    <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                      <FaGithub className="text-gray-800 dark:text-white" size={24} />
+                    </a>
+                    <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                      <FaLinkedin className="text-blue-600" size={24} />
+                    </a>
+                    <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
+                      <FaEnvelope className="text-red-500" size={24} />
+                    </a>
+                  </div>
+                </AnimatedCard>
     </div>
   )
 }
