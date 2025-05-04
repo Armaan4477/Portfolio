@@ -27,6 +27,9 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider>
