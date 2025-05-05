@@ -64,28 +64,103 @@ const GitHubContributions = () => {
     return colors[level] || colors[0];
   };
 
-  // Group contributions by weeks for grid display
-  const contributionsByWeek = [];
-  if (yearData.length > 0) {
-    const contributionsMap = new Map();
-    yearData.forEach(contribution => {
-      const date = new Date(contribution.date);
-      const dayOfWeek = date.getDay(); // 0 for Sunday, 6 for Saturday
-      const weekNumber = Math.floor((date - new Date(date.getFullYear(), 0, 1)) / (7 * 24 * 60 * 60 * 1000));
+  // Reorganize contributions to group by month with spacing
+  const organizeContributionsByMonth = () => {
+    if (!yearData.length) return [];
+    
+    // Group contributions by month
+    const months = {};
+    yearData.forEach(contrib => {
+      const date = new Date(contrib.date);
+      const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
       
-      if (!contributionsMap.has(weekNumber)) {
-        contributionsMap.set(weekNumber, Array(7).fill(null));
+      if (!months[monthKey]) {
+        months[monthKey] = {
+          name: date.toLocaleDateString('en-US', { month: 'short' }),
+          year: date.getFullYear(),
+          month: date.getMonth(),
+          contributions: []
+        };
       }
       
-      const weekData = contributionsMap.get(weekNumber);
-      weekData[dayOfWeek] = contribution;
+      months[monthKey].contributions.push(contrib);
     });
     
-    // Convert map to array for rendering
-    contributionsMap.forEach((week) => {
-      contributionsByWeek.push(week);
+    // Sort months chronologically
+    return Object.values(months).sort((a, b) => {
+      if (a.year !== b.year) return a.year - b.year;
+      return a.month - b.month;
     });
-  }
+  };
+  
+  // Organize contributions within each month
+  const organizeMonthContributions = (monthData) => {
+    if (!monthData.contributions.length) return { days: [] };
+    
+    // Create 7 rows (one for each day of week)
+    const days = Array(7).fill().map(() => []);
+    
+    // Sort contributions chronologically
+    const sortedContributions = [...monthData.contributions].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
+    
+    // Find first and last date of the month
+    const firstDate = new Date(sortedContributions[0].date);
+    const lastDate = new Date(sortedContributions[sortedContributions.length - 1].date);
+    
+    // Create a map for quick lookup
+    const contributionMap = {};
+    sortedContributions.forEach(contrib => {
+      contributionMap[contrib.date] = contrib;
+    });
+    
+    // Fill the days array with all dates in the month
+    const currentDate = new Date(firstDate);
+    currentDate.setDate(1); // Start from the 1st of the month
+    
+    const endOfMonth = new Date(firstDate.getFullYear(), firstDate.getMonth() + 1, 0);
+    
+    while (currentDate <= endOfMonth) {
+      const dayOfWeek = currentDate.getDay(); // 0-6 (Sunday-Saturday)
+      const dateString = currentDate.toISOString().split('T')[0];
+      const contribution = contributionMap[dateString] || { date: dateString, count: 0, level: 0 };
+      
+      days[dayOfWeek].push(contribution);
+      
+      // Move to next day
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    
+    return { days };
+  };
+
+  const monthlyGroups = organizeContributionsByMonth();
+
+  // Calculate cell size and spacing
+  const cellSize = 12; 
+  const cellSpacing = 2;
+  const rowSpacing = 10;
+  const monthSpacing = 30; // Space between month groups
+  const totalCellWidth = cellSize + cellSpacing;
+
+  // Calculate the width of each month group
+  const getMonthWidth = (month) => {
+    if (!month || !month.contributions || !month.contributions.length) return 0;
+    
+    // Calculate how many weeks (columns) this month spans
+    const dates = month.contributions.map(c => new Date(c.date));
+    const firstDay = new Date(Math.min(...dates.map(d => d.getTime())));
+    const lastDay = new Date(Math.max(...dates.map(d => d.getTime())));
+    
+    // Get the number of days in the month
+    const daysInMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0).getDate();
+    
+    // Calculate columns needed (roughly divide by 7 for weeks)
+    const columnsNeeded = Math.ceil(daysInMonth / 7);
+    
+    return columnsNeeded * totalCellWidth;
+  };
 
   return (
     <div className="w-full">
@@ -134,44 +209,110 @@ const GitHubContributions = () => {
           className="contributions-grid"
         >
           {!loading && !error && yearData.length > 0 && (
-            <div className="relative overflow-x-auto">
-              <div className="flex text-xs text-gray-500 dark:text-gray-400 mb-1 pl-8">
-                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                  <div key={day} className="w-3 mx-1 text-center">{day[0]}</div>
-                ))}
-              </div>
-              
-              <div className="flex flex-col">
-                {contributionsByWeek.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex items-center mb-1">
-                    <span className="text-xs text-gray-500 dark:text-gray-400 w-8 text-right pr-2">
-                      {weekIndex % 4 === 0 && week.some(day => day) ? 
-                        new Date(week.find(day => day)?.date).toLocaleDateString('en-US', {month: 'short'}) : ''}
-                    </span>
-                    <div className="flex">
-                      {week.map((day, dayIndex) => (
-                        <div 
-                          key={dayIndex}
-                          className={`w-3 h-3 m-[1px] rounded-sm ${day ? getColorByLevel(day.level) : 'bg-gray-100 dark:bg-gray-700'}`}
-                          title={day ? `${day.date}: ${day.count} contributions` : 'No contributions'}
-                        ></div>
-                      ))}
+            <div className="relative overflow-x-auto pb-4">
+              <div className="flex">
+                {/* Day labels */}
+                <div className="flex flex-col mr-2">
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
+                    <div 
+                      key={day} 
+                      className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end w-8 pr-1"
+                      style={{ 
+                        height: `${cellSize}px`, 
+                        marginBottom: index === 6 ? '0px' : `${rowSpacing}px`,
+                      }}
+                    >
+                      {day.substring(0, 2)}
                     </div>
+                  ))}
+                </div>
+                
+                {/* Contribution grid organized by months */}
+                <div> {/* Removed the mt-[6px] class that was causing misalignment */}
+                  {/* Month labels */}
+                  <div className="flex mb-6 relative h-5">
+                    {monthlyGroups.map((month, monthIndex) => {
+                      // Calculate position for month label
+                      let leftPosition = 0;
+                      if (monthIndex > 0) {
+                        // Sum up widths of all previous months plus their spacing
+                        leftPosition = monthlyGroups
+                          .slice(0, monthIndex)
+                          .reduce((acc, m) => acc + getMonthWidth(m) + monthSpacing, 0);
+                      }
+                      
+                      const monthWidth = getMonthWidth(month);
+                      
+                      return (
+                        <div 
+                          key={monthIndex} 
+                          className="text-xs text-gray-500 dark:text-gray-400 absolute"
+                          style={{ 
+                            left: `${leftPosition}px`,
+                            width: `${monthWidth}px`,
+                            textAlign: 'center'
+                          }}
+                        >
+                          {month.name}
+                        </div>
+                      );
+                    })}
                   </div>
-                ))}
+                  
+                  {/* Month groups with contribution cells */}
+                  <div className="flex">
+                    {monthlyGroups.map((month, monthIndex) => {
+                      const { days } = organizeMonthContributions(month);
+                      return (
+                        <div
+                          key={monthIndex}
+                          className="flex flex-col"
+                          style={{ 
+                            marginRight: `${monthSpacing}px`
+                          }}
+                        >
+                          {days.map((dayRow, rowIndex) => (
+                            <div 
+                              key={rowIndex} 
+                              className="flex"
+                              style={{ 
+                                height: `${cellSize}px`, 
+                                marginBottom: rowIndex === 6 ? '0px' : `${rowSpacing}px` 
+                              }}
+                            >
+                              {dayRow.map((contribution, colIndex) => (
+                                <div 
+                                  key={colIndex}
+                                  className={`rounded-sm ${getColorByLevel(contribution.level)}`}
+                                  style={{ 
+                                    width: `${cellSize}px`, 
+                                    height: `${cellSize}px`, 
+                                    margin: `0 ${cellSpacing/2}px` 
+                                  }}
+                                  title={`${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contributions`}
+                                ></div>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
               
-              <div className="flex items-center mt-2 justify-end">
+              <div className="flex items-center mt-6 justify-end">
                 <span className="text-xs text-gray-500 dark:text-gray-400 mr-2">Contributions:</span>
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((level) => (
                     <div 
                       key={level} 
-                      className={`w-3 h-3 m-[1px] rounded-sm ${getColorByLevel(level)}`}
+                      className={`rounded-sm ${getColorByLevel(level)}`}
+                      style={{ width: `${cellSize}px`, height: `${cellSize}px`, margin: `0 ${cellSpacing/2}px` }}
                     ></div>
                   ))}
                 </div>
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">Less → More</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">Less → More</span>
               </div>
             </div>
           )}
