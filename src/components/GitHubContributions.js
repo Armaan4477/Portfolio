@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaGithub } from 'react-icons/fa';
 
@@ -10,6 +10,14 @@ const GitHubContributions = () => {
   const [activeYear, setActiveYear] = useState('2025');
   const [yearData, setYearData] = useState([]);
   const years = ['2023', '2024', '2025'];
+  const [tooltip, setTooltip] = useState({
+    visible: false,
+    content: '',
+    x: 0,
+    y: 0
+  });
+  
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const fetchContributions = async () => {
@@ -146,8 +154,25 @@ const GitHubContributions = () => {
     return columnsNeeded * totalCellWidth;
   };
 
+  const showTooltip = (content, event, contribution) => {
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const x = event.clientX - containerRect.left;
+    const y = event.clientY - containerRect.top - 40;
+    
+    setTooltip({
+      visible: true,
+      content: `${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contribution${contribution.count !== 1 ? 's' : ''}`,
+      x,
+      y
+    });
+  };
+
+  const hideTooltip = () => {
+    setTooltip(prev => ({ ...prev, visible: false }));
+  };
+
   return (
-    <div className="w-full relative">
+    <div className="w-full relative" ref={containerRef}>
       <div className="flex items-center mb-6 justify-center">
         <div className="flex gap-2">
           {years.map((year) => (
@@ -265,13 +290,14 @@ const GitHubContributions = () => {
                                 {dayRow.map((contribution, colIndex) => (
                                   <div 
                                     key={colIndex}
-                                    className={`rounded-sm ${getColorByLevel(contribution.level)}`}
+                                    className={`rounded-sm ${getColorByLevel(contribution.level)} transition-transform hover:scale-110 cursor-pointer`}
                                     style={{ 
                                       width: `${cellSize}px`, 
                                       height: `${cellSize}px`, 
                                       margin: `0 ${cellSpacing/2}px` 
                                     }}
-                                    title={`${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contributions`}
+                                    onMouseEnter={(e) => showTooltip(contribution.count, e, contribution)}
+                                    onMouseLeave={hideTooltip}
                                   ></div>
                                 ))}
                               </div>
@@ -298,6 +324,25 @@ const GitHubContributions = () => {
                 </div>
                 <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">Less → More</span>
               </div>
+              
+              {/* Custom tooltip */}
+              {tooltip.visible && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute z-20 py-1 px-2 rounded bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 text-xs font-medium shadow-lg pointer-events-none"
+                  style={{
+                    left: `${tooltip.x}px`,
+                    top: `${tooltip.y}px`,
+                    transform: 'translateX(-50%)',
+                    minWidth: '120px',
+                    textAlign: 'center'
+                  }}
+                >
+                  {tooltip.content}
+                </motion.div>
+              )}
             </div>
           )}
           
