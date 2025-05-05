@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import ProjectCard from '../components/ProjectCard';
+import GitHubContributions from '../components/GitHubContributions';
 import getImagePath from '../utils/imageLoader';
 import AnimatedSection from '../components/animations/AnimatedSection';
 import AnimatedCard from '../components/animations/AnimatedCard';
@@ -139,6 +140,14 @@ export default function Home() {
             View All Projects <FaArrowRight className="ml-2" />
           </Link>
         </AnimatedSection>
+      </AnimatedSection>
+
+      {/* GitHub Contributions */}
+      <AnimatedSection animation="slideUp" className="section">
+        <h2 className="page-title">GitHub Activity</h2>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <GitHubContributions />
+        </div>
       </AnimatedSection>
 
       {/* Social Links */}
