@@ -22,7 +22,6 @@ const GitHubContributions = () => {
         const data = await response.json();
         setContributions(data);
         
-        // Filter contributions for the active year
         filterContributionsByYear(data, activeYear);
       } catch (err) {
         console.error('Error fetching GitHub contributions:', err);
@@ -64,11 +63,9 @@ const GitHubContributions = () => {
     return colors[level] || colors[0];
   };
 
-  // Reorganize contributions to group by month with spacing
   const organizeContributionsByMonth = () => {
     if (!yearData.length) return [];
     
-    // Group contributions by month
     const months = {};
     yearData.forEach(contrib => {
       const date = new Date(contrib.date);
@@ -86,49 +83,41 @@ const GitHubContributions = () => {
       months[monthKey].contributions.push(contrib);
     });
     
-    // Sort months chronologically
     return Object.values(months).sort((a, b) => {
       if (a.year !== b.year) return a.year - b.year;
       return a.month - b.month;
     });
   };
   
-  // Organize contributions within each month
   const organizeMonthContributions = (monthData) => {
     if (!monthData.contributions.length) return { days: [] };
     
-    // Create 7 rows (one for each day of week)
     const days = Array(7).fill().map(() => []);
     
-    // Sort contributions chronologically
     const sortedContributions = [...monthData.contributions].sort(
       (a, b) => new Date(a.date) - new Date(b.date)
     );
     
-    // Find first and last date of the month
     const firstDate = new Date(sortedContributions[0].date);
     const lastDate = new Date(sortedContributions[sortedContributions.length - 1].date);
     
-    // Create a map for quick lookup
     const contributionMap = {};
     sortedContributions.forEach(contrib => {
       contributionMap[contrib.date] = contrib;
     });
     
-    // Fill the days array with all dates in the month
     const currentDate = new Date(firstDate);
-    currentDate.setDate(1); // Start from the 1st of the month
+    currentDate.setDate(1);
     
     const endOfMonth = new Date(firstDate.getFullYear(), firstDate.getMonth() + 1, 0);
     
     while (currentDate <= endOfMonth) {
-      const dayOfWeek = currentDate.getDay(); // 0-6 (Sunday-Saturday)
+      const dayOfWeek = currentDate.getDay();
       const dateString = currentDate.toISOString().split('T')[0];
       const contribution = contributionMap[dateString] || { date: dateString, count: 0, level: 0 };
       
       days[dayOfWeek].push(contribution);
       
-      // Move to next day
       currentDate.setDate(currentDate.getDate() + 1);
     }
     
@@ -137,26 +126,21 @@ const GitHubContributions = () => {
 
   const monthlyGroups = organizeContributionsByMonth();
 
-  // Calculate cell size and spacing
   const cellSize = 12; 
   const cellSpacing = 2;
   const rowSpacing = 10;
-  const monthSpacing = 30; // Space between month groups
+  const monthSpacing = 30;
   const totalCellWidth = cellSize + cellSpacing;
 
-  // Calculate the width of each month group
   const getMonthWidth = (month) => {
     if (!month || !month.contributions || !month.contributions.length) return 0;
     
-    // Calculate how many weeks (columns) this month spans
     const dates = month.contributions.map(c => new Date(c.date));
     const firstDay = new Date(Math.min(...dates.map(d => d.getTime())));
     const lastDay = new Date(Math.max(...dates.map(d => d.getTime())));
     
-    // Get the number of days in the month
     const daysInMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0).getDate();
     
-    // Calculate columns needed (roughly divide by 7 for weeks)
     const columnsNeeded = Math.ceil(daysInMonth / 7);
     
     return columnsNeeded * totalCellWidth;
@@ -165,10 +149,6 @@ const GitHubContributions = () => {
   return (
     <div className="w-full">
       <div className="flex items-center mb-6 justify-between">
-        <div className="flex items-center gap-2">
-          <FaGithub size={24} className="text-gray-700 dark:text-gray-300" />
-          <h3 className="text-xl font-semibold">GitHub Contributions</h3>
-        </div>
         
         <div className="flex gap-2">
           {years.map((year) => (
@@ -212,7 +192,10 @@ const GitHubContributions = () => {
             <div className="relative overflow-x-auto pb-4">
               <div className="flex">
                 {/* Day labels */}
-                <div className="flex flex-col mr-2">
+                <div
+                  className="flex flex-col mr-2"
+                  style={{ marginTop: '44px' }}
+                >
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
                     <div 
                       key={day} 
@@ -228,14 +211,12 @@ const GitHubContributions = () => {
                 </div>
                 
                 {/* Contribution grid organized by months */}
-                <div> {/* Removed the mt-[6px] class that was causing misalignment */}
+                <div className="flex flex-col justify-start"> {}
                   {/* Month labels */}
                   <div className="flex mb-6 relative h-5">
                     {monthlyGroups.map((month, monthIndex) => {
-                      // Calculate position for month label
                       let leftPosition = 0;
                       if (monthIndex > 0) {
-                        // Sum up widths of all previous months plus their spacing
                         leftPosition = monthlyGroups
                           .slice(0, monthIndex)
                           .reduce((acc, m) => acc + getMonthWidth(m) + monthSpacing, 0);
