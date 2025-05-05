@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Armaan's Projects",
-  description: 'Showcase of my recent projects and work',
+  title: "Armaan's Contact",
+  description: 'Get in touch with me for inquiries and collaborations',
 }
 
 export default function ProjectsLayout({ children }) {

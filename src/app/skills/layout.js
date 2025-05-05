@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Armaan's Projects",
-  description: 'Showcase of my recent projects and work',
+  title: "Armaan's Skills",
+  description: 'Showcase of my skill set and expertise',
 }
 
 export default function ProjectsLayout({ children }) {

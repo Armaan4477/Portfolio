@@ -5,11 +5,6 @@ import SkillCard from '../../components/SkillCard';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import AnimatedCard from '../../components/animations/AnimatedCard';
 
-export const metadata = {
-  title: 'Skills | My Portfolio',
-  description: 'My technical skills and competencies',
-}
-
 export default function Skills() {
   const skills = [
     {
