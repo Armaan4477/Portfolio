@@ -57,8 +57,8 @@ const GitHubContributions = () => {
       0: 'bg-gray-100 dark:bg-gray-700',
       1: 'bg-green-200 dark:bg-green-900',
       2: 'bg-green-400 dark:bg-green-700',
-      3: 'bg-green-500 dark:bg-green-600',
-      4: 'bg-green-700 dark:bg-green-500'
+      3: 'bg-green-500 dark:bg-green-500',
+      4: 'bg-green-700 dark:bg-green-300'
     };
     return colors[level] || colors[0];
   };
@@ -148,8 +148,7 @@ const GitHubContributions = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center mb-6 justify-between">
-        
+      <div className="flex items-center mb-6 justify-center">
         <div className="flex gap-2">
           {years.map((year) => (
             <button
