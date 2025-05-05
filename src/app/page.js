@@ -75,7 +75,7 @@ export default function Home() {
       </AnimatedSection>
 
       {/* About Me Section */}
-      <AnimatedSection animation="slideInRight" delay={0.5} className="section bg-gray-50 dark:bg-gray-800 p-8 rounded-lg">
+      <AnimatedSection animation="slideInRight" delay={0.5} className="section bg-gray-100 dark:bg-gray-800 p-8 rounded-lg">
         <h2 className="page-title">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
@@ -106,15 +106,15 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <AnimatedCard index={0} className="card">
             <h3 className="text-xl font-semibold mb-2">Programming</h3>
-            <p className="text-gray-600 dark:text-gray-300">Java, Python, C/C++, HTML, CSS, JavaScript</p>
+            <p className="text-gray-600 dark:text-gray-300">Python, Java, Firebase, IoT Development</p>
           </AnimatedCard>
           <AnimatedCard index={1} className="card">
-            <h3 className="text-xl font-semibold mb-2">Technologies</h3>
-            <p className="text-gray-600 dark:text-gray-300">Firebase, IoT Development, Windows, macOS, Linux</p>
+            <h3 className="text-xl font-semibold mb-2">Operating Systems</h3>
+            <p className="text-gray-600 dark:text-gray-300">macOS, Windows</p>
           </AnimatedCard>
           <AnimatedCard index={2} className="card">
             <h3 className="text-xl font-semibold mb-2">Hardware</h3>
-            <p className="text-gray-600 dark:text-gray-300">Computer Building, Soldering, Hardware Integration</p>
+            <p className="text-gray-600 dark:text-gray-300">Computer Building, Soldering</p>
           </AnimatedCard>
         </div>
         <div className="mt-6 text-center">
