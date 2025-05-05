@@ -147,7 +147,7 @@ const GitHubContributions = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <div className="flex items-center mb-6 justify-center">
         <div className="flex gap-2">
           {years.map((year) => (
@@ -188,100 +188,104 @@ const GitHubContributions = () => {
           className="contributions-grid"
         >
           {!loading && !error && yearData.length > 0 && (
-            <div className="relative overflow-x-auto pb-4">
-              <div className="flex">
-                {/* Day labels */}
-                <div
-                  className="flex flex-col mr-2"
-                  style={{ marginTop: '44px' }}
-                >
-                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
-                    <div 
-                      key={day} 
-                      className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end w-8 pr-1"
-                      style={{ 
-                        height: `${cellSize}px`, 
-                        marginBottom: index === 6 ? '0px' : `${rowSpacing}px`,
-                      }}
-                    >
-                      {day.substring(0, 2)}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Contribution grid organized by months */}
-                <div className="flex flex-col justify-start"> {}
-                  {/* Month labels */}
-                  <div className="flex mb-6 relative h-5">
-                    {monthlyGroups.map((month, monthIndex) => {
-                      let leftPosition = 0;
-                      if (monthIndex > 0) {
-                        leftPosition = monthlyGroups
-                          .slice(0, monthIndex)
-                          .reduce((acc, m) => acc + getMonthWidth(m) + monthSpacing, 0);
-                      }
-                      
-                      const monthWidth = getMonthWidth(month);
-                      
-                      return (
-                        <div 
-                          key={monthIndex} 
-                          className="text-xs text-gray-500 dark:text-gray-400 absolute"
-                          style={{ 
-                            left: `${leftPosition}px`,
-                            width: `${monthWidth}px`,
-                            textAlign: 'center'
-                          }}
-                        >
-                          {month.name}
-                        </div>
-                      );
-                    })}
+            <div className="relative">
+              {/* Scrollable container for the contributions grid */}
+              <div className="overflow-x-auto pb-4">
+                <div className="flex">
+                  {/* Day labels */}
+                  <div
+                    className="flex flex-col mr-2"
+                    style={{ marginTop: '44px' }}
+                  >
+                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
+                      <div 
+                        key={day} 
+                        className="text-xs text-gray-500 dark:text-gray-400 flex items-center justify-end w-8 pr-1"
+                        style={{ 
+                          height: `${cellSize}px`, 
+                          marginBottom: index === 6 ? '0px' : `${rowSpacing}px`,
+                        }}
+                      >
+                        {day.substring(0, 2)}
+                      </div>
+                    ))}
                   </div>
                   
-                  {/* Month groups with contribution cells */}
-                  <div className="flex">
-                    {monthlyGroups.map((month, monthIndex) => {
-                      const { days } = organizeMonthContributions(month);
-                      return (
-                        <div
-                          key={monthIndex}
-                          className="flex flex-col"
-                          style={{ 
-                            marginRight: `${monthSpacing}px`
-                          }}
-                        >
-                          {days.map((dayRow, rowIndex) => (
-                            <div 
-                              key={rowIndex} 
-                              className="flex"
-                              style={{ 
-                                height: `${cellSize}px`, 
-                                marginBottom: rowIndex === 6 ? '0px' : `${rowSpacing}px` 
-                              }}
-                            >
-                              {dayRow.map((contribution, colIndex) => (
-                                <div 
-                                  key={colIndex}
-                                  className={`rounded-sm ${getColorByLevel(contribution.level)}`}
-                                  style={{ 
-                                    width: `${cellSize}px`, 
-                                    height: `${cellSize}px`, 
-                                    margin: `0 ${cellSpacing/2}px` 
-                                  }}
-                                  title={`${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contributions`}
-                                ></div>
-                              ))}
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
+                  {/* Contribution grid organized by months */}
+                  <div className="flex flex-col justify-start">
+                    {/* Month labels */}
+                    <div className="flex mb-6 relative h-5">
+                      {monthlyGroups.map((month, monthIndex) => {
+                        let leftPosition = 0;
+                        if (monthIndex > 0) {
+                          leftPosition = monthlyGroups
+                            .slice(0, monthIndex)
+                            .reduce((acc, m) => acc + getMonthWidth(m) + monthSpacing, 0);
+                        }
+                        
+                        const monthWidth = getMonthWidth(month);
+                        
+                        return (
+                          <div 
+                            key={monthIndex} 
+                            className="text-xs text-gray-500 dark:text-gray-400 absolute"
+                            style={{ 
+                              left: `${leftPosition}px`,
+                              width: `${monthWidth}px`,
+                              textAlign: 'center'
+                            }}
+                          >
+                            {month.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Month groups with contribution cells */}
+                    <div className="flex">
+                      {monthlyGroups.map((month, monthIndex) => {
+                        const { days } = organizeMonthContributions(month);
+                        return (
+                          <div
+                            key={monthIndex}
+                            className="flex flex-col"
+                            style={{ 
+                              marginRight: `${monthSpacing}px`
+                            }}
+                          >
+                            {days.map((dayRow, rowIndex) => (
+                              <div 
+                                key={rowIndex} 
+                                className="flex"
+                                style={{ 
+                                  height: `${cellSize}px`, 
+                                  marginBottom: rowIndex === 6 ? '0px' : `${rowSpacing}px` 
+                                }}
+                              >
+                                {dayRow.map((contribution, colIndex) => (
+                                  <div 
+                                    key={colIndex}
+                                    className={`rounded-sm ${getColorByLevel(contribution.level)}`}
+                                    style={{ 
+                                      width: `${cellSize}px`, 
+                                      height: `${cellSize}px`, 
+                                      margin: `0 ${cellSpacing/2}px` 
+                                    }}
+                                    title={`${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contributions`}
+                                  ></div>
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
               
-              <div className="flex items-center mt-6 justify-end">
+              {/* Contributions Legend - stays in position but visible when scrolling horizontally */}
+              <div className="flex items-center justify-end mt-6 sticky left-0 right-0 bg-white dark:bg-gray-800 z-10">
                 <span className="text-xs text-gray-500 dark:text-gray-400 mr-2">Contributions:</span>
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((level) => (
