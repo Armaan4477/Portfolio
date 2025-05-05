@@ -161,7 +161,7 @@ const GitHubContributions = () => {
     
     setTooltip({
       visible: true,
-      content: `${new Date(contribution.date).toLocaleDateString()}: ${contribution.count} contribution${contribution.count !== 1 ? 's' : ''}`,
+      content: `${new Date(contribution.date).toLocaleDateString('en-GB')}: ${contribution.count} contribution${contribution.count !== 1 ? 's' : ''}`,
       x,
       y
     });
