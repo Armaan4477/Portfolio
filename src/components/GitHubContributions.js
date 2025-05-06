@@ -60,11 +60,6 @@ const GitHubContributions = () => {
     return contributions.total[year] || 0;
   };
 
-  const getTotalContributions = () => {
-    if (!contributions || !contributions.total) return 0;
-    return Object.values(contributions.total).reduce((sum, count) => sum + count, 0);
-  };
-
   const getColorByLevel = (level) => {
     const colors = {
       0: 'bg-gray-100 dark:bg-gray-700',
@@ -178,8 +173,8 @@ const GitHubContributions = () => {
 
   return (
     <div className="w-full relative" ref={containerRef}>
-      <div className="flex flex-col items-center mb-6">
-        <div className="flex gap-2 mb-2">
+      <div className="flex items-center mb-6 justify-center">
+        <div className="flex gap-2">
           {years.map((year) => (
             <button
               key={year}
@@ -193,10 +188,6 @@ const GitHubContributions = () => {
               {year} ({getTotalForYear(year)})
             </button>
           ))}
-        </div>
-        <div className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-          <FaGithub className="text-lg" />
-          <span>Total Contributions: {getTotalContributions()}</span>
         </div>
       </div>
       
