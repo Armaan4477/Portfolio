@@ -1,5 +1,5 @@
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaFigma, FaJava, FaPython, FaGit, FaWindows, FaApple, FaLinux, FaTools, FaDesktop } from 'react-icons/fa';
-import { SiCplusplus, SiMysql, SiFirebase } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaJava, FaPython, FaGit, FaWindows, FaApple, FaLinux, FaDesktop, FaAndroid} from 'react-icons/fa';
+import { SiCplusplus, SiMysql, SiFirebase, SiIos } from 'react-icons/si';
 import { GiSolderingIron } from 'react-icons/gi';
 import SkillCard from '../../components/SkillCard';
 import AnimatedSection from '../../components/animations/AnimatedSection';
@@ -35,8 +35,10 @@ export default function Skills() {
       category: "Operating Systems",
       items: [
         { name: "Windows", icon: <FaWindows className="text-blue-500" size={40} />, level: 100 },
-        { name: "macOS", icon: <FaApple className="text-gray-700" size={40} />, level: 100 },
+        { name: "macOS", icon: <FaApple className="text-gray-700 dark:text-gray-200" size={40} />, level: 100 },
         { name: "Linux", icon: <FaLinux className="text-yellow-600" size={40} />, level: 20 },
+        { name: "IOS/IpadOS", icon: <SiIos className="text-gray-700 dark:text-gray-200" size={40} />, level: 100 },
+        { name: "Android", icon: <FaAndroid className="text-green-500" size={40} />, level: 100 }
       ]
     },
     {
