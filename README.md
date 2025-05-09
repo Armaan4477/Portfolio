@@ -98,6 +98,49 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
 
 ## 📝 Customization
 
+### Updating Personal Information
+
+Edit the personal information in `/src/app/page.js` to update your details:
+
+```javascript
+// In the Home component
+const aboutMeText = [
+  "Hi there! I'm [Your Name], I'm passionate about [your interests].",
+  "Currently I'm [your current focus] with expertise in [your skills].",
+  // ... add or modify paragraphs as needed
+];
+```
+
+Update contact information in `/src/app/contact/page.js`:
+
+```javascript
+// Update email and location in the ContactInformation component
+<div>
+  <h3 className="font-medium dark:text-white">Email</h3>
+  <p className="text-gray-600 dark:text-gray-400">your-email@example.com</p>
+</div>
+<div>
+  <h3 className="font-medium dark:text-white">Location</h3>
+  <p className="text-gray-600 dark:text-gray-400">Your City, Country</p>
+</div>
+```
+
+### GitHub Contributions Configuration
+
+To display your own GitHub contributions, modify the username in `/src/components/GitHubContributions.js`:
+
+```javascript
+// Change the GitHub username in the fetchContributions function
+const response = await fetch('https://github-contributions-api.jogruber.de/v4/YOUR_GITHUB_USERNAME');
+```
+
+Also update the default year to show:
+
+```javascript
+// Set your preferred default year
+const [activeYear, setActiveYear] = useState('2024'); // Change to current/preferred year
+```
+
 ### Adding New Projects
 
 Edit the projects array in `/src/app/projects/page.js` to add new projects:
