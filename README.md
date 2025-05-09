@@ -84,7 +84,7 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
    # EmailJS Configuration
     NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
     NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+    NEXT_PUBLIC_EMAILJS_KEY=your_public_key
    ```
     Replace the placeholder values with your actual EmailJS credentials.
 
@@ -221,7 +221,6 @@ The contact form uses the following EmailJS template format to deliver messages:
             <strong>{{name}}</strong>
           </div>
           <div style="color: #cccccc; font-size: 13px">{{time}}</div>
-          <p style="font-size: 16px"><strong>Subject:</strong> {{subject}}</p>
           <p style="font-size: 16px"><strong>Email:</strong> {{email}}</p>
           <p style="font-size: 16px"><strong>Message:</strong> {{message}}</p>
         </td>
