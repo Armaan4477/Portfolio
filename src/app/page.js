@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
@@ -7,6 +9,7 @@ import getImagePath from '../utils/imageLoader';
 import AnimatedSection from '../components/animations/AnimatedSection';
 import AnimatedCard from '../components/animations/AnimatedCard';
 import SequentialTypewriter from '../components/SequentialTypewriter';
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
 
 export default function Home() {
   const featuredProjects = [
@@ -160,19 +163,86 @@ export default function Home() {
 
       {/* Social Links */}
       <AnimatedCard index={3} className="section text-center">
-                  <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
-                  <div className="flex justify-center space-x-4">
-                    <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
-                      <FaGithub className="text-gray-800 dark:text-white" size={24} />
-                    </a>
-                    <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
-                      <FaLinkedin className="text-blue-600" size={24} />
-                    </a>
-                    <a href="mailto:nakhudaarmaan66@gmail.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition">
-                      <FaEnvelope className="text-red-500" size={24} />
-                    </a>
-                  </div>
-                </AnimatedCard>
+        <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
+        <div className="flex justify-center space-x-6">
+          <SocialButton 
+            href="https://github.com/Armaan4477" 
+            icon={<FaGithub size={24} />}
+            label="GitHub"
+            bgColor="bg-gray-800 dark:bg-gray-700"
+            textColor="text-white" 
+          />
+          <SocialButton 
+            href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" 
+            icon={<FaLinkedin size={24} />}
+            label="LinkedIn"
+            bgColor="bg-blue-600"
+            textColor="text-white" 
+          />
+          <SocialButton 
+            href="mailto:nakhudaarmaan66@gmail.com" 
+            icon={<FaEnvelope size={24} />}
+            label="Email"
+            bgColor="bg-red-500"
+            textColor="text-white" 
+          />
+        </div>
+      </AnimatedCard>
     </div>
   )
+}
+
+// New component for animated social buttons
+function SocialButton({ href, icon, label, bgColor, textColor }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const boxShadow = useMotionTemplate`0px 5px 15px rgba(0, 0, 0, ${useMotionValue(0)})`;
+
+  // Check if this is the GitHub button to apply special styling in dark mode
+  const isGitHub = href.includes('github.com');
+  const finalBgColor = isGitHub ? `${bgColor} dark:bg-gray-700` : bgColor;
+
+  return (
+    <motion.a 
+      href={href}
+      target="_blank" 
+      rel="noopener noreferrer"
+      className={`relative p-4 rounded-full shadow-md ${finalBgColor} ${textColor} overflow-hidden flex items-center justify-center`}
+      style={{ boxShadow }}
+      whileHover={{ 
+        scale: 1.15,
+        y: -5,
+      }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 400, damping: 15 }}
+      onMouseMove={(e) => {
+        const bounds = e.currentTarget.getBoundingClientRect();
+        const centerX = bounds.left + bounds.width / 2;
+        const centerY = bounds.top + bounds.height / 2;
+        x.set((e.clientX - centerX) / 5);
+        y.set((e.clientY - centerY) / 5);
+      }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
+      aria-label={label}
+    >
+      {icon}
+      <motion.span 
+        className="absolute inset-0 bg-white dark:bg-gray-800 opacity-0"
+        whileHover={{ opacity: 0.15 }}
+        style={{ 
+          filter: "blur(15px)",
+          transform: "translate(-50%, -50%)",
+          left: "50%",
+          top: "50%",
+          width: "100%",
+          height: "100%"
+        }}
+      />
+    </motion.a>
+  );
 }
