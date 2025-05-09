@@ -2,7 +2,23 @@
 
 A modern, responsive portfolio website built with Next.js and Tailwind CSS showcasing my projects, skills, and professional information.
 
-![Portfolio Preview](/public/projects/portfolio-preview.png)
+## 📸 Screenshots
+
+### Homepage
+![Homepage](/public/screenshots/homepage.png)
+*The landing page featuring introduction, animation effects and quick navigation to other sections*
+
+### Skills Page
+![Skills Page](/public/screenshots/skills-page.png)
+*A comprehensive display of technical skills categorized by domains with visual indicators for proficiency levels*
+
+### Projects Page
+![Projects Page](/public/screenshots/projects-page.png)
+*Portfolio of completed projects with filtering capability, tech stack details, and links to demos/repositories*
+
+### Contact Page
+![Contact Page](/public/screenshots/contact-page.png)
+*Contact form for direct messaging with social media links and location information*
 
 ## 🚀 Features
 
