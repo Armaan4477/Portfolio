@@ -96,7 +96,6 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## 📝 Customization
 
 ### Adding New Projects
@@ -136,25 +135,3 @@ const skills = [
   // ... existing categories
 ];
 ```
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
-3. Commit your Changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the Branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📧 Contact
-
-Project Link: [https://github.com/Armaan4477/portfolio](https://github.com/Armaan4477/portfolio)
-
-## 🙏 Acknowledgments
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Framer Motion Documentation](https://www.framer.com/motion/)
-- [React Icons](https://react-icons.github.io/react-icons/)
-- [EmailJS Documentation](https://www.emailjs.com/docs/)
