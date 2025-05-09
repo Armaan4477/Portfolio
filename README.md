@@ -82,10 +82,11 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
    Create a `.env.local` file in the root directory with:
    ```
    # EmailJS Configuration
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-   NEXT_PUBLIC_EMAILJS_USER_ID=your_user_id
+    NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
    ```
+    Replace the placeholder values with your actual EmailJS credentials.
 
 4. Run the development server:
    ```bash
@@ -178,3 +179,56 @@ const skills = [
   // ... existing categories
 ];
 ```
+
+### EmailJS Template Structure
+
+The contact form uses the following EmailJS template format to deliver messages:
+
+```html
+<div style="font-family: system-ui, sans-serif, Arial; font-size: 12px">
+  <div>
+    A message by <strong>{{name}}</strong> has been received.
+    Kindly respond at your earliest convenience.
+  </div>
+
+  <div
+    style="
+      margin-top: 20px;
+      padding: 15px 0;
+      border-width: 1px 0;
+      border-style: dashed;
+      border-color: lightgrey;
+    "
+  >
+    <table role="presentation">
+      <tr>
+        <td style="vertical-align: top">
+          <div
+            style="
+              padding: 6px 10px;
+              margin: 0 10px;
+              background-color: aliceblue;
+              border-radius: 5px;
+              font-size: 26px;
+            "
+            role="img"
+          >
+            &#x1F464;
+          </div>
+        </td>
+        <td style="vertical-align: top">
+          <div style="color: #2c3e50; font-size: 16px">
+            <strong>{{name}}</strong>
+          </div>
+          <div style="color: #cccccc; font-size: 13px">{{time}}</div>
+          <p style="font-size: 16px"><strong>Subject:</strong> {{subject}}</p>
+          <p style="font-size: 16px"><strong>Email:</strong> {{email}}</p>
+          <p style="font-size: 16px"><strong>Message:</strong> {{message}}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+```
+
+When configuring your EmailJS template, copy this HTML into the template editor to maintain the same formatting for received messages.

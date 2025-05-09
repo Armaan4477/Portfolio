@@ -1,268 +1,266 @@
-'use client'
-
-import { useState } from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
+"use client";
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import AnimatedSection from '../../components/animations/AnimatedSection';
-import AnimatedCard from '../../components/animations/AnimatedCard';
-import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
-
-emailjs.init("r2NLf5cdcemGae_wi");
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const formRef = useRef();
+  const [form, setForm] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
+    setForm({
+      ...form,
       [name]: value
-    }));
+    });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: null
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!form.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!form.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
+    if (!validateForm()) {
+      return;
+    }
+    
+    setLoading(true);
+    setStatus(null);
+
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Armaan'
-      };
-      
-      const response = await emailjs.send(
-        'service_75yfjkm',
-        'template_k3vy5h7',
-        templateParams,
-        'r2NLf5cdcemGae_wi'
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
       
-      console.log('SUCCESS!', response.status, response.text);
-      
-      setSubmitMessage({
-        type: 'success',
-        text: 'Thank you! Your message has been sent successfully.'
+      setStatus({
+        success: true,
+        message: 'Message sent successfully!'
       });
       
-      setFormData({
+      // Reset the form
+      setForm({
         name: '',
         email: '',
-        subject: '',
         message: ''
       });
-      
     } catch (error) {
-      console.error("Error sending email:", error);
-      setSubmitMessage({
-        type: 'error',
-        text: 'Oops! Something went wrong. Please try again later.'
+      console.error(error);
+      setStatus({
+        success: false,
+        message: 'Something went wrong. Please try again.'
       });
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <AnimatedSection animation="fadeIn">
-        <h1 className="page-title">Contact Me</h1>
+        <h1 className="page-title">Get In Touch</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          Have a question? Feel free to reach out to me using the form below or through my contact information.
+          Feel free to contact me for any inquiries, collaborations, or just to say hello!
         </p>
       </AnimatedSection>
-
-      <div className="flex flex-col lg:flex-row gap-12">
-        <AnimatedSection animation="slideInLeft" className="lg:w-1/2">
-          <form onSubmit={handleSubmit} className="space-y-6">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <AnimatedSection animation="slideUp" delay={0.1} className="order-2 lg:order-1">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Your Name
               </label>
               <input
                 type="text"
-                id="name"
                 name="name"
-                value={formData.name}
+                id="name"
+                value={form.name}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                  errors.name ? 'border-red-500 dark:border-red-500' : ''
+                }`}
+                placeholder="John Doe"
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+              )}
             </div>
-
+            
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Email Address
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Your Email
               </label>
               <input
                 type="email"
-                id="email"
                 name="email"
-                value={formData.email}
+                id="email"
+                value={form.email}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                  errors.email ? 'border-red-500 dark:border-red-500' : ''
+                }`}
+                placeholder="john@example.com"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+              )}
             </div>
-
+            
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Message
               </label>
               <textarea
-                id="message"
                 name="message"
-                value={formData.message}
+                id="message"
+                rows="5"
+                value={form.message}
                 onChange={handleChange}
-                required
-                rows={5}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              />
+                className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                  errors.message ? 'border-red-500 dark:border-red-500' : ''
+                }`}
+                placeholder="Your message here..."
+              ></textarea>
+              {errors.message && (
+                <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+              )}
             </div>
-
-            <button
+            
+            <motion.button
               type="submit"
-              disabled={isSubmitting}
-              className="px-6 py-3 bg-primary dark:bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-700 transition w-full flex justify-center"
+              disabled={loading}
+              className="w-full px-6 py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 dark:bg-blue-700 dark:hover:bg-blue-600"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-
-            {submitMessage && (
-              <div className={`mt-4 p-4 rounded-md ${submitMessage.type === 'success' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'}`}>
-                {submitMessage.text}
-              </div>
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Sending...
+                </span>
+              ) : "Send Message"}
+            </motion.button>
+            
+            {status && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`p-4 rounded-md text-center ${
+                  status.success ? 'bg-green-100 text-green-800 dark:bg-green-800/20 dark:text-green-400' : 'bg-red-100 text-red-800 dark:bg-red-800/20 dark:text-red-400'
+                }`}
+              >
+                {status.message}
+              </motion.div>
             )}
           </form>
         </AnimatedSection>
-
-        <AnimatedSection animation="slideInRight" className="lg:w-1/2 space-y-8">
-          <AnimatedCard index={0} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Contact Information</h2>
+        
+        <AnimatedSection animation="slideUp" delay={0.2} className="order-1 lg:order-2">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Contact Information</h2>
             
             <div className="space-y-4">
-              <div className="flex items-start">
-                <FaEnvelope className="text-primary dark:text-blue-400 mt-1 mr-4" size={20} />
+              <div className="flex items-center">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                  <FaEnvelope className="text-blue-600 dark:text-blue-400" size={20} />
+                </div>
                 <div>
-                  <h3 className="font-medium dark:text-white">Email</h3>
-                  <p className="text-gray-600 dark:text-gray-400">nakhudaarmaan66@gmail.com</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
+                  <a href="mailto:nakhudaarmaan66@gmail.com" className="text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                    nakhudaarmaan66@gmail.com
+                  </a>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <FaMapMarkerAlt className="text-primary dark:text-blue-400 mt-1 mr-4" size={20} />
+              <div className="flex items-center">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                  <FaLinkedin className="text-blue-600 dark:text-blue-400" size={20} />
+                </div>
                 <div>
-                  <h3 className="font-medium dark:text-white">Location</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Mumbai, India</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">LinkedIn</p>
+                  <a href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" target="_blank" rel="noopener noreferrer" className="text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                    Armaan Nakhuda
+                  </a>
                 </div>
               </div>
+              
+              <div className="flex items-center">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                  <FaGithub className="text-blue-600 dark:text-blue-400" size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">GitHub</p>
+                  <a href="https://github.com/Armaan4477" target="_blank" rel="noopener noreferrer" className="text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                    @Armaan4477
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                  <FaMapMarkerAlt className="text-blue-600 dark:text-blue-400" size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Location</p>
+                  <p className="text-gray-800 dark:text-white">
+                    Mumbai, India
+                  </p>
+                </div>
+              </div>         
             </div>
-          </AnimatedCard>
-
-          <AnimatedCard index={1} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
-            <div className="flex space-x-6">
-              <SocialButton 
-                href="https://github.com/Armaan4477" 
-                icon={<FaGithub size={24} />}
-                label="GitHub"
-                bgColor="bg-gray-800 dark:bg-gray-900"
-                textColor="text-white" 
-              />
-              <SocialButton 
-                href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" 
-                icon={<FaLinkedin size={24} />}
-                label="LinkedIn"
-                bgColor="bg-blue-600"
-                textColor="text-white" 
-              />
-              <SocialButton 
-                href="mailto:nakhudaarmaan66@gmail.com" 
-                icon={<FaEnvelope size={24} />}
-                label="Email"
-                bgColor="bg-red-500"
-                textColor="text-white" 
-              />
+            
+            <div className="mt-8 p-6 bg-gray-50 dark:bg-gray-700/40 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Inquiries</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Looking to collaborate or have a project in mind? 
+                Send me a message and I'll get back to you as soon as possible.
+              </p>
             </div>
-          </AnimatedCard>
+          </div>
         </AnimatedSection>
       </div>
     </div>
-  )
-}
-
-// New component for animated social buttons
-function SocialButton({ href, icon, label, bgColor, textColor }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const boxShadow = useMotionTemplate`0px 5px 15px rgba(0, 0, 0, ${useMotionValue(0)})`;
-
-  return (
-    <motion.a 
-      href={href}
-      target="_blank" 
-      rel="noopener noreferrer"
-      className={`relative p-4 rounded-full shadow-md ${bgColor} ${textColor} overflow-hidden flex items-center justify-center`}
-      style={{ boxShadow }}
-      whileHover={{ 
-        scale: 1.15,
-        y: -5,
-      }}
-      whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 400, damping: 15 }}
-      onMouseMove={(e) => {
-        const bounds = e.currentTarget.getBoundingClientRect();
-        const centerX = bounds.left + bounds.width / 2;
-        const centerY = bounds.top + bounds.height / 2;
-        x.set((e.clientX - centerX) / 5);
-        y.set((e.clientY - centerY) / 5);
-      }}
-      onMouseLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
-      aria-label={label}
-    >
-      {icon}
-      <motion.span 
-        className="absolute inset-0 bg-white dark:bg-gray-800 opacity-0"
-        whileHover={{ opacity: 0.15 }}
-        style={{ 
-          filter: "blur(15px)",
-          transform: "translate(-50%, -50%)",
-          left: "50%",
-          top: "50%",
-          width: "100%",
-          height: "100%"
-        }}
-      />
-    </motion.a>
   );
 }
