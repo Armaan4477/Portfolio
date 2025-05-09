@@ -1,0 +1,160 @@
+# Armaan's Portfolio Website
+
+A modern, responsive portfolio website built with Next.js and Tailwind CSS showcasing my projects, skills, and professional information.
+
+![Portfolio Preview](/public/projects/portfolio-preview.png)
+
+## 🚀 Features
+
+- **Responsive Design** - Optimized for all device sizes
+- **Dark/Light Mode** - Theme toggle with system preference detection and persistence
+- **Interactive UI** - Smooth animations and transitions using Framer Motion
+- **Project Showcase** - Filterable project cards with details and links
+- **Skills Section** - Visual representation of technical skills and expertise
+- **Contact Form** - Direct messaging using EmailJS
+- **GitHub Integration** - Real-time GitHub contribution visualization
+- **SEO Optimized** - Meta tags and optimized content structure
+
+## 🛠️ Technologies Used
+
+- **Frontend**
+  - [Next.js 15](https://nextjs.org/) - React framework for server-rendered applications
+  - [React 19](https://reactjs.org/) - JavaScript library for building user interfaces
+  - [Tailwind CSS 4](https://tailwindcss.com/) - Utility-first CSS framework
+  - [Framer Motion](https://www.framer.com/motion/) - Animation library for React
+
+- **Functionality**
+  - [EmailJS](https://www.emailjs.com/) - Client-side email sending
+  - [React Icons](https://react-icons.github.io/react-icons/) - Icon library
+  - [GitHub Contributions API](https://github-contributions-api.jogruber.de/) - For fetching GitHub activity
+
+## 📋 Project Structure
+
+```
+/src
+  /app                 # Next.js pages and layouts
+    /contact           # Contact page
+    /projects          # Projects page
+    /skills            # Skills page
+    globals.css        # Global styles
+    layout.js          # Root layout
+    page.js            # Home page
+  /components          # Reusable components
+    /animations        # Animation components
+    Footer.js          # Site footer
+    GitHubContributions.js # GitHub activity visualization
+    Navbar.js          # Navigation component
+    ProjectCard.js     # Project display card
+    ScrollToTop.js     # Scroll to top button
+    SequentialTypewriter.js # Typing animation
+    SkillCard.js       # Skill display card
+    ThemeToggle.js     # Theme switch button
+  /context             # React context providers
+    ThemeContext.js    # Theme management context
+  /hooks               # Custom React hooks
+    useScrollAnimation.js # Scroll detection hook
+  /utils               # Utility functions
+    imageLoader.js     # Next.js image loading helper
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm/yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Armaan4477/portfolio.git
+   cd portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Configure environment variables:
+   Create a `.env.local` file in the root directory with:
+   ```
+   # EmailJS Configuration
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+   NEXT_PUBLIC_EMAILJS_USER_ID=your_user_id
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## 📝 Customization
+
+### Adding New Projects
+
+Edit the projects array in `/src/app/projects/page.js` to add new projects:
+
+```javascript
+const projects = [
+  {
+    id: 9,
+    title: "Your New Project",
+    description: "Description of your project",
+    image: "/projects/your-project-image.png",
+    technologies: ["Tech1", "Tech2", "Tech3"],
+    codeUrl: "https://github.com/yourusername/your-project",
+    demoUrl: "https://your-project-demo.com",
+    featured: false,
+    tags: ["tag1", "tag2"]
+  },
+  // ... existing projects
+];
+```
+
+### Updating Skills
+
+Edit the skills array in `/src/app/skills/page.js` to update your skills:
+
+```javascript
+const skills = [
+  {
+    category: "Your New Category",
+    items: [
+      { name: "Skill Name", icon: <YourIcon className="text-color" size={40} />, level: 75 },
+      // ... more skills
+    ]
+  },
+  // ... existing categories
+];
+```
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+3. Commit your Changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📧 Contact
+
+Project Link: [https://github.com/Armaan4477/portfolio](https://github.com/Armaan4477/portfolio)
+
+## 🙏 Acknowledgments
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Framer Motion Documentation](https://www.framer.com/motion/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [EmailJS Documentation](https://www.emailjs.com/docs/)
