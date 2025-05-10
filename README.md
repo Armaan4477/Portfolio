@@ -156,6 +156,7 @@ const featuredProjects = [
   // Add or modify more featured projects
 ];
 ```
+### Update Contact Information
 
 Update contact information in `/src/app/contact/page.js`:
 
@@ -169,6 +170,60 @@ Update contact information in `/src/app/contact/page.js`:
   <h3 className="font-medium dark:text-white">Location</h3>
   <p className="text-gray-600 dark:text-gray-400">Your City, Country</p>
 </div>
+```
+
+### GitHub Contributions Configuration
+
+To display your own GitHub contributions, modify the username in `/src/components/GitHubContributions.js`:
+
+```javascript
+// Change the GitHub username in the fetchContributions function
+const response = await fetch('https://github-contributions-api.jogruber.de/v4/YOUR_GITHUB_USERNAME');
+```
+
+Also update the default year to show:
+
+```javascript
+// Set your preferred default year
+const [activeYear, setActiveYear] = useState('2025'); // Change to current/preferred year
+```
+
+### Adding New Projects
+
+Edit the projects array in `/src/app/projects/page.js` to add new projects:
+
+```javascript
+const projects = [
+  {
+    id: 9,
+    title: "Your New Project",
+    description: "Description of your project",
+    image: "/projects/your-project-image.png",
+    technologies: ["Tech1", "Tech2", "Tech3"],
+    codeUrl: "https://github.com/yourusername/your-project",
+    demoUrl: "https://your-project-demo.com",
+    featured: false,
+    tags: ["tag1", "tag2"]
+  },
+  // ... existing projects
+];
+```
+
+### Updating Skills
+
+Edit the skills array in `/src/app/skills/page.js` to update your skills:
+
+```javascript
+const skills = [
+  {
+    category: "Your New Category",
+    items: [
+      { name: "Skill Name", icon: <YourIcon className="text-color" size={40} />, level: 75 },
+      // ... more skills
+    ]
+  },
+  // ... existing categories
+];
 ```
 
 ### Customizing Navigation Bar
@@ -228,60 +283,6 @@ To update the footer information, edit `/src/components/Footer.js`:
 <p className="text-gray-400">
   © {currentYear} Your Name. All rights reserved.
 </p>
-```
-
-### GitHub Contributions Configuration
-
-To display your own GitHub contributions, modify the username in `/src/components/GitHubContributions.js`:
-
-```javascript
-// Change the GitHub username in the fetchContributions function
-const response = await fetch('https://github-contributions-api.jogruber.de/v4/YOUR_GITHUB_USERNAME');
-```
-
-Also update the default year to show:
-
-```javascript
-// Set your preferred default year
-const [activeYear, setActiveYear] = useState('2024'); // Change to current/preferred year
-```
-
-### Adding New Projects
-
-Edit the projects array in `/src/app/projects/page.js` to add new projects:
-
-```javascript
-const projects = [
-  {
-    id: 9,
-    title: "Your New Project",
-    description: "Description of your project",
-    image: "/projects/your-project-image.png",
-    technologies: ["Tech1", "Tech2", "Tech3"],
-    codeUrl: "https://github.com/yourusername/your-project",
-    demoUrl: "https://your-project-demo.com",
-    featured: false,
-    tags: ["tag1", "tag2"]
-  },
-  // ... existing projects
-];
-```
-
-### Updating Skills
-
-Edit the skills array in `/src/app/skills/page.js` to update your skills:
-
-```javascript
-const skills = [
-  {
-    category: "Your New Category",
-    items: [
-      { name: "Skill Name", icon: <YourIcon className="text-color" size={40} />, level: 75 },
-      // ... more skills
-    ]
-  },
-  // ... existing categories
-];
 ```
 
 ## 📧 EmailJS Template Structure
