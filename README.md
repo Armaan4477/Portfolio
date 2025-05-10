@@ -103,6 +103,7 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
     NEXT_PUBLIC_EMAILJS_KEY=your_public_key
    ```
     Replace the placeholder values with your actual EmailJS credentials.
+    See the [EmailJS Template Structure](#-emailjs-template-structure) section below for template setup.
 
 4. Run the development server:
    ```bash
@@ -128,6 +129,34 @@ const aboutMeText = [
 ];
 ```
 
+To update the featured skills on the homepage, modify the skills cards in `/src/app/page.js`:
+
+```javascript
+// In the Home component's Featured Skills section
+<AnimatedCard index={0} className="card">
+  <h3 className="text-xl font-semibold mb-2">Your Skill Category</h3>
+  <p className="text-gray-600 dark:text-gray-300">Skill 1, Skill 2, Skill 3</p>
+</AnimatedCard>
+// Add or modify more skill cards as needed
+```
+
+To update featured projects on the homepage, edit the `featuredProjects` array in `/src/app/page.js`:
+
+```javascript
+const featuredProjects = [
+  {
+    id: 1,
+    title: "Your Featured Project",
+    description: "Description of your featured project...",
+    image: "/projects/your-project-image.png",
+    technologies: ["Tech1", "Tech2", "Tech3"],
+    codeUrl: "https://github.com/yourusername/your-project",
+    demoUrl: "https://your-project-demo.com" // Optional
+  },
+  // Add or modify more featured projects
+];
+```
+
 Update contact information in `/src/app/contact/page.js`:
 
 ```javascript
@@ -140,6 +169,65 @@ Update contact information in `/src/app/contact/page.js`:
   <h3 className="font-medium dark:text-white">Location</h3>
   <p className="text-gray-600 dark:text-gray-400">Your City, Country</p>
 </div>
+```
+
+### Customizing Navigation Bar
+
+To update the navigation links or logo information in the navigation bar, edit `/src/components/Navbar.js`:
+
+```javascript
+// Modify the navigation links array
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Skills', path: '/skills' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Contact', path: '/contact' },
+  // Add new links as needed
+];
+
+// Update the logo/name in the navbar
+<Link href="/" className="flex items-center group">
+  <div className="...">
+    <Image
+      src="/your-logo.png" // Update with your own logo
+      alt="Your Name"
+      width={32}
+      height={32}
+      className="..."
+    />
+  </div>
+  <span className="...">
+    Your Name // Replace with your name
+  </span>
+</Link>
+```
+
+### Customizing Footer
+
+To update the footer information, edit `/src/components/Footer.js`:
+
+```javascript
+// Update your name and title
+<div className="mb-8 md:mb-0">
+  <h2 className="text-2xl font-bold mb-2">Your Name</h2>
+  <p className="text-gray-300">Your Title</p>
+</div>
+
+// Update social media links
+<a href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+  <FaLinkedin size={24} />
+</a>
+<a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+  <FaGithub size={24} />
+</a>
+<a href="mailto:your-email@example.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-300">
+  <FaEnvelope size={24} />
+</a>
+
+// Update copyright information
+<p className="text-gray-400">
+  © {currentYear} Your Name. All rights reserved.
+</p>
 ```
 
 ### GitHub Contributions Configuration
@@ -196,7 +284,7 @@ const skills = [
 ];
 ```
 
-### EmailJS Template Structure
+## 📧 EmailJS Template Structure
 
 The contact form uses the following EmailJS template format to deliver messages:
 
