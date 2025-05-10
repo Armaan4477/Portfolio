@@ -48,29 +48,29 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
 
 ```
 /src
-  /app                 # Next.js pages and layouts
-    /contact           # Contact page
-    /projects          # Projects page
-    /skills            # Skills page
-    globals.css        # Global styles
-    layout.js          # Root layout
-    page.js            # Home page
-  /components          # Reusable components
-    /animations        # Animation components
-    Footer.js          # Site footer
-    GitHubContributions.js # GitHub activity visualization
-    Navbar.js          # Navigation component
-    ProjectCard.js     # Project display card
-    ScrollToTop.js     # Scroll to top button
+  /app                      # Next.js pages and layouts
+    /contact                # Contact page
+    /projects               # Projects page
+    /skills                 # Skills page
+    globals.css             # Global styles
+    layout.js               # Root layout
+    page.js                 # Home page
+  /components               # Reusable components
+    /animations             # Animation components
+    Footer.js               # Site footer
+    GitHubContributions.js  # GitHub activity visualization
+    Navbar.js               # Navigation component
+    ProjectCard.js          # Project display card
+    ScrollToTop.js          # Scroll to top button
     SequentialTypewriter.js # Typing animation
-    SkillCard.js       # Skill display card
-    ThemeToggle.js     # Theme switch button
-  /context             # React context providers
-    ThemeContext.js    # Theme management context
-  /hooks               # Custom React hooks
-    useScrollAnimation.js # Scroll detection hook
-  /utils               # Utility functions
-    imageLoader.js     # Next.js image loading helper
+    SkillCard.js            # Skill display card
+    ThemeToggle.js          # Theme switch button
+  /context                  # React context providers
+    ThemeContext.js         # Theme management context
+  /hooks                    # Custom React hooks
+    useScrollAnimation.js   # Scroll detection hook
+  /utils                    # Utility functions
+    imageLoader.js          # Next.js image loading helper
 ```
 
 ## 🚀 Getting Started
