@@ -115,13 +115,13 @@ export default function Projects() {
 
   const filters = [
     { id: 'all', label: 'All' },
+    { id: 'ai', label: 'AI' },
+    { id: 'firebase', label: 'Database' },
     { id: 'game', label: 'Game' },
-    { id: 'website', label: 'Web' },
+    { id: 'iot', label: 'IoT' },
     { id: 'java', label: 'Java' },
     { id: 'python', label: 'Python' },
-    { id: 'iot', label: 'IoT' },
-    { id: 'firebase', label: 'Database' },
-    { id: 'ai', label: 'AI' }
+    { id: 'website', label: 'Web' }
   ];
 
   const filteredProjects = activeFilter === 'all' 
