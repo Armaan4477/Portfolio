@@ -31,17 +31,6 @@ export default function Projects() {
     },
     {
       id: 3,
-      title: "Delicious Discoveries",
-      description: "A web application that helps users discover new recipes from around the world with various search methods including AI-powered features, ingredient-based search, and country-based filtering.",
-      image: "/projects/delicious-discoveries.jpeg",
-      technologies: ["Website", "Firebase"],
-      codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
-      demoUrl: "https://deliciousdiscoveries.vercel.app",
-      featured: false,
-      tags: ["website", "firebase"]
-    },
-    {
-      id: 4,
       title: "DataDash",
       description: "A cross-platform application for sharing media and data between devices with real-time synchronization capabilities.",
       image: "/projects/datadash.png",
@@ -50,6 +39,17 @@ export default function Projects() {
       demoUrl: "https://datadashshare.vercel.app",
       featured: true,
       tags: ["java", "python"]
+    },
+    {
+      id: 4,
+      title: "Delicious Discoveries",
+      description: "A web application that helps users discover new recipes from around the world with various search methods including AI-powered features, ingredient-based search, and country-based filtering.",
+      image: "/projects/delicious-discoveries.jpeg",
+      technologies: ["Website", "Firebase"],
+      codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
+      demoUrl: "https://deliciousdiscoveries.vercel.app",
+      featured: false,
+      tags: ["website", "firebase"]
     },
     {
       id: 5,
@@ -73,6 +73,26 @@ export default function Projects() {
     },
     {
       id: 7,
+      title: "Ollama UI",
+      description: "A PyQt6-based GUI application for interacting with Ollama models through its API. Features include selecting from available models, chat-like interface with history, system instructions support, and uploading various file types including images, text files, and PDFs.",
+      image: "/projects/ollama-ui.png",
+      technologies: ["Python", "AI"],
+      codeUrl: "https://github.com/Armaan4477/Ollama-UI",
+      featured: false,
+      tags: ["python", "ai"]
+    },
+    {
+      id: 8,
+      title: "Paint Application",
+      description: "A painting application built with JavaFX that allows users to create digital artwork with various brushes, shapes, and text tools. Includes multiple brush types, text formatting, undo/redo functionality, and canvas operations.",
+      image: "/projects/javafx-paint.png",
+      technologies: ["Java", "JavaFX", "Graphics"],
+      codeUrl: "https://github.com/Armaan4477/Paint-App",
+      featured: false,
+      tags: ["java"]
+    },
+    {
+      id: 9,
       title: "Quiz Game",
       description: "Interactive quiz application with score tracking and multiple question categories.",
       image: "/projects/quiz.png",
@@ -82,7 +102,7 @@ export default function Projects() {
       tags: ["game", "java", "firebase"]
     },
     {
-      id: 8,
+      id: 10,
       title: "TicTacToe",
       description: "Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.",
       image: "/projects/tictactoe.png",
@@ -100,7 +120,8 @@ export default function Projects() {
     { id: 'java', label: 'Java' },
     { id: 'python', label: 'Python' },
     { id: 'iot', label: 'IoT' },
-    { id: 'firebase', label: 'Database' }
+    { id: 'firebase', label: 'Database' },
+    { id: 'ai', label: 'AI' }
   ];
 
   const filteredProjects = activeFilter === 'all' 
