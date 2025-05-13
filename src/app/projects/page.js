@@ -98,7 +98,7 @@ export default function Projects() {
       image: "/projects/portfolio.png",
       technologies: ["website","Next.js", "Tailwind CSS"],
       codeUrl: "https://github.com/Armaan4477/portfolio",
-      demoUrl: window.location.origin,
+      demoUrl: "https://armaan44.is-a.dev",
       featured: false,
       tags: ["website"]
     },
