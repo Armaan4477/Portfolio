@@ -76,10 +76,10 @@ export default function Projects() {
       title: "Quiz Game",
       description: "Interactive quiz application with score tracking and multiple question categories.",
       image: "/projects/quiz.png",
-      technologies: ["Game", "Java"],
+      technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
       featured: false,
-      tags: ["game", "java"]
+      tags: ["game", "java", "firebase"]
     },
     {
       id: 8,
