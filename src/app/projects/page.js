@@ -93,6 +93,17 @@ export default function Projects() {
     },
     {
       id: 9,
+      title: "Portfolio Website",
+      description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS showcasing projects, skills, and professional information. Features include dark/light mode with system preference detection, interactive UI with smooth animations using Framer Motion, filterable project showcase, and GitHub contribution visualization.",
+      image: "/projects/portfolio.png",
+      technologies: ["website","Next.js", "Tailwind CSS"],
+      codeUrl: "https://github.com/Armaan4477/portfolio",
+      demoUrl: window.location.origin,
+      featured: false,
+      tags: ["website"]
+    },
+    {
+      id: 10,
       title: "Quiz Game",
       description: "Interactive quiz application with score tracking and multiple question categories.",
       image: "/projects/quiz.png",
@@ -102,7 +113,7 @@ export default function Projects() {
       tags: ["game", "java", "firebase"]
     },
     {
-      id: 10,
+      id: 11,
       title: "TicTacToe",
       description: "Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.",
       image: "/projects/tictactoe.png",
