@@ -39,15 +39,27 @@ const ProjectCard = ({ project, featured = false }) => {
           style={{ objectFit: 'cover' }}
           className="transition-transform hover:scale-105"
         />
+        {project.year && (
+          <motion.div 
+            className="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium z-10"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 500 }}
+          >
+            {project.year}
+          </motion.div>
+        )}
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
         
         <div className="description-container" style={{ minHeight: '80px' }}>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
-            {!isLongDescription ? project.description : (
+          <div className="text-gray-700 dark:text-gray-300 mb-4">
+            {!isLongDescription ? (
+              <p>{project.description}</p>
+            ) : (
               <>
-                {expanded ? null : displayDescription}
+                {expanded ? null : <p>{displayDescription}</p>}
                 <AnimatePresence>
                   {expanded && (
                     <motion.div
@@ -58,20 +70,20 @@ const ProjectCard = ({ project, featured = false }) => {
                       style={{ overflow: 'hidden' }}
                     >
                       <div ref={contentRef}>
-                        {project.description}
+                        <p>{project.description}</p>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
                 <button 
                   onClick={() => setExpanded(!expanded)} 
-                  className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium ml-2 hover:underline focus:outline-hidden transition-colors"
+                  className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline focus:outline-hidden transition-colors"
                 >
                   {expanded ? 'Read Less' : 'Read More'}
                 </button>
               </>
             )}
-          </p>
+          </div>
         </div>
         
         <div className="flex flex-wrap gap-2 mb-4">

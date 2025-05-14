@@ -16,7 +16,8 @@ export default function Projects() {
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
       featured: true,
-      tags: ["iot", "automation"]
+      tags: ["iot", "automation"],
+      year: "2025"
     },
     {
       id: 2,
@@ -27,7 +28,8 @@ export default function Projects() {
       codeUrl: "https://github.com/ura-dev04/CommunityConnect",
       demoUrl: "https://sharecommunityconnect.vercel.app",
       featured: false,
-      tags: ["website", "firebase", "management"]
+      tags: ["website", "firebase", "management"],
+      year: "2025"
     },
     {
       id: 3,
@@ -38,7 +40,8 @@ export default function Projects() {
       codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing",
       demoUrl: "https://datadashshare.vercel.app",
       featured: true,
-      tags: ["java", "python"]
+      tags: ["java", "python"],
+      year: "2024"
     },
     {
       id: 4,
@@ -49,7 +52,8 @@ export default function Projects() {
       codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
       demoUrl: "https://deliciousdiscoveries.vercel.app",
       featured: false,
-      tags: ["website", "firebase"]
+      tags: ["website", "firebase"],
+      year: "2024"
     },
     {
       id: 5,
@@ -59,7 +63,8 @@ export default function Projects() {
       technologies: ["Python", "Firebase", "Management"],
       codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
       featured: false,
-      tags: ["python", "firebase", "management"]
+      tags: ["python", "firebase", "management"],
+      year: "2024"
     },
     {
       id: 6,
@@ -69,7 +74,8 @@ export default function Projects() {
       technologies: ["Firebase", "Game", "Python"],
       codeUrl: "https://github.com/Armaan4477/Hangman",
       featured: false,
-      tags: ["game", "firebase", "python"]
+      tags: ["game", "firebase", "python"],
+      year: "2024"
     },
     {
       id: 7,
@@ -79,7 +85,8 @@ export default function Projects() {
       technologies: ["Python", "AI"],
       codeUrl: "https://github.com/Armaan4477/Ollama-UI",
       featured: false,
-      tags: ["python", "ai"]
+      tags: ["python", "ai"],
+      year: "2025"
     },
     {
       id: 8,
@@ -89,7 +96,8 @@ export default function Projects() {
       technologies: ["Java", "JavaFX", "Graphics"],
       codeUrl: "https://github.com/Armaan4477/Paint-App",
       featured: false,
-      tags: ["java"]
+      tags: ["java"],
+      year: "2023"
     },
     {
       id: 9,
@@ -100,7 +108,8 @@ export default function Projects() {
       codeUrl: "https://github.com/Armaan4477/portfolio",
       demoUrl: "https://armaan44.is-a.dev",
       featured: false,
-      tags: ["website"]
+      tags: ["website"],
+      year: "2025"
     },
     {
       id: 10,
@@ -110,7 +119,8 @@ export default function Projects() {
       technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
       featured: false,
-      tags: ["game", "java", "firebase"]
+      tags: ["game", "java", "firebase"],
+      year: "2023"
     },
     {
       id: 11,
@@ -120,7 +130,8 @@ export default function Projects() {
       technologies: ["Game", "Java"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
       featured: false,
-      tags: ["game", "java"]
+      tags: ["game", "java"],
+      year: "2023"
     }
   ];
 
