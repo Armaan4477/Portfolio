@@ -48,7 +48,7 @@ export default function Projects() {
       id: 4,
       title: "Delicious Discoveries",
       description: "A web application that helps users discover new recipes from around the world with various search methods including AI-powered features, ingredient-based search, and country-based filtering.",
-      image: "/projects/delicious-discoveries.jpeg",
+      image: "/projects/delicious-discoveries.png",
       technologies: ["Website", "Firebase"],
       codeUrl: "https://github.com/vrishab0105/Delicious-Discoveries",
       demoUrl: "https://deliciousdiscoveries.vercel.app",
