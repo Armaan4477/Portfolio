@@ -20,7 +20,7 @@ export default function Home() {
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
-      year: "2023"
+      year: "2025"
     },
     {
       id: 2,
