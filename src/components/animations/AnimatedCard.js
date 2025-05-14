@@ -25,6 +25,7 @@ export default function AnimatedCard({
         duration: 0.5, 
         delay: index * staggerDelay 
       }}
+      layout
       {...props}
     >
       {children}

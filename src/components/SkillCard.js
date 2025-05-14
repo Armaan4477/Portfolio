@@ -1,6 +1,6 @@
 export default function SkillCard({ name, icon, level }) {
   return (
-    <div className="card flex flex-col items-center p-6 dark:bg-gray-800">
+    <div className="card flex flex-col items-center p-6 dark:bg-gray-800 h-full">
       <div className="mb-4">
         {icon}
       </div>

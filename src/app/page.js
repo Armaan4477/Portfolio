@@ -19,7 +19,8 @@ export default function Home() {
       description: "ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.",
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
-      codeUrl: "https://github.com/Armaan4477/Automated-ESP"
+      codeUrl: "https://github.com/Armaan4477/Automated-ESP",
+      year: "2023"
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ export default function Home() {
       image: "/projects/datadash.png",
       technologies: ["Cross-Platform", "Java", "Python"],
       codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing",
-      demoUrl: "https://datadashshare.vercel.app"
+      demoUrl: "https://datadashshare.vercel.app",
+      year: "2024"
     }
   ];
 
