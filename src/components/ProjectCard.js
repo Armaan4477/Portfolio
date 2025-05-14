@@ -30,6 +30,7 @@ const ProjectCard = ({ project, featured = false }) => {
       whileHover={{ y: expanded ? 0 : -5 }}
       transition={{ type: "spring", stiffness: 300 }}
       layout
+      style={{ height: expanded ? "auto" : "500px" }}
     >
       <div className="relative h-48">
         <Image 
@@ -50,10 +51,10 @@ const ProjectCard = ({ project, featured = false }) => {
           </motion.div>
         )}
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col h-[calc(100%-192px)]"> {}
         <h3 className="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
         
-        <div className="description-container" style={{ minHeight: '80px' }}>
+        <div className="flex-grow overflow-hidden description-container">
           <div className="text-gray-700 dark:text-gray-300 mb-4">
             {!isLongDescription ? (
               <p>{project.description}</p>
@@ -77,7 +78,7 @@ const ProjectCard = ({ project, featured = false }) => {
                 </AnimatePresence>
                 <button 
                   onClick={() => setExpanded(!expanded)} 
-                  className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline focus:outline-hidden transition-colors"
+                  className="text-secondary hover:text-secondary-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline focus:outline-hidden transition-colors mt-2"
                 >
                   {expanded ? 'Read Less' : 'Read More'}
                 </button>
@@ -86,7 +87,7 @@ const ProjectCard = ({ project, featured = false }) => {
           </div>
         </div>
         
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4 mt-auto">
           {project.technologies.map((tech, index) => (
             <motion.span 
               key={index} 
