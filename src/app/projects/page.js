@@ -6,6 +6,7 @@ import AnimatedCard from '../../components/animations/AnimatedCard';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [activeSorting, setActiveSorting] = useState('none');
   
   const projects = [
     {
@@ -145,10 +146,36 @@ export default function Projects() {
     { id: 'python', label: 'Python' },
     { id: 'website', label: 'Web' }
   ];
+  
+  const sortOptions = [
+    { id: 'none', label: 'Default' },
+    { id: 'year-asc', label: 'Oldest First' },
+    { id: 'year-desc', label: 'Newest First' }
+  ];
 
-  const filteredProjects = activeFilter === 'all' 
+  // First filter by tag
+  const tagFilteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.tags.includes(activeFilter));
+    
+  // Then apply sorting if selected
+  const sortProjects = (projects, sortOption) => {
+    if (sortOption === 'none') return projects;
+    
+    return [...projects].sort((a, b) => {
+      const yearA = parseInt(a.year);
+      const yearB = parseInt(b.year);
+      
+      if (sortOption === 'year-asc') {
+        return yearA - yearB; // Oldest to newest
+      } else if (sortOption === 'year-desc') {
+        return yearB - yearA; // Newest to oldest
+      }
+      return 0;
+    });
+  };
+  
+  const filteredProjects = sortProjects(tagFilteredProjects, activeSorting);
 
   const featuredProjects = filteredProjects.filter(project => project.featured);
   const otherProjects = filteredProjects.filter(project => !project.featured);
@@ -162,22 +189,42 @@ export default function Projects() {
         </p>
       </AnimatedSection>
 
-      <AnimatedSection animation="slideUp" className="filter-buttons mb-8 flex flex-wrap gap-2">
-        {filters.map((filter, index) => (
-          <AnimatedCard key={filter.id} index={index} staggerDelay={0.05}>
-            <button 
-              className={`filter-btn px-4 py-2 rounded-md ${
-                activeFilter === filter.id 
-                  ? 'bg-secondary text-white' 
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
-              }`}
-              onClick={() => setActiveFilter(filter.id)}
-            >
-              {filter.label}
-            </button>
-          </AnimatedCard>
-        ))}
-      </AnimatedSection>
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <AnimatedSection animation="slideUp" className="filter-buttons flex flex-wrap gap-2 flex-grow">
+          {filters.map((filter, index) => (
+            <AnimatedCard key={filter.id} index={index} staggerDelay={0.05}>
+              <button 
+                className={`filter-btn px-4 py-2 rounded-md ${
+                  activeFilter === filter.id 
+                    ? 'bg-secondary text-white' 
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+                }`}
+                onClick={() => setActiveFilter(filter.id)}
+              >
+                {filter.label}
+              </button>
+            </AnimatedCard>
+          ))}
+        </AnimatedSection>
+        
+        <AnimatedSection animation="slideUp" delay={0.1} className="sort-options flex gap-2 flex-wrap md:justify-end">
+          <span className="self-center text-gray-700 dark:text-gray-300 font-medium">Sort by year:</span>
+          {sortOptions.map((option, index) => (
+            <AnimatedCard key={option.id} index={index} staggerDelay={0.05}>
+              <button 
+                className={`sort-btn px-4 py-2 rounded-md ${
+                  activeSorting === option.id 
+                    ? 'bg-green-600 text-white' 
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+                }`}
+                onClick={() => setActiveSorting(option.id)}
+              >
+                {option.label}
+              </button>
+            </AnimatedCard>
+          ))}
+        </AnimatedSection>
+      </div>
 
       {featuredProjects.length > 0 && (
         <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
