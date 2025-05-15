@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 
 const variants = {
   fadeIn: {
@@ -33,13 +34,40 @@ export default function AnimatedSection({
   delay = 0,
   ...props 
 }) {
+  const ref = useRef(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "0px 0px -10% 0px",
+    amount: 0.2,
+  });
+
+  // Check if element is in initial viewport on mount
+  useEffect(() => {
+    // Start animation immediately if we're at the top of the page or viewing the section
+    if (window.scrollY < 100 || isInView) {
+      setShouldAnimate(true);
+      return;
+    }
+    
+    // Otherwise, use the scroll detection
+    setShouldAnimate(isInView);
+  }, [isInView]);
+
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial="hidden"
-      animate="visible"
+      animate={shouldAnimate ? "visible" : "hidden"}
       variants={variants[animation]}
-      transition={{ duration, delay }}
+      transition={{ 
+        duration, 
+        delay,
+        type: "spring",
+        stiffness: 50,
+        damping: 20
+      }}
       {...props}
     >
       {children}

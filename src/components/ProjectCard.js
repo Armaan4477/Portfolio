@@ -10,6 +10,7 @@ const ProjectCard = ({ project, featured = false }) => {
   const [expanded, setExpanded] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
+  const cardRef = useRef(null);
 
   const MAX_CHARS = 120;
   const isLongDescription = project.description.length > MAX_CHARS;
@@ -28,13 +29,30 @@ const ProjectCard = ({ project, featured = false }) => {
     }
   }, [expanded]);
 
+  // Re-measure on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (expanded && contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [expanded]);
+
   return (
     <motion.div 
+      ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
       whileHover={{ y: expanded ? 0 : -5 }}
       transition={{ type: "spring", stiffness: 300 }}
-      layout
-      style={{ height: expanded ? "auto" : "500px", minHeight: "500px", position: "relative" }}
+      layout="position"
+      style={{ 
+        minHeight: "500px", 
+        position: "relative",
+        height: expanded ? "auto" : "500px"
+      }}
     >
       <div className="relative h-48">
         <Image 
@@ -43,6 +61,8 @@ const ProjectCard = ({ project, featured = false }) => {
           fill
           style={{ objectFit: 'cover' }}
           className="transition-transform hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={featured}
         />
         {project.year && (
           <motion.div 
@@ -98,7 +118,7 @@ const ProjectCard = ({ project, featured = false }) => {
               className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full dark:text-gray-300"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: 0.05 * index }}
             >
               {tech}
             </motion.span>

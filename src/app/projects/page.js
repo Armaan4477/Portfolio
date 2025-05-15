@@ -1,13 +1,17 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectCard from '../../components/ProjectCard';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import AnimatedCard from '../../components/animations/AnimatedCard';
 import { projectsData } from '../../data/projects';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeSorting, setActiveSorting] = useState('none');
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [uniqueYears, setUniqueYears] = useState([]);
+  const [projectsByYear, setProjectsByYear] = useState({});
   
   const projects = projectsData;
 
@@ -28,10 +32,28 @@ export default function Projects() {
     { id: 'year-desc', label: 'Newest First' }
   ];
 
-  const tagFilteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.tags.includes(activeFilter));
+  useEffect(() => {
+    // Apply filtering and sorting
+    const tagFilteredProjects = activeFilter === 'all' 
+      ? projects 
+      : projects.filter(project => project.tags.includes(activeFilter));
+      
+    const sortedProjects = sortProjects(tagFilteredProjects, activeSorting);
+    setFilteredProjects(sortedProjects);
     
+    // Organize projects by year
+    const years = [...new Set(sortedProjects.map(project => project.year))].sort((a, b) => 
+      activeSorting === 'year-asc' ? parseInt(a) - parseInt(b) : parseInt(b) - parseInt(a)
+    );
+    setUniqueYears(years);
+    
+    const byYear = years.reduce((acc, year) => {
+      acc[year] = sortedProjects.filter(project => project.year === year);
+      return acc;
+    }, {});
+    setProjectsByYear(byYear);
+  }, [activeFilter, activeSorting, projects]);
+
   const sortProjects = (projects, sortOption) => {
     if (sortOption === 'none') return projects;
     
@@ -47,20 +69,14 @@ export default function Projects() {
       return 0;
     });
   };
-  
-  const filteredProjects = sortProjects(tagFilteredProjects, activeSorting);
-
-  const uniqueYears = [...new Set(filteredProjects.map(project => project.year))].sort((a, b) => 
-    activeSorting === 'year-asc' ? parseInt(a) - parseInt(b) : parseInt(b) - parseInt(a)
-  );
-
-  const projectsByYear = uniqueYears.reduce((acc, year) => {
-    acc[year] = filteredProjects.filter(project => project.year === year);
-    return acc;
-  }, {});
 
   const featuredProjects = filteredProjects.filter(project => project.featured);
   const otherProjects = filteredProjects.filter(project => !project.featured);
+
+  // Scroll to top on page load to ensure animations trigger
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -108,56 +124,66 @@ export default function Projects() {
         </AnimatedSection>
       </div>
 
-      {featuredProjects.length > 0 && activeSorting === 'none' && (
-        <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProjects.map((project, index) => (
-              <AnimatedCard key={project.id} index={index} className="h-full">
-                <ProjectCard project={project} featured={true} />
-              </AnimatedCard>
-            ))}
-          </div>
-        </AnimatedSection>
-      )}
-
-      {activeSorting !== 'none' ? (
-        <AnimatedSection animation="slideUp" delay={0.2}>
-          {uniqueYears.map((year, yearIndex) => (
-            <div key={year} className="mb-12">
-              <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 pb-2">
-                Projects from {year}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projectsByYear[year].map((project, index) => (
-                  <AnimatedCard key={`${project.id}-${activeSorting}`} index={index} className="h-full">
-                    <ProjectCard project={project} featured={project.featured} />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`${activeFilter}-${activeSorting}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {featuredProjects.length > 0 && activeSorting === 'none' && (
+            <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
+              <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {featuredProjects.map((project, index) => (
+                  <AnimatedCard key={project.id} index={index} className="h-full">
+                    <ProjectCard project={project} featured={true} />
                   </AnimatedCard>
                 ))}
               </div>
-            </div>
-          ))}
-        </AnimatedSection>
-      ) : (
-        otherProjects.length > 0 && (
-          <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project, index) => (
-                <AnimatedCard key={`${project.id}-${activeSorting}`} index={index} className="h-full">
-                  <ProjectCard project={project} />
-                </AnimatedCard>
-              ))}
-            </div>
-          </AnimatedSection>
-        )
-      )}
+            </AnimatedSection>
+          )}
 
-      {filteredProjects.length === 0 && (
-        <AnimatedSection animation="fadeIn" delay={0.2} className="text-center py-16">
-          <p className="text-xl text-gray-700 dark:text-gray-300">No projects found matching the selected filter.</p>
-        </AnimatedSection>
-      )}
+          {activeSorting !== 'none' ? (
+            <AnimatedSection animation="slideUp" delay={0.2}>
+              {uniqueYears.map((year) => (
+                <div key={year} className="mb-12">
+                  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 pb-2">
+                    Projects from {year}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {projectsByYear[year]?.map((project, index) => (
+                      <AnimatedCard key={`${project.id}-${year}`} index={index} className="h-full">
+                        <ProjectCard project={project} featured={project.featured} />
+                      </AnimatedCard>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </AnimatedSection>
+          ) : (
+            otherProjects.length > 0 && (
+              <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
+                <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {otherProjects.map((project, index) => (
+                    <AnimatedCard key={`${project.id}-other`} index={index} className="h-full">
+                      <ProjectCard project={project} />
+                    </AnimatedCard>
+                  ))}
+                </div>
+              </AnimatedSection>
+            )
+          )}
+
+          {filteredProjects.length === 0 && (
+            <AnimatedSection animation="fadeIn" delay={0.2} className="text-center py-16">
+              <p className="text-xl text-gray-700 dark:text-gray-300">No projects found matching the selected filter.</p>
+            </AnimatedSection>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
