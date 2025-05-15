@@ -13,8 +13,14 @@ export default function ScrollToTop() {
   
   useEffect(() => {
     const toggleVisibility = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentProgress = Math.min(window.scrollY / totalHeight, 1);
+      const footer = document.querySelector('footer');
+      const footerHeight = footer ? footer.offsetHeight : 0;
+      
+      const adjustedDocHeight = document.documentElement.scrollHeight - footerHeight;
+      const visibleHeight = window.innerHeight;
+      const totalScrollableHeight = adjustedDocHeight - visibleHeight;
+
+      const currentProgress = Math.min(window.scrollY / totalScrollableHeight, 1);
       setScrollProgress(currentProgress);
       
       setIsAtTop(window.scrollY <= 100);
