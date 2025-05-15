@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { ThemeProvider } from '../context/ThemeContext';
 import ScrollToTop from '../components/ScrollToTop';
 import ScrollObserver from '../components/ScrollObserver';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
             <ScrollToTop />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
