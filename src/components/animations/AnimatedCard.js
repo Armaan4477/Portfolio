@@ -7,7 +7,7 @@ export default function AnimatedCard({
   children, 
   className = '',
   index = 0, 
-  staggerDelay = 0.25,
+  staggerDelay = 0.05,
   duration = 0.12,
   distance = 30,
   margin = "0px 0px 0px 0px",

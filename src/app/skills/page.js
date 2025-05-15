@@ -63,7 +63,7 @@ export default function Skills() {
         <AnimatedSection 
           key={index} 
           animation="slideUp" 
-          delay={index * 0.001} 
+          delay={index * 0.1} 
           className="mb-12" 
           amount={0.001}
           margin="0px 0px -5% 0px"
@@ -74,7 +74,8 @@ export default function Skills() {
               <AnimatedCard 
                 key={skillIdx} 
                 index={skillIdx} 
-                amount={0.001} 
+                staggerDelay={0.1}
+                amount={0.05} 
                 margin="0px 0px -5% 0px"
               >
                 <SkillCard 
