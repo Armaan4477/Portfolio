@@ -56,6 +56,7 @@ export const projectsData = [
       technologies: ["Python", "Firebase", "Management"],
       codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["python", "firebase", "management"],
       year: "2024"
@@ -68,6 +69,7 @@ export const projectsData = [
       technologies: ["Firebase", "Game", "Python"],
       codeUrl: "https://github.com/Armaan4477/Hangman",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["game", "firebase", "python"],
       year: "2024"
@@ -80,6 +82,7 @@ export const projectsData = [
       technologies: ["Python", "AI"],
       codeUrl: "https://github.com/Armaan4477/Ollama-UI",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Ollama installed and running on your system. This is just a UI interface that connects to your local Ollama installation.",
       featured: false,
       tags: ["python", "ai"],
       year: "2025"
@@ -116,6 +119,7 @@ export const projectsData = [
       technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["game", "java", "firebase"],
       year: "2023"
@@ -141,6 +145,7 @@ export const projectsData = [
       technologies: ["Java", "JavaFX", "Firebase"],
       codeUrl: "https://github.com/Armaan4477/Voting-System",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["java", "firebase"],
       year: "2023"
