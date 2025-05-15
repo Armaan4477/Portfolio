@@ -9,9 +9,9 @@ export default function AnimatedCard({
   index = 0, 
   staggerDelay = 0.25,
   duration = 0.12,
-  distance = 55,
-  margin = "0px 0px -15% 0px",
-  amount = 0.1,
+  distance = 30,
+  margin = "0px 0px 0px 0px",
+  amount = 0.05,
   once = true,
   ...props 
 }) {
@@ -34,8 +34,8 @@ export default function AnimatedCard({
         duration, 
         delay: index * staggerDelay,
         type: "spring",
-        stiffness: 60, 
-        damping: 12
+        stiffness: 100,
+        damping: 15
       }}
       {...props}
     >

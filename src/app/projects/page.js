@@ -33,7 +33,6 @@ export default function Projects() {
   ];
 
   useEffect(() => {
-    // Apply filtering and sorting
     const tagFilteredProjects = activeFilter === 'all' 
       ? projects 
       : projects.filter(project => project.tags.includes(activeFilter));
@@ -41,7 +40,6 @@ export default function Projects() {
     const sortedProjects = sortProjects(tagFilteredProjects, activeSorting);
     setFilteredProjects(sortedProjects);
     
-    // Organize projects by year
     const years = [...new Set(sortedProjects.map(project => project.year))].sort((a, b) => 
       activeSorting === 'year-asc' ? parseInt(a) - parseInt(b) : parseInt(b) - parseInt(a)
     );
@@ -73,14 +71,13 @@ export default function Projects() {
   const featuredProjects = filteredProjects.filter(project => project.featured);
   const otherProjects = filteredProjects.filter(project => !project.featured);
 
-  // Scroll to top on page load to ensure animations trigger
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      <AnimatedSection animation="fadeIn">
+      <AnimatedSection animation="fadeIn" margin="0px" amount={0.01}>
         <h1 className="page-title">My Projects</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
           Explore my latest work and technical projects
@@ -88,9 +85,9 @@ export default function Projects() {
       </AnimatedSection>
 
       <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <AnimatedSection animation="slideUp" className="filter-buttons flex flex-wrap gap-2 flex-grow">
+        <AnimatedSection animation="slideUp" margin="0px" amount={0.01} className="filter-buttons flex flex-wrap gap-2 flex-grow">
           {filters.map((filter, index) => (
-            <AnimatedCard key={filter.id} index={index} staggerDelay={0.05}>
+            <AnimatedCard key={filter.id} index={index} staggerDelay={0.03} margin="0px" amount={0.01}>
               <button 
                 className={`filter-btn px-4 py-2 rounded-md ${
                   activeFilter === filter.id 
@@ -105,7 +102,7 @@ export default function Projects() {
           ))}
         </AnimatedSection>
         
-        <AnimatedSection animation="slideUp" delay={0.1} className="sort-options flex gap-2 flex-wrap md:justify-end">
+        <AnimatedSection animation="slideUp" delay={0.05} margin="0px" amount={0.01} className="sort-options flex gap-2 flex-wrap md:justify-end">
           <span className="self-center text-gray-700 dark:text-gray-300 font-medium">Sort by year:</span>
           {sortOptions.map((option, index) => (
             <AnimatedCard key={option.id} index={index} staggerDelay={0.05}>
@@ -133,11 +130,11 @@ export default function Projects() {
           transition={{ duration: 0.3 }}
         >
           {featuredProjects.length > 0 && activeSorting === 'none' && (
-            <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
+            <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -5% 0px" amount={0.05} className="mb-12">
               <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {featuredProjects.map((project, index) => (
-                  <AnimatedCard key={project.id} index={index} className="h-full">
+                  <AnimatedCard key={project.id} index={index} staggerDelay={0.1} margin="0px" amount={0.01} className="h-full">
                     <ProjectCard project={project} featured={true} />
                   </AnimatedCard>
                 ))}
@@ -146,15 +143,22 @@ export default function Projects() {
           )}
 
           {activeSorting !== 'none' ? (
-            <AnimatedSection animation="slideUp" delay={0.2}>
-              {uniqueYears.map((year) => (
+            <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -5% 0px" amount={0.05}>
+              {uniqueYears.map((year, yearIndex) => (
                 <div key={year} className="mb-12">
                   <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 pb-2">
                     Projects from {year}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projectsByYear[year]?.map((project, index) => (
-                      <AnimatedCard key={`${project.id}-${year}`} index={index} className="h-full">
+                      <AnimatedCard 
+                        key={`${project.id}-${year}`} 
+                        index={index} 
+                        staggerDelay={0.07}
+                        margin="0px" 
+                        amount={0.01}
+                        className="h-full"
+                      >
                         <ProjectCard project={project} featured={project.featured} />
                       </AnimatedCard>
                     ))}
@@ -164,11 +168,18 @@ export default function Projects() {
             </AnimatedSection>
           ) : (
             otherProjects.length > 0 && (
-              <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
+              <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -5% 0px" amount={0.05} className="mb-12">
                 <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {otherProjects.map((project, index) => (
-                    <AnimatedCard key={`${project.id}-other`} index={index} className="h-full">
+                    <AnimatedCard 
+                      key={`${project.id}-other`} 
+                      index={index} 
+                      staggerDelay={0.07}
+                      margin="0px" 
+                      amount={0.01}
+                      className="h-full"
+                    >
                       <ProjectCard project={project} />
                     </AnimatedCard>
                   ))}

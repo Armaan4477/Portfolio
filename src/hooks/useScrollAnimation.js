@@ -5,8 +5,8 @@ import { useRef, useState, useEffect } from 'react';
 
 export function useScrollAnimation(options = { 
   once: true, 
-  margin: '0px 0px -150px 0px',
-  amount: 0.4,
+  margin: '0px 0px -15% 0px',
+  amount: 0.15,
   triggerOnce: false 
 }) {
   const ref = useRef(null);

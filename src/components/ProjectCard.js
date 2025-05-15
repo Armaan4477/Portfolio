@@ -13,8 +13,8 @@ const ProjectCard = ({ project, featured = false }) => {
   const contentRef = useRef(null);
   const { ref: cardRef, isInView } = useScrollAnimation({
     once: true,
-    margin: '0px 0px -10% 0px',
-    amount: 0.1
+    margin: '0px 0px 0px 0px',
+    amount: 0.05
   });
 
   const MAX_CHARS = 120;
@@ -34,7 +34,6 @@ const ProjectCard = ({ project, featured = false }) => {
     }
   }, [expanded]);
 
-  // Re-measure on window resize
   useEffect(() => {
     const handleResize = () => {
       if (expanded && contentRef.current) {
@@ -50,12 +49,13 @@ const ProjectCard = ({ project, featured = false }) => {
     <motion.div 
       ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ 
         type: "spring", 
-        stiffness: 300,
-        duration: 0.7
+        stiffness: 400,
+        damping: 20,
+        duration: 0.5
       }}
       whileHover={expanded ? {} : { y: -5 }}
       layout="position"
