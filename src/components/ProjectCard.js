@@ -19,6 +19,10 @@ const ProjectCard = ({ project, featured = false }) => {
     : project.description;
 
   useEffect(() => {
+    setExpanded(false);
+  }, [project.id]);
+
+  useEffect(() => {
     if (contentRef.current) {
       setContentHeight(expanded ? contentRef.current.scrollHeight : 0);
     }
@@ -30,7 +34,7 @@ const ProjectCard = ({ project, featured = false }) => {
       whileHover={{ y: expanded ? 0 : -5 }}
       transition={{ type: "spring", stiffness: 300 }}
       layout
-      style={{ height: expanded ? "auto" : "500px" }}
+      style={{ height: expanded ? "auto" : "500px", minHeight: "500px", position: "relative" }}
     >
       <div className="relative h-48">
         <Image 
@@ -51,7 +55,7 @@ const ProjectCard = ({ project, featured = false }) => {
           </motion.div>
         )}
       </div>
-      <div className="p-6 flex flex-col h-[calc(100%-192px)]"> {}
+      <div className="p-6 flex flex-col h-[calc(100%-192px)]">
         <h3 className="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
         
         <div className="flex-grow overflow-hidden description-container">

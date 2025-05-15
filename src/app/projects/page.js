@@ -130,7 +130,7 @@ export default function Projects() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projectsByYear[year].map((project, index) => (
-                  <AnimatedCard key={project.id} index={index} className="h-full">
+                  <AnimatedCard key={`${project.id}-${activeSorting}`} index={index} className="h-full">
                     <ProjectCard project={project} featured={project.featured} />
                   </AnimatedCard>
                 ))}
@@ -144,7 +144,7 @@ export default function Projects() {
             <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherProjects.map((project, index) => (
-                <AnimatedCard key={project.id} index={index} className="h-full">
+                <AnimatedCard key={`${project.id}-${activeSorting}`} index={index} className="h-full">
                   <ProjectCard project={project} />
                 </AnimatedCard>
               ))}

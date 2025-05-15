@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 
-// define reusable variants
 const variants = {
   fadeIn: {
     hidden: { opacity: 0 },
@@ -38,8 +37,7 @@ export default function AnimatedSection({
     <motion.div
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      animate="visible"
       variants={variants[animation]}
       transition={{ duration, delay }}
       {...props}
