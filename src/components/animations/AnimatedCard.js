@@ -1,32 +1,34 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export default function AnimatedCard({ 
   children, 
   className = '',
   index = 0, 
-  staggerDelay = 0.1,
+  staggerDelay = 0.25,
+  duration = 0.12,
+  distance = 55,
+  margin = "0px 0px -15% 0px",
+  amount = 0.1,
+  once = true,
   ...props 
 }) {
-  const ref = useRef(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const isInView = useInView(ref, {
-    once: true,
-    margin: "0px 0px -10% 0px",
-    amount: 0.1,
+  const { ref, isInView } = useScrollAnimation({
+    once,
+    margin,
+    amount,
   });
 
-  // Check if element is in initial viewport on mount
   useEffect(() => {
-    // Start animation immediately if we're at the top of the page
-    if (window.scrollY < 100) {
+    if (window.scrollY < 100 || isInView) {
       setShouldAnimate(true);
       return;
     }
     
-    // Otherwise, use the scroll detection
     setShouldAnimate(isInView);
   }, [isInView]);
 
@@ -34,14 +36,17 @@ export default function AnimatedCard({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 20 }}
-      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: distance }}
+      animate={shouldAnimate 
+        ? { opacity: 1, y: 0 } 
+        : { opacity: 0, y: distance }
+      }
       transition={{ 
-        duration: 0.5, 
+        duration, 
         delay: index * staggerDelay,
         type: "spring",
-        stiffness: 100,
-        damping: 15
+        stiffness: 60, 
+        damping: 12
       }}
       {...props}
     >
