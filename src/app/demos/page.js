@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,7 +9,8 @@ import { projectsData } from '../../data/projects';
 import getImagePath from '../../utils/imageLoader';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export default function Demos() {
+// Create a separate client component that uses useSearchParams
+function DemoContent() {
   const [activeTab, setActiveTab] = useState(null);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -166,5 +167,17 @@ export default function Demos() {
         </AnimatedSection>
       </div>
     </div>
+  );
+}
+
+export default function Demos() {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <DemoContent />
+    </Suspense>
   );
 }
