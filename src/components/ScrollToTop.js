@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function ScrollToTop() {
   const [isAtTop, setIsAtTop] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
-
+  const pathname = usePathname();
+  
   useEffect(() => {
     const toggleVisibility = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -40,6 +42,10 @@ export default function ScrollToTop() {
       behavior: 'smooth'
     });
   };
+
+  if (pathname === '/contact') {
+    return null;
+  }
 
   return (
     <AnimatePresence>
