@@ -54,7 +54,7 @@ export const projectsData = [
       image: "/projects/ehr-system.png",
       technologies: ["Python", "Firebase", "Management"],
       codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
-      downloadLink: "/downloads/enhanced-hr-system.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["python", "firebase", "management"],
       year: "2024"
@@ -66,7 +66,7 @@ export const projectsData = [
       image: "/projects/hangman.png",
       technologies: ["Firebase", "Game", "Python"],
       codeUrl: "https://github.com/Armaan4477/Hangman",
-      downloadLink: "/downloads/hangman.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["game", "firebase", "python"],
       year: "2024"
@@ -78,7 +78,7 @@ export const projectsData = [
       image: "/projects/ollama-ui.png",
       technologies: ["Python", "AI"],
       codeUrl: "https://github.com/Armaan4477/Ollama-UI",
-      downloadLink: "/downloads/ollama-ui.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["python", "ai"],
       year: "2025"
@@ -90,7 +90,7 @@ export const projectsData = [
       image: "/projects/javafx-paint.png",
       technologies: ["Java", "JavaFX", "Graphics"],
       codeUrl: "https://github.com/Armaan4477/Paint-App",
-      downloadLink: "/downloads/paint-application.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["java"],
       year: "2023"
@@ -114,7 +114,7 @@ export const projectsData = [
       image: "/projects/quiz.png",
       technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
-      downloadLink: "/downloads/quiz-game.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["game", "java", "firebase"],
       year: "2023"
@@ -138,7 +138,7 @@ export const projectsData = [
       image: "/projects/election-voting.png",
       technologies: ["Java", "JavaFX", "Firebase"],
       codeUrl: "https://github.com/Armaan4477/Voting-System",
-      downloadLink: "/downloads/voting-system.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["java", "firebase"],
       year: "2023"
