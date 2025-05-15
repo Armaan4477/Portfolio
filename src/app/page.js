@@ -10,29 +10,10 @@ import AnimatedSection from '../components/animations/AnimatedSection';
 import AnimatedCard from '../components/animations/AnimatedCard';
 import SequentialTypewriter from '../components/SequentialTypewriter';
 import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { getFeaturedProjects } from '../data/projects';
 
 export default function Home() {
-  const featuredProjects = [
-    {
-      id: 1,
-      title: "Automated ESP",
-      description: "ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.",
-      image: "/projects/esp.png",
-      technologies: ["IoT", "Automation", "ESP32"],
-      codeUrl: "https://github.com/Armaan4477/Automated-ESP",
-      year: "2025"
-    },
-    {
-      id: 2,
-      title: "DataDash",
-      description: "Cross platform data sharing app with real-time synchronization capabilities between devices.",
-      image: "/projects/datadash.png",
-      technologies: ["Cross-Platform", "Java", "Python"],
-      codeUrl: "https://github.com/Armaan4477/Cross-Platform-Media-Sharing",
-      demoUrl: "https://datadashshare.vercel.app",
-      year: "2024"
-    }
-  ];
+  const featuredProjects = getFeaturedProjects();
 
   const aboutMeText = [
     "Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.",
@@ -136,7 +117,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (
             <AnimatedCard key={project.id} index={index} className="h-full">
-              <ProjectCard project={project} />
+              <ProjectCard project={project} featured={true} />
             </AnimatedCard>
           ))}
         </div>
