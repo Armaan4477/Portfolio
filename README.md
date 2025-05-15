@@ -16,6 +16,10 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
 ![Projects Page](/public/screenshots/projects-page.png)
 *Portfolio of completed projects with filtering capability, tech stack details, and links to demos/repositories*
 
+### Demo Page
+![Demo Page](/public/screenshots/demo-page.png)
+*Explore demos of projects that aren't hosted online.*
+
 ### Contact Page
 ![Contact Page](/public/screenshots/contact-page.png)
 *Contact form for direct messaging with social media links and location information*
