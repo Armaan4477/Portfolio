@@ -1,7 +1,30 @@
 'use client'
 
 import { motion } from 'framer-motion';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+
+// define reusable variants
+const variants = {
+  fadeIn: {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  },
+  slideUp: {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 }
+  },
+  scaleUp: {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 }
+  },
+  slideInLeft: {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 }
+  },
+  slideInRight: {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 }
+  }
+};
 
 export default function AnimatedSection({ 
   children, 
@@ -11,41 +34,14 @@ export default function AnimatedSection({
   delay = 0,
   ...props 
 }) {
-  const { ref, isInView } = useScrollAnimation();
-  
-  const animations = {
-    fadeIn: {
-      opacity: isInView ? 1 : 0,
-      transition: { duration, delay }
-    },
-    slideUp: {
-      opacity: isInView ? 1 : 0,
-      y: isInView ? 0 : 50,
-      transition: { duration, delay }
-    },
-    scaleUp: {
-      opacity: isInView ? 1 : 0,
-      scale: isInView ? 1 : 0.9,
-      transition: { duration, delay }
-    },
-    slideInLeft: {
-      opacity: isInView ? 1 : 0,
-      x: isInView ? 0 : -50,
-      transition: { duration, delay }
-    },
-    slideInRight: {
-      opacity: isInView ? 1 : 0,
-      x: isInView ? 0 : 50,
-      transition: { duration, delay }
-    }
-  };
-
   return (
     <motion.div
-      ref={ref}
       className={className}
-      animate={animations[animation]}
-      initial={{ opacity: 0 }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={variants[animation]}
+      transition={{ duration, delay }}
       {...props}
     >
       {children}
