@@ -13,8 +13,8 @@ export default function Demos() {
   const [activeTab, setActiveTab] = useState(null);
   const searchParams = useSearchParams();
   
-  // Filter projects that don't have a demoUrl
-  const projectsWithoutDemo = projectsData.filter(project => !project.demoUrl);
+  // Filter projects that don't have a demoUrl but have a downloadLink
+  const projectsWithDownloads = projectsData.filter(project => !project.demoUrl && project.downloadLink);
   
   // Set the active project based on URL query parameter or default to first project
   useEffect(() => {
@@ -25,16 +25,16 @@ export default function Demos() {
       const numericId = parseInt(projectId, 10);
       
       // Check if this project exists in our filtered list
-      if (projectsWithoutDemo.some(p => p.id === numericId)) {
+      if (projectsWithDownloads.some(p => p.id === numericId)) {
         setActiveTab(numericId);
       } else {
         // Fallback to first project if ID not found
-        setActiveTab(projectsWithoutDemo.length > 0 ? projectsWithoutDemo[0].id : null);
+        setActiveTab(projectsWithDownloads.length > 0 ? projectsWithDownloads[0].id : null);
       }
-    } else if (projectsWithoutDemo.length > 0 && !activeTab) {
-      setActiveTab(projectsWithoutDemo[0].id);
+    } else if (projectsWithDownloads.length > 0 && !activeTab) {
+      setActiveTab(projectsWithDownloads[0].id);
     }
-  }, [searchParams, projectsWithoutDemo]);
+  }, [searchParams, projectsWithDownloads]);
 
   return (
     <div>
@@ -57,7 +57,7 @@ export default function Demos() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
             <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Projects</h2>
             <nav className="space-y-2">
-              {projectsWithoutDemo.map((project) => (
+              {projectsWithDownloads.map((project) => (
                 <button
                   key={project.id}
                   onClick={() => setActiveTab(project.id)}
@@ -85,7 +85,7 @@ export default function Demos() {
 
         {/* Project Details Section */}
         <AnimatedSection animation="slideUp" delay={0.2} className="lg:col-span-3">
-          {activeTab && projectsWithoutDemo.map((project) => (
+          {activeTab && projectsWithDownloads.map((project) => (
             project.id === activeTab && (
               <motion.div
                 key={project.id}
@@ -125,7 +125,7 @@ export default function Demos() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a
-                      href={`/demos/files/${project.title.toLowerCase().replace(/\s+/g, '-')}.zip`}
+                      href={project.downloadLink}
                       className="flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition"
                       download
                     >
@@ -153,7 +153,7 @@ export default function Demos() {
             )
           ))}
           
-          {projectsWithoutDemo.length === 0 && (
+          {projectsWithDownloads.length === 0 && (
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center">
               <p className="text-gray-700 dark:text-gray-300">
                 All projects have online demos available. Visit the projects page to check them out!

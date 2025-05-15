@@ -149,7 +149,7 @@ const ProjectCard = ({ project, featured = false }) => {
                 className="flex items-center gap-2 px-3 py-1.5 bg-green-600 dark:bg-green-700 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-800 font-medium transition-colors">
                 <FaExternalLinkAlt size={14} /> View Demo
               </Link>
-            ) : (
+            ) : project.downloadLink && (
               <Link href={`/demos?projectId=${project.id}`} 
                 className="flex items-center gap-2 px-3 py-1.5 bg-purple-600 dark:bg-purple-700 text-white rounded-md hover:bg-purple-700 dark:hover:bg-purple-800 font-medium transition-colors">
                 <FaDownload size={14} /> Get Demo
