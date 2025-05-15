@@ -73,7 +73,17 @@ export default function Navbar() {
     { name: 'Contact', path: '/contact' }
   ];
   
-  const isActive = (path) => pathname === path;
+  const isActive = (path) => {
+    if (path === '/' && pathname !== '/') {
+      return false;
+    }
+    
+    if (path === '/projects') {
+      return pathname === '/projects' || pathname.startsWith('/demos');
+    }
+    
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
 
   return (
     <>
