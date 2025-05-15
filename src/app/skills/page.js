@@ -52,7 +52,7 @@ export default function Skills() {
 
   return (
     <div>
-      <AnimatedSection animation="fadeIn">
+      <AnimatedSection animation="fadeIn" amount={0.1} margin="0px 0px -5% 0px">
         <h1 className="page-title">My Skills</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
           These are the technologies and tools I specialize in. I'm constantly learning and adding new skills to my skill set.
@@ -60,11 +60,23 @@ export default function Skills() {
       </AnimatedSection>
 
       {skills.map((category, index) => (
-        <AnimatedSection key={index} animation="slideUp" delay={index * 0.1} className="mb-12">
+        <AnimatedSection 
+          key={index} 
+          animation="slideUp" 
+          delay={index * 0.1} 
+          className="mb-12" 
+          amount={0.1}
+          margin="0px 0px -5% 0px"
+        >
           <h2 className="text-2xl font-bold mb-6 text-secondary dark:text-gray-200">{category.category}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {category.items.map((skill, skillIdx) => (
-              <AnimatedCard key={skillIdx} index={skillIdx}>
+              <AnimatedCard 
+                key={skillIdx} 
+                index={skillIdx} 
+                amount={0.1} 
+                margin="0px 0px -5% 0px"
+              >
                 <SkillCard 
                   name={skill.name} 
                   icon={skill.icon} 
@@ -76,7 +88,13 @@ export default function Skills() {
         </AnimatedSection>
       ))}
 
-      <AnimatedSection animation="fadeIn" delay={0.5} className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <AnimatedSection 
+        animation="fadeIn" 
+        delay={0.5} 
+        className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg" 
+        amount={0.1}
+        margin="0px 0px -5% 0px"
+      >
         <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-gray-200">Always Learning</h2>
         <p className="text-gray-700 dark:text-gray-300">
           Technology is always evolving, and so am I. I'm currently improving my knowledge in:
