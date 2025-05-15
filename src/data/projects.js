@@ -6,7 +6,7 @@ export const projectsData = [
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
-      downloadLink: "/downloads/automated-esp.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated-ESP-esp32.zip",
       featured: true,
       tags: ["iot", "automation"],
       year: "2025"
@@ -124,9 +124,9 @@ export const projectsData = [
       title: "TicTacToe",
       description: "Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.",
       image: "/projects/tictactoe.png",
-      technologies: ["Game", "Java"],
+      technologies: ["Game", "Java", "Android"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
-      downloadLink: "/downloads/tictactoe.zip",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe.apk",
       featured: false,
       tags: ["game", "java"],
       year: "2023"
