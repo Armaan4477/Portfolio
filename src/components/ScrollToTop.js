@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -14,14 +14,11 @@ export default function ScrollToTop() {
       const currentProgress = Math.min(window.scrollY / totalHeight, 1);
       setScrollProgress(currentProgress);
       
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsAtTop(window.scrollY <= 100);
     };
 
     window.addEventListener('scroll', toggleVisibility);
+    toggleVisibility();
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -32,33 +29,45 @@ export default function ScrollToTop() {
     });
   };
 
+  const scrollToContent = () => {
+    const scrollTarget = Math.min(
+      document.documentElement.scrollHeight * 0.2,
+      800
+    );
+    
+    window.scrollTo({
+      top: scrollTarget,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="fixed bottom-8 right-8 z-50"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
-          transition={{ 
-            duration: 0.5,
-            type: "spring",
-            stiffness: 60,
-            damping: 12
+      <motion.div
+        className="fixed bottom-8 right-8 z-50"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.5 }}
+        transition={{ 
+          duration: 0.5,
+          type: "spring",
+          stiffness: 60,
+          damping: 12
+        }}
+      >
+        <motion.button
+          onClick={isAtTop ? scrollToContent : scrollToTop}
+          aria-label={isAtTop ? "Scroll down" : "Scroll to top"}
+          className={`relative p-3 rounded-full ${isAtTop ? 'bg-secondary' : 'bg-primary'} text-white shadow-lg hover:bg-blue-700 focus:outline-hidden`}
+          whileHover={{ 
+            scale: 1.15, 
+            y: isAtTop ? 8 : -8,
+            transition: { duration: 0.4 }
           }}
+          whileTap={{ scale: 0.92 }}
         >
-          <motion.button
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-            className="relative p-3 rounded-full bg-primary text-white shadow-lg hover:bg-blue-700 focus:outline-hidden"
-            whileHover={{ 
-              scale: 1.15, 
-              y: -8,
-              transition: { duration: 0.4 }
-            }}
-            whileTap={{ scale: 0.92 }}
-          >
-            {/* Progress circle */}
+          {/* Progress circle - only visible when not at top */}
+          {!isAtTop && (
             <svg 
               className="absolute inset-0 w-full h-full -rotate-90"
               viewBox="0 0 100 100"
@@ -85,10 +94,29 @@ export default function ScrollToTop() {
                 strokeLinecap="round"
               />
             </svg>
+          )}
+          
+          {/* Show bounce animation when at top */}
+          {isAtTop ? (
+            <motion.div
+              animate={{ 
+                y: [0, 5, 0],
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                repeatType: "loop", 
+                duration: 1.5,
+                ease: "easeInOut" 
+              }}
+              className="relative z-10"
+            >
+              <FaArrowDown size={20} />
+            </motion.div>
+          ) : (
             <FaArrowUp size={20} className="relative z-10" />
-          </motion.button>
-        </motion.div>
-      )}
+          )}
+        </motion.button>
+      </motion.div>
     </AnimatePresence>
   );
 }

@@ -23,7 +23,6 @@ export default function Contact() {
       [name]: value
     });
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -76,7 +75,6 @@ export default function Contact() {
         message: 'Message sent successfully!'
       });
       
-      // Reset the form
       setForm({
         name: '',
         email: '',
