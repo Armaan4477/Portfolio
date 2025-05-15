@@ -47,8 +47,9 @@ function DemoContent() {
           <Link href="/projects" className="flex items-center gap-2 text-primary hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
             <FaArrowLeft /> Back to Projects
           </Link>
-          <h1 className="page-title">Project Demos</h1>
         </div>
+        
+        <h1 className="page-title mb-4">Project Demos</h1>
         
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
           Download and explore demos of my projects that aren't hosted online.
