@@ -6,6 +6,8 @@ export const projectsData = [
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated-ESP-esp32.zip",
+      note: "This is an ESP32 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
       featured: true,
       tags: ["iot", "automation"],
       year: "2025"
@@ -53,6 +55,8 @@ export const projectsData = [
       image: "/projects/ehr-system.png",
       technologies: ["Python", "Firebase", "Management"],
       codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["python", "firebase", "management"],
       year: "2024"
@@ -64,6 +68,8 @@ export const projectsData = [
       image: "/projects/hangman.png",
       technologies: ["Firebase", "Game", "Python"],
       codeUrl: "https://github.com/Armaan4477/Hangman",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["game", "firebase", "python"],
       year: "2024"
@@ -75,6 +81,8 @@ export const projectsData = [
       image: "/projects/ollama-ui.png",
       technologies: ["Python", "AI"],
       codeUrl: "https://github.com/Armaan4477/Ollama-UI",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Python 3.12+ and Ollama installed and running on your system. This is just a UI interface that connects to your local Ollama installation.",
       featured: false,
       tags: ["python", "ai"],
       year: "2025"
@@ -86,6 +94,7 @@ export const projectsData = [
       image: "/projects/javafx-paint.png",
       technologies: ["Java", "JavaFX", "Graphics"],
       codeUrl: "https://github.com/Armaan4477/Paint-App",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
       featured: false,
       tags: ["java"],
       year: "2023"
@@ -109,6 +118,8 @@ export const projectsData = [
       image: "/projects/quiz.png",
       technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["game", "java", "firebase"],
       year: "2023"
@@ -118,8 +129,10 @@ export const projectsData = [
       title: "TicTacToe",
       description: "Classic tic-tac-toe game implementation with AI opponent and various difficulty levels.",
       image: "/projects/tictactoe.png",
-      technologies: ["Game", "Java"],
+      technologies: ["Game", "Java", "Android"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe.apk",
+      note: "This is an Android APK file. You'll need to enable installation from unknown sources on your Android device to install it.",
       featured: false,
       tags: ["game", "java"],
       year: "2023"
@@ -131,6 +144,8 @@ export const projectsData = [
       image: "/projects/election-voting.png",
       technologies: ["Java", "JavaFX", "Firebase"],
       codeUrl: "https://github.com/Armaan4477/Voting-System",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
       featured: false,
       tags: ["java", "firebase"],
       year: "2023"

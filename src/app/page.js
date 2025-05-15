@@ -229,4 +229,3 @@ function SocialButton({ href, icon, label, bgColor, textColor }) {
     </motion.a>
   );
 }
-//deployment
