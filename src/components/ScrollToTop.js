@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 export default function ScrollToTop() {
   const [isAtTop, setIsAtTop] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
   
   useEffect(() => {
@@ -19,9 +20,20 @@ export default function ScrollToTop() {
       setIsAtTop(window.scrollY <= 100);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('resize', handleResize);
+    
     toggleVisibility();
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -43,7 +55,7 @@ export default function ScrollToTop() {
     });
   };
 
-  if (pathname === '/contact') {
+  if (pathname === '/contact' && !isMobile) {
     return null;
   }
 

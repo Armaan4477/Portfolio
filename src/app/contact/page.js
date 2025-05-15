@@ -253,7 +253,7 @@ export default function Contact() {
               <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Inquiries</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 Looking to collaborate or have a project in mind? 
-                Send me a message and I'll get back to you as soon as possible.
+                Fill in the contact form and I'll get back to you as soon as possible.
               </p>
             </div>
           </div>
