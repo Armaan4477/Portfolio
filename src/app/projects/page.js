@@ -133,6 +133,17 @@ export default function Projects() {
       featured: false,
       tags: ["game", "java"],
       year: "2023"
+    },
+    {
+      id: 12,
+      title: "Voting System",
+      description: "A JavaFX application for managing elections, allowing voters to cast votes and administrators to manage candidates, voters, and election settings. Features include voter verification, candidate management, voter registration, and real-time results with Firebase integration.",
+      image: "/projects/election-voting.png",
+      technologies: ["Java", "JavaFX", "Firebase"],
+      codeUrl: "https://github.com/Armaan4477/Voting-System",
+      featured: false,
+      tags: ["java", "firebase"],
+      year: "2023"
     }
   ];
 
