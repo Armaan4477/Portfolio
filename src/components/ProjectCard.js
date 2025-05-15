@@ -5,12 +5,17 @@ import Link from 'next/link';
 import getImagePath from '../utils/imageLoader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCode, FaExternalLinkAlt } from 'react-icons/fa';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ProjectCard = ({ project, featured = false }) => {
   const [expanded, setExpanded] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
-  const cardRef = useRef(null);
+  const { ref: cardRef, isInView } = useScrollAnimation({
+    once: true,
+    margin: '0px 0px -10% 0px',
+    amount: 0.1
+  });
 
   const MAX_CHARS = 120;
   const isLongDescription = project.description.length > MAX_CHARS;
@@ -45,8 +50,14 @@ const ProjectCard = ({ project, featured = false }) => {
     <motion.div 
       ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
-      whileHover={{ y: expanded ? 0 : -5 }}
-      transition={{ type: "spring", stiffness: 300 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300,
+        duration: 0.7
+      }}
+      whileHover={expanded ? {} : { y: -5 }}
       layout="position"
       style={{ 
         minHeight: "500px", 
@@ -68,7 +79,7 @@ const ProjectCard = ({ project, featured = false }) => {
           <motion.div 
             className="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium z-10"
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 500 }}
           >
             {project.year}
@@ -117,8 +128,8 @@ const ProjectCard = ({ project, featured = false }) => {
               key={index} 
               className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full dark:text-gray-300"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.05 * index }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.05 * index + 0.3 }}
             >
               {tech}
             </motion.span>
@@ -144,7 +155,7 @@ const ProjectCard = ({ project, featured = false }) => {
             <motion.span 
               className="bg-secondary text-white text-xs px-3 py-1 rounded-full"
               initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
               transition={{ delay: 0.2 }}
             >
               Featured

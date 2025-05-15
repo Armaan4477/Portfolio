@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ThemeProvider } from '../context/ThemeContext';
 import ScrollToTop from '../components/ScrollToTop';
+import ScrollObserver from '../components/ScrollObserver';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,9 +36,11 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <div className="flex flex-col min-h-screen transition-colors duration-200 dark:bg-gray-900 dark:text-white">
             <Navbar />
-            <main className="grow container mx-auto px-4 py-8">
-              {children}
-            </main>
+            <ScrollObserver>
+              <main className="grow container mx-auto px-4 py-8">
+                {children}
+              </main>
+            </ScrollObserver>
             <Footer />
             <ScrollToTop />
           </div>

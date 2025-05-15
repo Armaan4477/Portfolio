@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export default function AnimatedCard({ 
@@ -16,28 +15,18 @@ export default function AnimatedCard({
   once = true,
   ...props 
 }) {
-  const [shouldAnimate, setShouldAnimate] = useState(false);
   const { ref, isInView } = useScrollAnimation({
     once,
     margin,
     amount,
   });
 
-  useEffect(() => {
-    if (window.scrollY < 100 || isInView) {
-      setShouldAnimate(true);
-      return;
-    }
-    
-    setShouldAnimate(isInView);
-  }, [isInView]);
-
   return (
     <motion.div
       ref={ref}
       className={className}
       initial={{ opacity: 0, y: distance }}
-      animate={shouldAnimate 
+      animate={isInView 
         ? { opacity: 1, y: 0 } 
         : { opacity: 0, y: distance }
       }

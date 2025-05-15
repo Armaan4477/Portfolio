@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -18,7 +19,12 @@ export default function Navbar() {
   const hoverTimerRef = useRef(null);
   
   useEffect(() => {
-    setIsLoaded(true);
+    // Add small delay before showing navbar items to ensure they animate
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
   
   useEffect(() => {
@@ -87,7 +93,11 @@ export default function Navbar() {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className={`transform transition-all duration-500 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: isLoaded ? 0 : -20, opacity: isLoaded ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <Image
                   src="/projects/icon.png"
                   alt="Personal Icon"
@@ -96,17 +106,28 @@ export default function Navbar() {
                   className={`mr-2 transition-transform duration-300 ${!isSpinning ? 'group-hover:rotate-6 group-hover:scale-110' : ''}`}
                   style={getSpinStyle()}
                 />
-              </div>
-              <span className={`text-xl font-bold text-primary dark:text-blue-400 transition-all duration-500 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'} group-hover:text-blue-600 dark:group-hover:text-blue-300`}>
+              </motion.div>
+              <motion.span 
+                className={`text-xl font-bold text-primary dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300`}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: isLoaded ? 0 : -20, opacity: isLoaded ? 1 : 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 Armaan N
                 {isSpinning && <span className="text-xs ml-1">🌀</span>}
-              </span>
+              </motion.span>
             </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <div key={link.path} className="relative group">
+              {navLinks.map((link, i) => (
+                <motion.div 
+                  key={link.path} 
+                  className="relative group"
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: isLoaded ? 0 : -20, opacity: isLoaded ? 1 : 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 + (i * 0.1) }}
+                >
                   <Link 
                     href={link.path}
                     className={`${
@@ -121,9 +142,15 @@ export default function Navbar() {
                     className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 origin-left transition-transform duration-300 ease-out
                       ${isActive(link.path) ? 'bg-primary dark:bg-blue-400 scale-x-100' : 'bg-primary dark:bg-blue-400 group-hover:scale-x-100'}`}
                   ></div>
-                </div>
+                </motion.div>
               ))}
-              <ThemeToggle />
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: isLoaded ? 0 : -20, opacity: isLoaded ? 1 : 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <ThemeToggle />
+              </motion.div>
             </div>
             
             {/* Mobile Navigation Button */}

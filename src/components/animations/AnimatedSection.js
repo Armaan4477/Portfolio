@@ -38,28 +38,18 @@ export default function AnimatedSection({
   once = true,
   ...props 
 }) {
-  const [shouldAnimate, setShouldAnimate] = useState(false);
   const { ref, isInView } = useScrollAnimation({
     once,
     margin,
     amount
   });
 
-  useEffect(() => {
-    if (window.scrollY < 100 || isInView) {
-      setShouldAnimate(true);
-      return;
-    }
-    
-    setShouldAnimate(isInView);
-  }, [isInView]);
-
   return (
     <motion.div
       ref={ref}
       className={className}
       initial="hidden"
-      animate={shouldAnimate ? "visible" : "hidden"}
+      animate={isInView ? "visible" : "hidden"}
       variants={variants[animation]}
       transition={{ 
         duration, 

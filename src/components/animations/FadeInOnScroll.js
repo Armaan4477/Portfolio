@@ -6,12 +6,12 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 export default function FadeInOnScroll({ 
   children, 
   className = '', 
-  duration = 0.8,  // Increased from 0.5
+  duration = 0.8,
   delay = 0, 
   direction = null, 
-  distance = 70,  // Increased from 50
-  threshold = 0.1,  // Lower threshold
-  margin = '0px 0px -150px 0px',  // Increased visibility margin
+  distance = 70,
+  threshold = 0.1,
+  margin = '0px 0px -150px 0px',
   once = true,
   ...props 
 }) {
@@ -43,9 +43,9 @@ export default function FadeInOnScroll({
         duration,
         delay,
         ease: "easeOut",
-        type: "spring",  // Added spring physics
-        stiffness: 40,   // Lower stiffness for slower movement
-        damping: 15      // Adjusted damping
+        type: "spring",
+        stiffness: 40,
+        damping: 15
       }}
       {...props}
     >

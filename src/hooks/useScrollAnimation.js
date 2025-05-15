@@ -19,13 +19,14 @@ export function useScrollAnimation(options = {
   });
   
   useEffect(() => {
-    if (options.triggerOnce && !hasTriggered && isInView) {
+    if (isInView) {
       setHasTriggered(true);
     }
-  }, [isInView, options.triggerOnce, hasTriggered]);
-  
+  }, [isInView]);
+
   return { 
     ref, 
-    isInView: options.triggerOnce ? (hasTriggered || isInView) : isInView 
+    isInView: options.once ? (hasTriggered || isInView) : isInView,
+    hasBeenInView: hasTriggered 
   };
 }
