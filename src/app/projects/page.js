@@ -102,10 +102,10 @@ export default function Projects() {
           ))}
         </AnimatedSection>
         
-        <AnimatedSection animation="slideUp" delay={0.05} margin="0px" amount={0.005} className="sort-options flex gap-2 flex-wrap md:justify-end">
+        <AnimatedSection animation="slideUp" delay={0.001} margin="0px" amount={0.005} className="sort-options flex gap-2 flex-wrap md:justify-end">
           <span className="self-center text-gray-700 dark:text-gray-300 font-medium">Sort by year:</span>
           {sortOptions.map((option, index) => (
-            <AnimatedCard key={option.id} index={index} staggerDelay={0.05} margin="0px" amount={0.005}>
+            <AnimatedCard key={option.id} index={index} staggerDelay={0.001} margin="0px" amount={0.005}>
               <button 
                 className={`sort-btn px-4 py-2 rounded-md ${
                   activeSorting === option.id 
@@ -130,11 +130,11 @@ export default function Projects() {
           transition={{ duration: 0.3 }}
         >
           {featuredProjects.length > 0 && activeSorting === 'none' && (
-            <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -10% 0px" amount={0.02} className="mb-12">
+            <AnimatedSection animation="slideUp" delay={0.001} margin="0px 0px -5% 0px" amount={0.001} className="mb-12">
               <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {featuredProjects.map((project, index) => (
-                  <AnimatedCard key={project.id} index={index} staggerDelay={0.1} margin="0px" amount={0.005} className="h-full">
+                  <AnimatedCard key={project.id} index={index} staggerDelay={0.001} margin="0px" amount={0.005} className="h-full">
                     <ProjectCard project={project} featured={true} />
                   </AnimatedCard>
                 ))}
@@ -143,7 +143,7 @@ export default function Projects() {
           )}
 
           {activeSorting !== 'none' ? (
-            <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -10% 0px" amount={0.02}>
+            <AnimatedSection animation="slideUp" delay={0.001} margin="0px 0px -5% 0px" amount={0.001}>
               {uniqueYears.map((year, yearIndex) => (
                 <div key={year} className="mb-12">
                   <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 pb-2">
@@ -168,7 +168,7 @@ export default function Projects() {
             </AnimatedSection>
           ) : (
             otherProjects.length > 0 && (
-              <AnimatedSection animation="slideUp" delay={0.1} margin="0px 0px -10% 0px" amount={0.02} className="mb-12">
+              <AnimatedSection animation="slideUp" delay={0.001} margin="0px 0px -5% 0px" amount={0.001} className="mb-12">
                 <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {otherProjects.map((project, index) => (
@@ -177,7 +177,7 @@ export default function Projects() {
                       index={index} 
                       staggerDelay={0.07}
                       margin="0px" 
-                      amount={0.005}
+                      amount={0.001}
                       className="h-full"
                     >
                       <ProjectCard project={project} />
