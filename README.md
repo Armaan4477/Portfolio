@@ -51,30 +51,40 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS showc
 ## 📋 Project Structure
 
 ```
+/public
+  /projects                  # Project images
+  /screenshots               # Website screenshots for README
+  images                     # favicons used in the project
+  
 /src
-  /app                      # Next.js pages and layouts
-    /contact                # Contact page
-    /projects               # Projects page
-    /skills                 # Skills page
-    globals.css             # Global styles
-    layout.js               # Root layout
-    page.js                 # Home page
-  /components               # Reusable components
-    /animations             # Animation components
-    Footer.js               # Site footer
-    GitHubContributions.js  # GitHub activity visualization
-    Navbar.js               # Navigation component
-    ProjectCard.js          # Project display card
-    ScrollToTop.js          # Scroll to top button
-    SequentialTypewriter.js # Typing animation
-    SkillCard.js            # Skill display card
-    ThemeToggle.js          # Theme switch button
-  /context                  # React context providers
-    ThemeContext.js         # Theme management context
-  /hooks                    # Custom React hooks
-    useScrollAnimation.js   # Scroll detection hook
-  /utils                    # Utility functions
-    imageLoader.js          # Next.js image loading helper
+  /app                       # Next.js app router pages
+    /contact                 # Contact page
+    /demos                   # Project demos page
+    /projects                # Projects listing page
+    /skills                  # Skills showcase page
+    globals.css              # Global styles
+    layout.js                # Root layout
+    page.js                  # Home page
+  /components                # Reusable components
+    /animations              # Animation-related components
+    Footer.js                # Site footer
+    GitHubContributions.js   # GitHub activity visualization
+    Navbar.js                # Navigation component
+    ProjectCard.js           # Project card component
+    ScrollObserver.js        # Scroll position observer
+    ScrollToTop.js           # Back to top button
+    SequentialTypewriter.js  # Text typing animation
+    SkillCard.js             # Skill card component
+    ThemeToggle.js           # Theme toggle component
+    TypewriterText.js        # Typewriter text component
+  /context                   # React context providers
+    ThemeContext.js          # Theme management context
+  /data                      # Data files
+    projects.js              # Project information
+  /hooks                     # Custom React hooks
+    useScrollAnimation.js    # Animation on scroll hook
+  /utils                     # Utility functions
+    imageLoader.js           # Image path resolver helper
 ```
 
 ## 🚀 Getting Started
@@ -144,22 +154,6 @@ To update the featured skills on the homepage, modify the skills cards in `/src/
 // Add or modify more skill cards as needed
 ```
 
-To update featured projects on the homepage, edit the `featuredProjects` array in `/src/app/page.js`:
-
-```javascript
-const featuredProjects = [
-  {
-    id: 1,
-    title: "Your Featured Project",
-    description: "Description of your featured project...",
-    image: "/projects/your-project-image.png",
-    technologies: ["Tech1", "Tech2", "Tech3"],
-    codeUrl: "https://github.com/yourusername/your-project",
-    demoUrl: "https://your-project-demo.com" // Optional
-  },
-  // Add or modify more featured projects
-];
-```
 ### Update Contact Information
 
 Update contact information in `/src/app/contact/page.js`:
@@ -194,7 +188,7 @@ const [activeYear, setActiveYear] = useState('2025'); // Change to current/prefe
 
 ### Adding New Projects
 
-Edit the projects array in `/src/app/projects/page.js` to add new projects:
+Edit the projects array in `/src/data/projects.js` to add new projects:
 
 ```javascript
 const projects = [
@@ -206,12 +200,21 @@ const projects = [
     technologies: ["Tech1", "Tech2", "Tech3"],
     codeUrl: "https://github.com/yourusername/your-project",
     demoUrl: "https://your-project-demo.com",
+    downloadUrl: "https://your-project-download.com",
+    note: "Additional notes about the project to be displayed in the demo page.",
     featured: false,
-    tags: ["tag1", "tag2"]
+    tags: ["tag1", "tag2"],
+    year: "2024", // Update the year of the project
   },
   // ... existing projects
 ];
 ```
+
+
+> **Note:** 
+> - The `featured` property determines if the project appears on the homepage. Set it to `true` for featured projects.
+> - If you want the project to be shown on the demo page (when it's not hosted elsewhere), use the `downloadUrl` attribute. For projects hosted online, use the `demoUrl`. Do not use both together as it will cause issues in the project card.
+> - The `note` attribute is optional and can be used in the demo page to add additional information near the download button.
 
 ### Updating Skills
 
