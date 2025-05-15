@@ -147,12 +147,13 @@ function DemoContent() {
                     </a>
                   </div>
                   
-                  <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-md">
-                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                      <strong>Note:</strong> Download files contain standalone executables or project files. 
-                      Please read the included README file for installation and usage instructions.
-                    </p>
-                  </div>
+                  {activeProject.note && (
+                    <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-md">
+                      <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                        <strong>Note:</strong> {activeProject.note}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )}

@@ -7,6 +7,7 @@ export const projectsData = [
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated-ESP-esp32.zip",
+      note: "This is an ESP32 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
       featured: true,
       tags: ["iot", "automation"],
       year: "2025"
@@ -127,6 +128,7 @@ export const projectsData = [
       technologies: ["Game", "Java", "Android"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
       downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe.apk",
+      note: "This is an Android APK file. You'll need to enable installation from unknown sources on your Android device to install it.",
       featured: false,
       tags: ["game", "java"],
       year: "2023"
