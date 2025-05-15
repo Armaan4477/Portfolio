@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -7,19 +7,34 @@ import { FaArrowLeft, FaDownload, FaGithub } from 'react-icons/fa';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import { projectsData } from '../../data/projects';
 import getImagePath from '../../utils/imageLoader';
+import { useSearchParams } from 'next/navigation';
 
 export default function Demos() {
   const [activeTab, setActiveTab] = useState(null);
+  const searchParams = useSearchParams();
   
   // Filter projects that don't have a demoUrl
   const projectsWithoutDemo = projectsData.filter(project => !project.demoUrl);
   
-  // Set the first project as active by default
-  useState(() => {
-    if (projectsWithoutDemo.length > 0 && !activeTab) {
+  // Set the active project based on URL query parameter or default to first project
+  useEffect(() => {
+    const projectId = searchParams.get('projectId');
+    
+    if (projectId) {
+      // Convert to number since IDs in projectsData are numbers
+      const numericId = parseInt(projectId, 10);
+      
+      // Check if this project exists in our filtered list
+      if (projectsWithoutDemo.some(p => p.id === numericId)) {
+        setActiveTab(numericId);
+      } else {
+        // Fallback to first project if ID not found
+        setActiveTab(projectsWithoutDemo.length > 0 ? projectsWithoutDemo[0].id : null);
+      }
+    } else if (projectsWithoutDemo.length > 0 && !activeTab) {
       setActiveTab(projectsWithoutDemo[0].id);
     }
-  }, []);
+  }, [searchParams, projectsWithoutDemo]);
 
   return (
     <div>
