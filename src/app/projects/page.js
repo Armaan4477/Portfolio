@@ -164,12 +164,10 @@ export default function Projects() {
     { id: 'year-desc', label: 'Newest First' }
   ];
 
-  // First filter by tag
   const tagFilteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.tags.includes(activeFilter));
     
-  // Then apply sorting if selected
   const sortProjects = (projects, sortOption) => {
     if (sortOption === 'none') return projects;
     
@@ -178,15 +176,24 @@ export default function Projects() {
       const yearB = parseInt(b.year);
       
       if (sortOption === 'year-asc') {
-        return yearA - yearB; // Oldest to newest
+        return yearA - yearB;
       } else if (sortOption === 'year-desc') {
-        return yearB - yearA; // Newest to oldest
+        return yearB - yearA;
       }
       return 0;
     });
   };
   
   const filteredProjects = sortProjects(tagFilteredProjects, activeSorting);
+
+  const uniqueYears = [...new Set(filteredProjects.map(project => project.year))].sort((a, b) => 
+    activeSorting === 'year-asc' ? parseInt(a) - parseInt(b) : parseInt(b) - parseInt(a)
+  );
+
+  const projectsByYear = uniqueYears.reduce((acc, year) => {
+    acc[year] = filteredProjects.filter(project => project.year === year);
+    return acc;
+  }, {});
 
   const featuredProjects = filteredProjects.filter(project => project.featured);
   const otherProjects = filteredProjects.filter(project => !project.featured);
@@ -237,7 +244,7 @@ export default function Projects() {
         </AnimatedSection>
       </div>
 
-      {featuredProjects.length > 0 && (
+      {featuredProjects.length > 0 && activeSorting === 'none' && (
         <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Featured Projects</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -250,17 +257,36 @@ export default function Projects() {
         </AnimatedSection>
       )}
 
-      {otherProjects.length > 0 && (
-        <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, index) => (
-              <AnimatedCard key={project.id} index={index} className="h-full">
-                <ProjectCard project={project} />
-              </AnimatedCard>
-            ))}
-          </div>
+      {activeSorting !== 'none' ? (
+        <AnimatedSection animation="slideUp" delay={0.2}>
+          {uniqueYears.map((year, yearIndex) => (
+            <div key={year} className="mb-12">
+              <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 pb-2">
+                Projects from {year}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projectsByYear[year].map((project, index) => (
+                  <AnimatedCard key={project.id} index={index} className="h-full">
+                    <ProjectCard project={project} featured={project.featured} />
+                  </AnimatedCard>
+                ))}
+              </div>
+            </div>
+          ))}
         </AnimatedSection>
+      ) : (
+        otherProjects.length > 0 && (
+          <AnimatedSection animation="slideUp" delay={0.3} className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Other Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((project, index) => (
+                <AnimatedCard key={project.id} index={index} className="h-full">
+                  <ProjectCard project={project} />
+                </AnimatedCard>
+              ))}
+            </div>
+          </AnimatedSection>
+        )
       )}
 
       {filteredProjects.length === 0 && (
