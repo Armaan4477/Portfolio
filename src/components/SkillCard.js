@@ -6,7 +6,6 @@ export default function SkillCard({ name, icon, level }) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    // Start animation after a small delay for a staggered effect
     const timer = setTimeout(() => {
       setAnimate(true);
     }, 300);
