@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowLeft, FaDownload, FaGithub } from 'react-icons/fa';
+import { FaArrowLeft, FaDownload, FaGithub, FaChevronDown } from 'react-icons/fa';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import { projectsData } from '../../data/projects';
 import getImagePath from '../../utils/imageLoader';
@@ -11,10 +11,14 @@ import { useSearchParams, useRouter } from 'next/navigation';
 
 function DemoContent() {
   const [activeTab, setActiveTab] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  const projectsWithDownloads = projectsData.filter(project => !project.demoUrl && project.downloadLink);
+  const projectsWithDownloads = projectsData.filter(project => 
+    !project.demoUrl && (project.downloadLink || (project.downloadLinks && project.downloadLinks.length > 0))
+  );
   
   useEffect(() => {
     const projectId = searchParams.get('projectId');
@@ -35,9 +39,30 @@ function DemoContent() {
   const handleProjectSelect = (projectId) => {
     setActiveTab(projectId);
     router.push(`/demos?projectId=${projectId}`);
+    setDropdownOpen(false);
   };
 
   const activeProject = projectsWithDownloads.find(project => project.id === activeTab);
+
+  const toggleDropdown = (e) => {
+    e.stopPropagation();
+    setDropdownOpen(prev => !prev);
+  };
+
+  const hasMultipleDownloads = (project) => {
+    return project && project.downloadLinks && project.downloadLinks.length > 0;
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [dropdownRef]);
 
   return (
     <div>
@@ -131,13 +156,50 @@ function DemoContent() {
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Download & Resources</h3>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a
-                      href={activeProject.downloadLink}
-                      className="flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition"
-                      download
-                    >
-                      <FaDownload /> Download Demo
-                    </a>
+                    {/* Dynamic Download Button with optional dropdown */}
+                    {hasMultipleDownloads(activeProject) ? (
+                      <div className="relative" ref={dropdownRef}>
+                        <button
+                          onClick={toggleDropdown}
+                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition"
+                        >
+                          <FaDownload /> Download Demo <FaChevronDown className={`ml-2 transform transition-transform ${dropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {dropdownOpen && (
+                            <motion.div 
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 rounded-md shadow-lg border border-gray-200 dark:border-gray-600 overflow-hidden"
+                            >
+                              {activeProject.downloadLinks.map((link, index) => (
+                                <a
+                                  key={index}
+                                  href={link.url}
+                                  className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                                  download
+                                >
+                                  <span className="flex items-center gap-2">
+                                    <FaDownload className="text-sm" /> {link.name}
+                                  </span>
+                                </a>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <a
+                        href={activeProject.downloadLink}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-md hover:bg-blue-700 transition"
+                        download
+                      >
+                        <FaDownload /> Download Demo
+                      </a>
+                    )}
                     
                     <a
                       href={activeProject.codeUrl}
