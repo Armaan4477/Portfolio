@@ -152,8 +152,13 @@ export const projectsData = [
       image: "/projects/election-voting.png",
       technologies: ["Java", "JavaFX", "Firebase"],
       codeUrl: "https://github.com/Armaan4477/Voting-System",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
-      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem.exe" },
+        { name: "macOS", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem.dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem" },
+        { name: "Linux-arm64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem-arm64" }
+      ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x VotingSystem' or 'chmod +x VotingSystem-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["java", "firebase"],
       year: "2023"
