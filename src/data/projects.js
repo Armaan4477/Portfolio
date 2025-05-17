@@ -6,8 +6,11 @@ export const projectsData = [
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
       codeUrl: "https://github.com/Armaan4477/Automated-ESP",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated-ESP-esp32.zip",
-      note: "This is an ESP32 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
+      downloadLinks: [
+        { name: "ESP32 Version", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated%20ESP/Automated-ESP-esp32.zip" },
+        { name: "ESP8266 Version", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated%20ESP/Automated-ESP-esp8266.zip" }
+      ],
+      note: "This is an ESP32/ESP8266 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
       featured: true,
       tags: ["iot", "automation"],
       year: "2025"
@@ -118,8 +121,13 @@ export const projectsData = [
       image: "/projects/quiz.png",
       technologies: ["Game", "Java", "firebase"],
       codeUrl: "https://github.com/Armaan4477/Quiz-Game-in-Java",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
-      note: "Requires Java 20+ and Firebase account. Configuration instructions included in the README file.",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Quiz%20Game/QuizMaster.exe" },
+        { name: "macOS", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Quiz%20Game/QuizMaster.dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Quiz%20Game/QuizMaster-x64" },
+        { name: "Linux-arm64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Quiz%20Game/QuizMaster-arm64" }
+      ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x QuizMaster-x64' or 'chmod +x QuizMaster-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["game", "java", "firebase"],
       year: "2023"
@@ -131,7 +139,7 @@ export const projectsData = [
       image: "/projects/tictactoe.png",
       technologies: ["Game", "Java", "Android"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe.apk",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe/TicTacToe.apk",
       note: "This is an Android APK file. You'll need to enable installation from unknown sources on your Android device to install it.",
       featured: false,
       tags: ["game", "java"],
