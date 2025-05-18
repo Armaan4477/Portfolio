@@ -84,8 +84,14 @@ export const projectsData = [
       image: "/projects/ollama-ui.png",
       technologies: ["Python", "AI"],
       codeUrl: "https://github.com/Armaan4477/Ollama-UI",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
-      note: "Requires Python 3.12+ and Ollama installed and running on your system. This is just a UI interface that connects to your local Ollama installation.",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Ollama%20UI/Ollama%20UI.exe" },
+        { name: "macOS-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Ollama%20UI/Ollama%20UI(macos-arm).dmg" },
+        { name: "macOS-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Ollama%20UI/Ollama%20UI(macos-x64).dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Ollama%20UI/Ollama%20UI(linux%20x64)" },
+        { name: "Linux-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Ollama%20UI/Ollama%20UI(linux%20arm)" }
+      ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x PaintApp-x64' or 'chmod +x PaintApp-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["python", "ai"],
       year: "2025"
@@ -103,6 +109,7 @@ export const projectsData = [
         { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp-x64" },
         { name: "Linux-arm64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp-arm64" }
       ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x PaintApp-x64' or 'chmod +x PaintApp-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["java"],
       year: "2023"
