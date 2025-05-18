@@ -58,8 +58,14 @@ export const projectsData = [
       image: "/projects/ehr-system.png",
       technologies: ["Python", "Firebase", "Management"],
       codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
-      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System.exe" },
+        { name: "macOS-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System(macos-arm).dmg" },
+        { name: "macOS-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System(macos-x64).dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System(linux%20x64)" },
+        { name: "Linux-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System(linux%20arm)" }
+      ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x PaintApp-x64' or 'chmod +x PaintApp-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["python", "firebase", "management"],
       year: "2024"
@@ -71,8 +77,14 @@ export const projectsData = [
       image: "/projects/hangman.png",
       technologies: ["Firebase", "Game", "Python"],
       codeUrl: "https://github.com/Armaan4477/Hangman",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
-      note: "Requires Python 3.12+ and Firebase account. Configuration instructions included in the README file.",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Hangman/Hangman.exe" },
+        { name: "macOS-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Hangman/Hangman(macos-arm).dmg" },
+        { name: "macOS-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Hangman/Hangman(macos-x64).dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Hangman/Hangman(linux%20x64)" },
+        { name: "Linux-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Hangman/Hangman(linux%20arm)" }
+      ],
+      note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x PaintApp-x64' or 'chmod +x PaintApp-arm64' in the terminal before running the application.",
       featured: false,
       tags: ["game", "firebase", "python"],
       year: "2024"
