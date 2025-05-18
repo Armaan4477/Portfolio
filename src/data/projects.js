@@ -97,7 +97,12 @@ export const projectsData = [
       image: "/projects/javafx-paint.png",
       technologies: ["Java", "JavaFX", "Graphics"],
       codeUrl: "https://github.com/Armaan4477/Paint-App",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/",
+      downloadLinks: [
+        { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp.exe" },
+        { name: "macOS", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp.dmg" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp-x64" },
+        { name: "Linux-arm64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Paint%20App/PaintApp-arm64" }
+      ],
       featured: false,
       tags: ["java"],
       year: "2023"
@@ -155,7 +160,7 @@ export const projectsData = [
       downloadLinks: [
         { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem.exe" },
         { name: "macOS", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem.dmg" },
-        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem" },
+        { name: "Linux-x64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem-x64" },
         { name: "Linux-arm64", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Voting%20System/VotingSystem-arm64" }
       ],
       note: "For macOS: As there is no developer ID, you may need to allow the app to run in System Preferences > Security & Privacy > General. For Linux: Make sure to give execute permissions using 'chmod +x VotingSystem' or 'chmod +x VotingSystem-arm64' in the terminal before running the application.",
