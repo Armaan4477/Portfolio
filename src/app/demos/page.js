@@ -78,9 +78,6 @@ function DemoContent() {
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
           Download and explore demos of my projects that aren't hosted online.
         </p>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          <strong>Note: Links to download each project are currently unavailable and will be added soon.</strong>
-        </p>
       </AnimatedSection>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

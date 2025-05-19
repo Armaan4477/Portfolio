@@ -57,7 +57,7 @@ export const projectsData = [
       description: "Comprehensive HR management system with multi-level access control for admins, HR personnel, managers, and employees with real-time database integration.",
       image: "/projects/ehr-system.png",
       technologies: ["Python", "Firebase", "Management"],
-      codeUrl: "https://github.com/ChampionSamay1644/Enhanced-E-HR-Management-System",
+      codeUrl: "https://github.com/Armaan4477/Enhanced-E-HR-Management-System",
       downloadLinks: [
         { name: "Windows", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System.exe" },
         { name: "macOS-arm", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/E-HR%20Mgnt%20System/E-HR%20Mgnt%20System(macos-arm).dmg" },
