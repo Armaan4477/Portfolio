@@ -22,7 +22,7 @@ rewrites() {
                 destination: '/demos/:path*',
             },
         ]
-    }
+    };
   },
 };
 
