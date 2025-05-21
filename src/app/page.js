@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
@@ -13,7 +15,17 @@ import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
 import { getFeaturedProjects } from '../data/projects';
 
 export default function Home() {
+  const router = useRouter();
   const featuredProjects = getFeaturedProjects();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hostname === 'armaan44.is-a.dev') {
+      const path = window.location.pathname;
+      if (path === '/') {
+        router.push('/demos');
+      }
+    }
+  }, [router]);
 
   const aboutMeText = [
     "Hi there! I'm Armaan, I'm passionate about technology, F1 and cars. I have been interested in tech since I'm 5 years old, with skills of building computers and handling software tasks since then.",
