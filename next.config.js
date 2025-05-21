@@ -16,7 +16,7 @@ async rewrites() {
                   has: [
                       {
                           type: 'host',
-                          value: 'armaan44.vercel.app',
+                          value: 'armaan44.is-a.dev',
                       },
                   ],
                   destination: '/demos/:path*',
@@ -25,5 +25,6 @@ async rewrites() {
       };
     },
 };
+
 
 module.exports = nextConfig;
