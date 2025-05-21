@@ -8,21 +8,21 @@ const nextConfig = {
   allowedDevOrigins: ['192.168.29.3'],
 
   // Add rewrites
-  async rewrites() {
+rewrites() {
     return {
-      beforeFiles: [
-        {
-          source: '/:path*',
-          has: [
+        beforeFiles: [
             {
-              type: 'host',
-              value: 'armaan44.is-a.dev',
+                source: '/:path*',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'armaan44.vercel.app',
+                    },
+                ],
+                destination: '/demos/:path*',
             },
-          ],
-          destination: '/demos/:path*',
-        },
-      ],
-    };
+        ]
+    }
   },
 };
 
