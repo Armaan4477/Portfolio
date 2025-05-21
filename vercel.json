@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "armaan44.is-a.dev"
+        }
+      ],
+      "destination": "/demos/:path*"
+    }
+  ]
+}
