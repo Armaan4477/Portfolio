@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import TypewriterText from './TypewriterText';
 
-const SequentialTypewriter = ({ paragraphs, delay = 10, className = "" }) => {
+const SequentialTypewriter = ({ paragraphs, delay = 5, className = "" }) => {
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0);
   const [displayedParagraphs, setDisplayedParagraphs] = useState([paragraphs[0]]);
 

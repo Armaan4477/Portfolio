@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const TypewriterText = ({ text, delay = 25, className = "", onComplete = () => {} }) => {
+const TypewriterText = ({ text, delay = 5, className = "", onComplete = () => {} }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
