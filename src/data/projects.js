@@ -163,8 +163,11 @@ export const projectsData = [
       image: "/projects/tictactoe.png",
       technologies: ["Game", "Java", "Android"],
       codeUrl: "https://github.com/Armaan4477/TicTacToe",
-      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe/TicTacToe.apk",
-      note: "This is an Android APK file. You'll need to enable installation from unknown sources on your Android device to install it.",
+      downloadLinks: [
+        { name: "TicTacToe", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/TicTacToe/TicTacToe.apk" },
+        { name: "Noughts and Crosses", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Noughts-and-Crosses/Noughts-and-Crosses.apk" }
+      ],
+      note: "There are 2 versions available: one with lottie animations(TicTacToe) and one with pre-rendered animations(Noughts and Crosses) due to requirements of 2 different project submissions. You'll need to enable installation from unknown sources on your Android device to install it.",
       featured: false,
       tags: ["game", "java"],
       year: "2023"
