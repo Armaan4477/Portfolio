@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <AnimatedSection animation="scaleUp" delay={0.3} className="md:w-1/2 mt-12 md:mt-0 flex justify-center">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary">
-            <Image 
+            <Image
               src={getImagePath("/projects/arm.jpeg")}
               alt="Armaan N"
               fill
@@ -66,7 +66,7 @@ export default function Home() {
         <h2 className="page-title">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-2 space-y-4">
-            <SequentialTypewriter 
+            <SequentialTypewriter
               paragraphs={aboutMeText}
               delay={20}
               className="text-gray-700 dark:text-gray-300"
@@ -129,7 +129,7 @@ export default function Home() {
       </AnimatedSection>
 
       {/* GitHub Contributions */}
-      <AnimatedSection animation="slideUp" className="section">
+      {/* <AnimatedSection animation="slideUp" className="section">
         <h2 className="page-title">
           <span className="flex items-center">
             <FaGithub size={28} className="text-gray-700 dark:text-gray-300 mr-2" />
@@ -142,32 +142,32 @@ export default function Home() {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <GitHubContributions />
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Social Links */}
       <AnimatedCard index={3} className="section text-center">
         <h2 className="text-2xl font-bold mb-4 text-secondary dark:text-blue-400">Connect With Me</h2>
         <div className="flex justify-center space-x-6">
-          <SocialButton 
-            href="https://github.com/Armaan4477" 
+          <SocialButton
+            href="https://github.com/Armaan4477"
             icon={<FaGithub size={24} />}
             label="GitHub"
             bgColor="bg-gray-800 dark:bg-gray-700"
-            textColor="text-white" 
+            textColor="text-white"
           />
-          <SocialButton 
-            href="https://www.linkedin.com/in/armaan-nakhuda-756492235/" 
+          <SocialButton
+            href="https://www.linkedin.com/in/armaan-nakhuda-756492235/"
             icon={<FaLinkedin size={24} />}
             label="LinkedIn"
             bgColor="bg-blue-600"
-            textColor="text-white" 
+            textColor="text-white"
           />
-          <SocialButton 
-            href="mailto:nakhudaarmaan66@gmail.com" 
+          <SocialButton
+            href="mailto:nakhudaarmaan66@gmail.com"
             icon={<FaEnvelope size={24} />}
             label="Email"
             bgColor="bg-red-500"
-            textColor="text-white" 
+            textColor="text-white"
           />
         </div>
       </AnimatedCard>
@@ -186,13 +186,13 @@ function SocialButton({ href, icon, label, bgColor, textColor }) {
   const finalBgColor = isGitHub ? `${bgColor} dark:bg-gray-700` : bgColor;
 
   return (
-    <motion.a 
+    <motion.a
       href={href}
-      target="_blank" 
+      target="_blank"
       rel="noopener noreferrer"
       className={`relative p-4 rounded-full shadow-md ${finalBgColor} ${textColor} overflow-hidden flex items-center justify-center`}
       style={{ boxShadow }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.15,
         y: -5,
       }}
@@ -214,10 +214,10 @@ function SocialButton({ href, icon, label, bgColor, textColor }) {
       aria-label={label}
     >
       {icon}
-      <motion.span 
+      <motion.span
         className="absolute inset-0 bg-white dark:bg-gray-800 opacity-0"
         whileHover={{ opacity: 0.15 }}
-        style={{ 
+        style={{
           filter: "blur(15px)",
           transform: "translate(-50%, -50%)",
           left: "50%",
