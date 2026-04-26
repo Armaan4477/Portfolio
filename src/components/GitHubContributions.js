@@ -7,9 +7,9 @@ const GitHubContributions = () => {
   const [contributions, setContributions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeYear, setActiveYear] = useState('2025');
+  const [activeYear, setActiveYear] = useState('2026');
   const [yearData, setYearData] = useState([]);
-  const years = ['2023', '2024', '2025'];
+  const years = ['2023', '2024', '2025', '2026'];
   const [tooltip, setTooltip] = useState({
     visible: false,
     content: '',
@@ -23,7 +23,7 @@ const GitHubContributions = () => {
     const fetchContributions = async () => {
       setLoading(true);
       try {
-        const response = await fetch('https://github-contributions-api.jogruber.de/v4/Armaan4477');
+        const response = await fetch('/api/github-contributions');
         if (!response.ok) {
           throw new Error('Failed to fetch GitHub contributions');
         }
