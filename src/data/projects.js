@@ -1,16 +1,13 @@
 export const projectsData = [
   {
       id: 1,
-      title: "Automated ESP",
+      title: "Fish Tank Control",
       description: "ESP-based automation system that controls two relays with advanced scheduling capabilities. Features include software toggles, hardware override switches, and temperature sensor integration. The system sends status updates via email every 90 minutes and maintains persistent logs even during power outages.",
       image: "/projects/esp.png",
       technologies: ["IoT", "Automation", "ESP32"],
-      codeUrl: "https://github.com/Armaan4477/Automated-ESP",
-      downloadLinks: [
-        { name: "ESP32 Version", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated%20ESP/Automated-ESP-esp32.zip" },
-        { name: "ESP8266 Version", url: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Automated%20ESP/Automated-ESP-esp8266.zip" }
-      ],
-      note: "This is an ESP32/ESP8266 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
+      codeUrl: "https://github.com/Armaan4477/Smart-Aquarium-Control",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Fish%20Tank%20Control/Smart-Aquarium-Control.zip",
+      note: "This is an ESP32 project. You'll need an ESP32 board and the Arduino IDE to compile and upload the code. The zip file includes detailed wiring diagrams and setup instructions.",
       featured: true,
       tags: ["iot", "automation"],
       year: "2025"
@@ -189,6 +186,32 @@ export const projectsData = [
       featured: false,
       tags: ["java", "firebase"],
       year: "2023"
+    },
+    {
+      id: 13,
+      title: "Store-It",
+      description: "A secure cloud storage application for uploading, organizing, and managing files with a clean user experience.",
+      image: "/projects/storeit.png",
+      technologies: ["Website","Next.js", "Storage"],
+      codeUrl: "https://github.com/Armaan4477/Store-It",
+      downloadLink: "https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Store%20It/Store-It.zip",
+      note: "You will need to link the AWS services and then host the website.",
+      featured: false,
+      tags: ["website", "storage"],
+      year: "2026"
+    },
+    {
+      id: 14,
+      title: "Atomberg Fan Control",
+      description: "An IoT-based fan control project for managing Atomberg fan behavior with smart automation and remote operations.",
+      image: "/projects/atomberg.png",
+      technologies: ["IoT","Python"],
+      codeUrl: "https://github.com/Armaan4477/Atomberg-Fan-Control",
+      downloadLink:"https://github.com/Armaan4477/Portfolio-downloads/raw/refs/heads/main/Atomberg%20Control/Atomberg-Fan-Control.zip",
+      note: "Add the API key and refresh token from your atomberg account in the code and then build the application to use it",
+      featured: false,
+      tags: ["iot", "automation"],
+      year: "2026"
     }
   ];
 
