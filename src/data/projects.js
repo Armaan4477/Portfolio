@@ -215,6 +215,13 @@ export const projectsData = [
     }
   ];
 
+// Sorts all projects alphabetically by title (character-by-character, locale-aware)
+export const getSortedProjects = () => {
+  return [...projectsData].sort((a, b) =>
+    a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
+  );
+};
+
 export const getFeaturedProjects = () => {
-  return projectsData.filter(project => project.featured);
+  return getSortedProjects().filter(project => project.featured);
 };

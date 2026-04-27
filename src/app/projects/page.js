@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import ProjectCard from '../../components/ProjectCard';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import AnimatedCard from '../../components/animations/AnimatedCard';
-import { projectsData } from '../../data/projects';
+import { getSortedProjects } from '../../data/projects';
+
+// Evaluated once at module load — stable reference, won't retrigger useEffect
+const projects = getSortedProjects();
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Projects() {
@@ -13,7 +16,6 @@ export default function Projects() {
   const [uniqueYears, setUniqueYears] = useState([]);
   const [projectsByYear, setProjectsByYear] = useState({});
   
-  const projects = projectsData;
 
   const filters = [
     { id: 'all', label: 'All' },
