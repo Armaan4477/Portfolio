@@ -24,5 +24,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "unrs-resolver@1.11.1": true
   }
 }
