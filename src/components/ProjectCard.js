@@ -4,13 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import getImagePath from '../utils/imageLoader';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaExternalLinkAlt, FaDownload } from 'react-icons/fa';
+import { FaCode, FaExternalLinkAlt, FaDownload, FaEye, FaEyeSlash, FaInfoCircle } from 'react-icons/fa';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { getPreviewStatus } from '../data/projects';
 
 const ProjectCard = ({ project, featured = false }) => {
   const [expanded, setExpanded] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
+  const infoRef = useRef(null);
+  const previewStatus = getPreviewStatus(project);
   const { ref: cardRef, isInView } = useScrollAnimation({
     once: true,
     margin: '0px 0px 0px 0px',
@@ -26,7 +30,34 @@ const ProjectCard = ({ project, featured = false }) => {
 
   useEffect(() => {
     setExpanded(false);
+    setShowInfo(false);
   }, [project.id]);
+
+  useEffect(() => {
+    if (!showInfo) return;
+
+    const handleClickOutside = (event) => {
+      if (infoRef.current && !infoRef.current.contains(event.target)) {
+        setShowInfo(false);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setShowInfo(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showInfo]);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -45,12 +76,10 @@ const ProjectCard = ({ project, featured = false }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [expanded]);
 
-  const hasDownloads = project.downloadLink || (project.downloadLinks && project.downloadLinks.length > 0);
-
   return (
     <motion.div 
       ref={cardRef}
-      className={`bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
+      className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow ${featured ? 'border-2 border-secondary' : ''}`}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ 
@@ -67,7 +96,7 @@ const ProjectCard = ({ project, featured = false }) => {
         height: expanded ? "auto" : "500px"
       }}
     >
-      <div className="relative h-48">
+      <div className="relative h-48 overflow-hidden rounded-t-lg">
         <Image 
           src={getImagePath(project.image)} 
           alt={project.title}
@@ -139,28 +168,88 @@ const ProjectCard = ({ project, featured = false }) => {
         </div>
         
         <div className="flex justify-between items-center mt-4">
-          <div className="flex space-x-3">
+          <div className="flex flex-wrap items-center gap-2">
             {project.codeUrl && (
               <Link href={project.codeUrl} target="_blank" rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-3 py-1.5 bg-secondary dark:bg-blue-600 text-white rounded-md hover:bg-secondary-dark dark:hover:bg-blue-700 font-medium transition-colors">
+                className="flex items-center gap-2 px-3 py-1.5 bg-secondary dark:bg-blue-600 text-white rounded-md hover:bg-secondary-dark dark:hover:bg-blue-700 font-medium transition-colors text-sm">
                 <FaCode size={16} /> View Code
               </Link>
             )}
-            {project.demoUrl ? (
-              <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-3 py-1.5 bg-green-600 dark:bg-green-700 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-800 font-medium transition-colors">
+            {previewStatus.type === 'demo' ? (
+              <Link href={previewStatus.url} target="_blank" rel="noopener noreferrer" 
+                className="flex items-center gap-2 px-3 py-1.5 bg-green-600 dark:bg-green-700 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-800 font-medium transition-colors text-sm">
                 <FaExternalLinkAlt size={14} /> View Demo
               </Link>
-            ) : hasDownloads && (
+            ) : previewStatus.type === 'download' ? (
               <Link href={`/demos?projectId=${project.id}`} 
-                className="flex items-center gap-2 px-3 py-1.5 bg-purple-600 dark:bg-purple-700 text-white rounded-md hover:bg-purple-700 dark:hover:bg-purple-800 font-medium transition-colors">
+                className="flex items-center gap-2 px-3 py-1.5 bg-purple-600 dark:bg-purple-700 text-white rounded-md hover:bg-purple-700 dark:hover:bg-purple-800 font-medium transition-colors text-sm">
                 <FaDownload size={14} /> Get Demo
               </Link>
-            )}
+            ) : (previewStatus.type === 'no-preview' || previewStatus.type === 'preview-available') ? (
+              <div 
+                className="relative inline-block" 
+                ref={infoRef}
+                onMouseEnter={() => setShowInfo(true)}
+                onMouseLeave={() => setShowInfo(false)}
+              >
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowInfo(prev => !prev);
+                  }}
+                  onFocus={() => setShowInfo(true)}
+                  onBlur={() => setShowInfo(false)}
+                  className="group flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700/80 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-md border border-gray-300/80 dark:border-gray-600 font-medium text-xs sm:text-sm transition-all cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-primary/40 select-none"
+                  aria-label={`${previewStatus.type === 'no-preview' ? 'No preview available' : 'Preview available'}: ${previewStatus.reason}`}
+                  aria-expanded={showInfo}
+                >
+                  {previewStatus.type === 'no-preview' ? (
+                    <FaEyeSlash size={14} className="text-amber-500 dark:text-amber-400 shrink-0" />
+                  ) : (
+                    <FaEye size={14} className="text-emerald-500 dark:text-emerald-400 shrink-0" />
+                  )}
+                  <span>{previewStatus.type === 'no-preview' ? 'No Preview Available' : 'Preview Available'}</span>
+                  <FaInfoCircle 
+                    size={13} 
+                    className="text-gray-400 group-hover:text-primary dark:text-gray-400 dark:group-hover:text-blue-400 transition-colors shrink-0 ml-0.5" 
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {showInfo && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className={`absolute bottom-full mb-2 z-40 w-64 sm:w-72 p-3 bg-gray-900/95 dark:bg-gray-950/95 text-white rounded-lg shadow-xl border border-gray-700/80 backdrop-blur-xs text-xs pointer-events-auto ${
+                        project.codeUrl ? 'sm:right-0 left-0 sm:left-auto' : 'left-0'
+                      }`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <div className="flex items-start gap-2">
+                        <FaInfoCircle className="text-blue-400 mt-0.5 shrink-0" size={13} />
+                        <div>
+                          <p className="font-semibold text-gray-200 mb-1">Preview Notice</p>
+                          <p className="text-gray-300 leading-relaxed font-normal">{previewStatus.reason}</p>
+                        </div>
+                      </div>
+                      <div 
+                        className={`absolute top-full -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-900/95 dark:border-t-gray-950/95 ${
+                          project.codeUrl ? 'sm:left-auto sm:right-6 left-6' : 'left-6'
+                        }`} 
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : null}
           </div>
           {featured && (
             <motion.span 
-              className="bg-secondary text-white text-xs px-3 py-1 rounded-full"
+              className="bg-secondary text-white text-xs px-3 py-1 rounded-full shrink-0 ml-2"
               initial={{ opacity: 0, scale: 0 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
               transition={{ delay: 0.2 }}

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowLeft, FaDownload, FaGithub, FaChevronDown } from 'react-icons/fa';
 import AnimatedSection from '../../components/animations/AnimatedSection';
-import { projectsData } from '../../data/projects';
+import { projectsData, getPreviewStatus } from '../../data/projects';
 import getImagePath from '../../utils/imageLoader';
 import { useSearchParams, useRouter } from 'next/navigation';
 
@@ -17,7 +17,7 @@ function DemoContent() {
   const router = useRouter();
   
   const projectsWithDownloads = projectsData.filter(project => 
-    !project.demoUrl && (project.downloadLink || (project.downloadLinks && project.downloadLinks.length > 0))
+    getPreviewStatus(project).type === 'download'
   );
   
   useEffect(() => {

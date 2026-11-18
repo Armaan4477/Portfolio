@@ -75,11 +75,11 @@ export default function Home() {
           <AnimatedSection animation="slideInRight" delay={0.2} className="md:col-span-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="card text-center py-8">
-                <div className="text-3xl font-bold text-primary mb-2">5+</div>
+                <div className="text-3xl font-bold text-primary mb-2">10+</div>
                 <div className="text-gray-600 dark:text-gray-400 font-medium">Projects</div>
               </div>
               <div className="card text-center py-8">
-                <div className="text-3xl font-bold text-primary mb-2">4+</div>
+                <div className="text-3xl font-bold text-primary mb-2">5+</div>
                 <div className="text-gray-600 dark:text-gray-400 font-medium">Skills</div>
               </div>
             </div>

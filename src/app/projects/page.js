@@ -3,13 +3,20 @@ import { useState, useEffect } from 'react';
 import ProjectCard from '../../components/ProjectCard';
 import AnimatedSection from '../../components/animations/AnimatedSection';
 import AnimatedCard from '../../components/animations/AnimatedCard';
-import { getSortedProjects } from '../../data/projects';
+import { getSortedProjects, projectsBanner } from '../../data/projects';
 
 // Evaluated once at module load — stable reference, won't retrigger useEffect
 const projects = getSortedProjects();
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaSyncAlt, FaTimes } from 'react-icons/fa';
 
 export default function Projects() {
+  const [dismissedBanner, setDismissedBanner] = useState(false);
+  const showBanner = Boolean(projectsBanner?.enabled) && !dismissedBanner;
+
+  const bannerTitle = projectsBanner?.title || "Portfolio Update in Progress:";
+  const bannerMessage = projectsBanner?.message || "Project entries are currently being updated — project icons and download links will be updated soon.";
+
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeSorting, setActiveSorting] = useState('none');
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -81,10 +88,46 @@ export default function Projects() {
     <div>
       <AnimatedSection animation="fadeIn" margin="0px" amount={0.005}>
         <h1 className="page-title">My Projects</h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
           Explore my latest work and technical projects
         </p>
       </AnimatedSection>
+
+      <AnimatePresence>
+        {showBanner && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }}
+            transition={{ duration: 0.25 }}
+            className="mb-8"
+          >
+            <div className="relative overflow-hidden rounded-xl border border-blue-200/80 dark:border-blue-900/50 bg-gradient-to-r from-blue-50/90 via-sky-50/50 to-indigo-50/80 dark:from-blue-950/40 dark:via-gray-900/50 dark:to-indigo-950/30 p-3.5 sm:p-4 shadow-xs">
+              <div className="flex items-start sm:items-center justify-between gap-3">
+                <div className="flex items-start sm:items-center gap-3">
+                  <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5 sm:mt-0">
+                    <FaSyncAlt className="text-xs animate-spin" style={{ animationDuration: '6s' }} />
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <span className="font-semibold text-gray-900 dark:text-white mr-1.5">
+                      {bannerTitle}
+                    </span>
+                    {bannerMessage}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setDismissedBanner(true)}
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1 rounded-md transition-colors shrink-0 cursor-pointer"
+                  aria-label="Dismiss banner"
+                >
+                  <FaTimes size={13} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <AnimatedSection animation="slideUp" margin="0px" amount={0.005} className="filter-buttons flex flex-wrap gap-2 flex-grow">
